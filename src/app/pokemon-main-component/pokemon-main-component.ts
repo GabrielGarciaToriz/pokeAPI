@@ -21,7 +21,7 @@ export class PokemonMainComponent implements OnInit{
         getAll(){
           this.service.getAll().subscribe(
             data => {
-              this.pokemones  = data.objects;
+              this.pokemones  = data.results;
               console.log(data);
               }, error => {
                 console.error('Error:', error);

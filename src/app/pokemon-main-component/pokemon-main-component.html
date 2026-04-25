@@ -1,19 +1,53 @@
+<div class="titulo">
+    <h1 class="ps-3">Pokemones <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt=""> </h1>
 
-<body>
-    <div class="container">
-        <img src="/src/app/Images/pokemon.png" alt=""><h1>Pokemones</h1> 
-
-    </div>
-
-
-@for (pokemon of pokemones; track pokemon.name) {
-
-<p>{{ pokemon.name }}</p>
-
-}
-
-            
-</body>
+</div>
+<div class=" bg-light p-5">
 
 
 
+    <div class="row row-cols-1 row-cols-md-4 g-2">
+        
+    @for (pokemon of pokemones; track pokemon.name) {
+    <!-- Muestra 1, 2, 3... -->
+    
+  
+
+        <div class="card g-4 border border-0 row bg.danger">
+
+            <div class="card border border-0">
+                <div class="card-body border border-0 rounded-4 col zoom front">
+
+
+                    <div class="rounded-circle divImagenPokemon text-white" >
+                    <!-- <p>{{pokemon.url}}</p> -->
+
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="" class="imgPokemon">
+  
+                </div>
+
+
+                    <div class="rounded-pill nombrePokemon">
+                        <p>{{pokemon.name.toUpperCase() }}</p>
+
+                    </div>
+
+                </div>
+                
+            </div>
+
+        
+        </div>
+    }
+
+
+   </div>
+
+
+
+
+
+
+
+</div>

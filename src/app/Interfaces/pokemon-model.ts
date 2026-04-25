@@ -3,3 +3,7 @@ export interface PokemonModel {
     name: string,
     url: string
 }
+
+export interface PokemonResponse {
+  results: PokemonModel[];
+}
