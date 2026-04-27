@@ -9,24 +9,41 @@ import { Service } from '../Service/service';
   templateUrl: './pokemon-main-component.html',
   styleUrl: './pokemon-main-component.css',
 })
-export class PokemonMainComponent implements OnInit{
-        public pokemones : PokemonModel [] = []; 
+export class PokemonMainComponent implements OnInit {
+  public limit: number = 20;
+  public offset: number = 0;
+  public total: number = 0;
 
-        constructor (private service : Service){}
+  public pokemones: PokemonModel[] = [];
 
-        ngOnInit(): void {
-          this.getAll();
-        }
+  constructor(private service: Service) { }
 
-        getAll(){
-          this.service.getAll().subscribe(
-            data => {
-              this.pokemones  = data.results;
-              console.log(data);
-              }, error => {
-                console.error('Error:', error);
-              }
-          );
-        }
-      }
+  ngOnInit(): void {
+    this.getAll();
+  }
 
+  getAll() {
+    this.service.getAll(this.limit, this.offset).subscribe(data => {
+      this.pokemones = data.results;
+      this.total = data.count;
+    });
+  }
+
+  PaginaSiguiente() {
+    this.offset += this.limit;
+    this.getAll();
+  }
+
+  PaginaAnterior() {
+    if (this.offset > 0) {
+      this.offset -= this.limit;
+      this.getAll();
+    }
+  }
+
+  getById(nombre: string) {
+    this.service.getByiD(nombre).subscribe(data => {
+      this.pokemones = data.results;
+    });
+  }
+}

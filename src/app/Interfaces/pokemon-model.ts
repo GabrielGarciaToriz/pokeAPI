@@ -1,7 +1,9 @@
 export interface PokemonModel {
-    id: number,
+    idPokemon: number,
     name: string,
-    url: string
+    url: string,
+    image: string,
+    count: number
 }
 
 export interface PokemonResponse {
