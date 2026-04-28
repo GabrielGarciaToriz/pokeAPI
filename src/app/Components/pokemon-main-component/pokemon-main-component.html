@@ -6,15 +6,14 @@
 <div class=" bg-transparent p-5">
 
     <div>
-        <input type="text" class="form-control mb-4" placeholder="Buscar Pokemon por nombre o ID" >
+        <input [(ngModel)]="searchTerm" type="text" class="form-control mb-4 p-4 busquedaPokemon" placeholder="Buscar Pokemon por nombre ..." (input)="filtrar()">
     </div>
 
 
 
     <div class="row row-cols-1 row-cols-md-4 g-2 bg-transparent">
         
-    @for (pokemon of pokemones; track pokemon.name) {
-    <!-- Muestra 1, 2, 3... -->
+    @for (pokemon of pokemonsFiltrados; track pokemon.name) {
     
   
 
@@ -59,3 +58,9 @@
 
 
 </div>
+
+<footer class="bg-dark text-center text-white p-3">
+    <p>&copy;PokeApi</p>
+
+
+</footer>

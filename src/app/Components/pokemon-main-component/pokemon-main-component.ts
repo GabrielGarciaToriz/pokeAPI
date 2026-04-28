@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PokemonModel } from '../Interfaces/pokemon-model';
-import { Service } from '../Service/service';
+import { PokemonModel } from '../../Interfaces/pokemon-model';
+import { Service } from '../../Service/service';
+import { FormsModule } from '@angular/forms'; // 1. Importar
 
 @Component({
   selector: 'app-pokemon-main-component',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './pokemon-main-component.html',
   styleUrl: './pokemon-main-component.css',
 })
@@ -13,7 +14,8 @@ export class PokemonMainComponent implements OnInit {
   public limit: number = 20;
   public offset: number = 0;
   public total: number = 0;
-
+  public searchTerm: string = '';
+  public pokemonsFiltrados: PokemonModel[] = [];
   public pokemones: PokemonModel[] = [];
 
   constructor(private service: Service) { }
@@ -41,9 +43,13 @@ export class PokemonMainComponent implements OnInit {
     }
   }
 
-  getById(nombre: string) {
-    this.service.getByiD(nombre).subscribe(data => {
-      this.pokemones = data.results;
-    });
-  }
+ 
+
+filtrar() {
+  this.pokemonsFiltrados = this.pokemones.filter(p =>
+    p.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+  );
+}
+
+  
 }

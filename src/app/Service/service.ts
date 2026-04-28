@@ -18,7 +18,7 @@ export class Service {
 
 
 
-getByiD(nombre: string){
+getById(nombre: string){
   return this.http.get<PokemonResponse>(this.urlId + nombre);
 } 
    
@@ -40,7 +40,8 @@ getAll(limit: number, offset: number) {
               name: p.name,
               url: p.url,
               idPokemon: id,
-              image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+              image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+              cries: `https://play.pokemonshowdown.com/audio/cries/${p.name}.mp3` //sonido de los pokemones
             };
           })
         };

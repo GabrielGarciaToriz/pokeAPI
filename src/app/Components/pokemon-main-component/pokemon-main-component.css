@@ -59,3 +59,17 @@
     transition: 0.2s;
     transform: scale(1.1);
 }
+
+.busquedaPokemon{
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    transition: 0.3s;
+}
+
+input::placeholder{
+    color: #FFFF;
+    font-weight: bold;
+}
