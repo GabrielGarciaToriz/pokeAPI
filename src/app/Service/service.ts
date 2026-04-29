@@ -5,13 +5,15 @@ import { Observable } from 'rxjs';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { PokemonModel } from '../Interfaces/pokemon-model';
 import { ResultModel } from '../Interfaces/result-model';
+import { UsuarioModel } from '../Interfaces/usuario-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Service {
 
-  private url: string = "http://192.167.0.144:8080/api/pokemon";
+  private url: string = "http://192.167.0.201:8080/api/pokemon";
+  private urlUsuarios: string = "http://192.167.0.201:8080/api/usuario";
 
   constructor (private http: HttpClient){}
 
@@ -50,7 +52,11 @@ getAll(): Observable<ResultModel<PokemonModel>> {
 //     );
 // }
 
-getUsuarios(): Observable<any> {
-  return this.http.get<any>(`${this.url}/usuarios`);
+getUsuarios(): Observable<ResultModel<UsuarioModel>> {
+  return this.http.get<ResultModel<UsuarioModel>>(this.urlUsuarios);
+}
+
+deleteUsuarios(idusuario: number): Observable<ResultModel<UsuarioModel>> {
+  return this.http.delete<ResultModel<UsuarioModel>>(this.urlUsuarios + "/" + idusuario);
 }
 }

@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Service } from '../../Service/service';
 import { PokemonModel } from '../../Interfaces/pokemon-model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-get-by-id-pokemon',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './get-by-id-pokemon.html',
   styleUrl: './get-by-id-pokemon.css',
 })

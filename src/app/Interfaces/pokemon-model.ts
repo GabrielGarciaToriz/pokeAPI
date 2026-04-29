@@ -5,7 +5,7 @@ export interface PokemonModel {
   name: string,
   weight: number,
   height: number,
-  types: string,
+  types: string[],
   sprites: {
     back_default: string,
     back_shiny: string,
@@ -19,7 +19,8 @@ export interface PokemonModel {
     hp: number,
     special_defense: number,
     speed: number
-   }
+   },
+   moves: string[]
 
   }
 

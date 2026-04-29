@@ -1,0 +1,34 @@
+.titulo{
+    
+      background-color: #E3350D;
+}
+
+.thHead{
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+}
+
+.btnRegresar{
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+
+.btnRegresar:hover{
+    background-color: #E3350D;
+    color: #2D3748;
+    font-weight: bold;
+    border: none;
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+
+.sexoSpanMan{
+    color: blue;
+}
+.sexoSpanWoman{
+    color: violet;
+}

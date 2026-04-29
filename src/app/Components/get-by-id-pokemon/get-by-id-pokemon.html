@@ -1,43 +1,89 @@
 <div class="titulo">
-    <h1 class="ps-3 text-center">Información de {{pokemon?.name?.toUpperCase()}} <img
-            [src]="pokemon?.sprites?.front_default" alt=""> </h1>
+
+    <h1 class="ps-3 ">  Información de
+        {{pokemon?.name?.toUpperCase()}} <img [src]="pokemon?.sprites?.front_default" alt=""> </h1>
 
 </div>
 <div class="container">
-    <div class="card  border border-0 row bg-danger">
-
-        <div class="card border border-0 ">
-            <div class="card-body border border-0 rounded-4 col zoom front">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                <p>{{pokemon?.name?.toUpperCase()}}</p>
-                            </th>
-                            <th>
-                                <p>Estadísticas</p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <img [src]="pokemon?.sprites?.front_default" class="imagenPrincipal">
-
-                            </td>
-                            <td>
-                                <p>Ataque Especial: {{pokemon?.stats?.specialattack}}</p> <!--¨problemas con el nombre del ataque especial-->
-                                <p>Defensa: {{pokemon?.stats?.defense}}</p>
-                                <p>Ataque: {{pokemon?.stats?.attack}}</p>
-                                <p>Puntos de vida: {{pokemon?.stats?.hp}}</p>
-                                <p>Defensa especial: {{pokemon?.stats?.special_defense}}</p> <!--nuevamente problemas con el nombre de la defensa especial-->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
 
 
-            </div>
-        </div>
-    </div>
+
+
+    <table class=" justify-content-center d-flex m-4">
+
+        
+        <tbody>
+            <tr rowspan="4">
+                <td colspan="4">
+                    <p class="text-center fw-bold">{{pokemon?.name?.toUpperCase()}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    
+                    <img [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + pokemon?.idPokemon + '.svg'"
+                        class="imagenPrincipal " alt="Imagen no disponible :( ">
+
+                </td>
+            
+                <td colspan="1">
+                    <p class="fw-bold">Estadísticas</p>
+
+                    Ataque Especial: <br>
+
+                    <!--¨problemas con el nombre del ataque especial-->
+                    Defensa:
+                    <div style="background:#eee; width:100%; height:10px;">
+                        <div [style.width.%]="pokemon?.stats?.defense" style="background:green; height:10px;">
+                        </div>
+                    </div>
+                    Ataque:
+                    <div style="background:#eee; width:100%; height:10px;">
+                        <div [style.width.%]="pokemon?.stats?.attack" style="background:green; height:10px;">
+                        </div>
+                    </div>
+                    Puntos de vida:
+                    <div style="background:#eee; width:100%; height:10px;">
+                        <div [style.width.%]="pokemon?.stats?.hp" style="background:green; height:10px;">
+                        </div>
+                    </div>
+                    <p>Defensa especial: {{pokemon?.stats?.special_defense}}</p>
+                    <!--nuevamente problemas con el nombre de la defensa especial-->
+                    <p class="fw-bold">Más información</p>
+                   <span class="fw-bold">No.</span> {{pokemon?.idPokemon}} <br>
+                   <span class="fw-bold">Altura:</span> {{pokemon?.height}} mts. <br>
+                    <span class="fw-bold">Peso:</span> {{pokemon?.weight}} kg. <br>
+
+                </td>
+
+                <td colspan="2">
+                    <img [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/' + pokemon?.idPokemon + '.gif'"
+                        class="animacionPrincipal " alt="Imagen no disponible :( ">
+                </td>
+                
+            </tr>
+                
+            
+
+            <tr>
+                <td colspan="4" class="m-4 ">
+                    <p class="fw-bold">Movimientos:</p>
+                
+
+                    @for (movimiento of pokemon?.moves; track movimiento) {
+                    {{movimiento.toUpperCase()}} -
+                    }
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+
+</div>
+<div class="justify-content-center d-flex m-4">
+    <a class="btn btnRegresar" [routerLink]="['/']">Regresar</a>
 </div>

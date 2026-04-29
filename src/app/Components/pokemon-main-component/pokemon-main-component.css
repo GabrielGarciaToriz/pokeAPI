@@ -2,8 +2,8 @@
   padding: 50px;
   background-color: #E3350D;
   transition: transform .2s;
-  width: 300px;
-  height: 380px;
+  width: 90%;
+  height: 110%;
   margin: 0 auto;
 }
 
@@ -82,4 +82,15 @@ input::placeholder{
 .alturaPesoDiv{
     margin: 0;
     padding: 0;
+}
+
+.info{
+    color: yellow;
+    font-size: 25px;
+    transition: 0.3s;
+}
+.info:hover{
+    color: #2D3748;
+    transition: 0.2s;
+    transform: scale(1.1);
 }

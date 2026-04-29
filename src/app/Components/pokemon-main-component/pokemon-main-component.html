@@ -5,6 +5,11 @@
 </div>
 <div class=" bg-transparent p-5">
 
+    <div class="m-4 d-flex justify-content-end">
+            <a class="btn btnPaginacion" [routerLink]="['/usuarios']">Usuarios</a>
+
+    </div>
+
     <div>
         <input [(ngModel)]="searchTerm" type="text" class="form-control mb-4 p-4 busquedaPokemon" placeholder="Buscar Pokemon por nombre ..." (input)="filtrar()">
     </div>
@@ -24,9 +29,10 @@
 
 
                     <div class="tipos rounded-pill">
-                    <p class="text-center">Tipo: {{pokemon.types}} <a class="btn btn-success" [routerLink]="['/pokemon/'+ pokemon.idPokemon]">enviar</a></p>
-
+                    <p class="text-center">Tipo: {{pokemon.types}}
+</p> 
                     </div>
+                    <a class="btn " [routerLink]="['/pokemon/'+ pokemon.idPokemon]"><i class="bi bi-info-circle info"></i></a>
 
                     <div class="rounded-circle divImagenPokemon text-white" >
                     <!-- <p>{{pokemon.url}}</p> -->
