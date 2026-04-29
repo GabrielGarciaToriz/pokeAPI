@@ -1,0 +1,43 @@
+<div class="titulo">
+    <h1 class="ps-3 text-center">Información de {{pokemon?.name?.toUpperCase()}} <img
+            [src]="pokemon?.sprites?.front_default" alt=""> </h1>
+
+</div>
+<div class="container">
+    <div class="card  border border-0 row bg-danger">
+
+        <div class="card border border-0 ">
+            <div class="card-body border border-0 rounded-4 col zoom front">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <p>{{pokemon?.name?.toUpperCase()}}</p>
+                            </th>
+                            <th>
+                                <p>Estadísticas</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img [src]="pokemon?.sprites?.front_default" class="imagenPrincipal">
+
+                            </td>
+                            <td>
+                                <p>Ataque Especial: {{pokemon?.stats?.specialattack}}</p> <!--¨problemas con el nombre del ataque especial-->
+                                <p>Defensa: {{pokemon?.stats?.defense}}</p>
+                                <p>Ataque: {{pokemon?.stats?.attack}}</p>
+                                <p>Puntos de vida: {{pokemon?.stats?.hp}}</p>
+                                <p>Defensa especial: {{pokemon?.stats?.special_defense}}</p> <!--nuevamente problemas con el nombre de la defensa especial-->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>

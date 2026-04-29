@@ -1,0 +1,85 @@
+.zoom {
+  padding: 50px;
+  background-color: #E3350D;
+  transition: transform .2s;
+  width: 300px;
+  height: 380px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+    transition: 0.2s;
+  transform: scale(1.08);
+  background-color: red;
+  border: #E3350D solid 2px;
+}
+
+.titulo{
+    
+      background-color: #E3350D;
+}
+
+.nombrePokemon{
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #FFFF;
+    color: #E3350D;
+}
+
+.divImagenPokemon{
+    width: 100%;
+    height: 60%;
+    object-fit: contain;
+    background-color: #2D3748;
+    margin-bottom: 10px;
+}
+
+.imgPokemon{
+    width: 100%;
+    height: 90%;
+    object-fit: contain;
+}
+
+.btnPaginacion{
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    width: 130px;
+    transition: 0.3s;
+}
+
+.btnPaginacion:hover{
+    background-color: #E3350D;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    width: 130px;
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+
+.busquedaPokemon{
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    transition: 0.3s;
+}
+
+input::placeholder{
+    color: #FFFF;
+    font-weight: bold;
+}
+
+.tipos{
+    background-color: yellow;
+
+}
+
+.alturaPesoDiv{
+    margin: 0;
+    padding: 0;
+}
