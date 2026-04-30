@@ -1,25 +1,25 @@
 .zoom {
-  padding: 50px;
-  background-color: #E3350D;
-  transition: transform .2s;
-  width: 90%;
-  height: 110%;
-  margin: 0 auto;
+    padding: 50px;
+    background-color: #E3350D;
+    transition: transform .2s;
+    width: 90%;
+    height: 110%;
+    margin: 0 auto;
 }
 
 .zoom:hover {
     transition: 0.2s;
-  transform: scale(1.08);
-  background-color: red;
-  border: #E3350D solid 2px;
+    transform: scale(1.08);
+    background-color: red;
+    border: #E3350D solid 2px;
 }
 
-.titulo{
-    
-      background-color: #E3350D;
+.titulo {
+
+    background-color: #E3350D;
 }
 
-.nombrePokemon{
+.nombrePokemon {
     text-align: center;
     font-size: 10px;
     font-weight: bold;
@@ -27,7 +27,7 @@
     color: #E3350D;
 }
 
-.divImagenPokemon{
+.divImagenPokemon {
     width: 100%;
     height: 60%;
     object-fit: contain;
@@ -35,13 +35,13 @@
     margin-bottom: 10px;
 }
 
-.imgPokemon{
+.imgPokemon {
     width: 100%;
     height: 90%;
     object-fit: contain;
 }
 
-.btnPaginacion{
+.btnPaginacion {
     background-color: #2D3748;
     color: #FFFF;
     font-weight: bold;
@@ -50,7 +50,7 @@
     transition: 0.3s;
 }
 
-.btnPaginacion:hover{
+.btnPaginacion:hover {
     background-color: #E3350D;
     color: #FFFF;
     font-weight: bold;
@@ -60,7 +60,7 @@
     transform: scale(1.1);
 }
 
-.busquedaPokemon{
+.busquedaPokemon {
     background-color: #2D3748;
     color: #FFFF;
     font-weight: bold;
@@ -69,28 +69,46 @@
     transition: 0.3s;
 }
 
-input::placeholder{
+input::placeholder {
     color: #FFFF;
     font-weight: bold;
 }
 
-.tipos{
+.tipos {
     background-color: yellow;
 
 }
 
-.alturaPesoDiv{
+.alturaPesoDiv {
     margin: 0;
     padding: 0;
 }
 
-.info{
+.info {
     color: yellow;
     font-size: 25px;
     transition: 0.3s;
 }
-.info:hover{
+
+.info:hover {
     color: #2D3748;
     transition: 0.2s;
     transform: scale(1.1);
+}
+
+/* Ejemplo: Checkbox circular */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #2D3748;
+  background-color: #2D3748;
+  border-radius: 50%; /* Esto lo hace redondo */
+  cursor: pointer;
+  outline: none;
+}
+
+input[type="checkbox"]:checked {
+      background:linear-gradient( red 45%, black 45%, black 55%, white 55%, yellow 100%);
 }

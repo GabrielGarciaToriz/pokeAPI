@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UsuarioModel } from '../../Interfaces/usuario-model';
 import { Service } from '../../Service/service';
 import { RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-usuarios-pokemones',
@@ -29,8 +31,15 @@ getUsuarios(){
 
 deleteUsuarios(idusuario: number) {
   this.service.deleteUsuarios(idusuario).subscribe({next: (data) => {
-    console.log(data);
+    console.log(data);      
+    Swal.fire({
+  title: "Se ha eliminado el usuario",
+  icon: "success",
+  draggable: true
+});
+
     this.getUsuarios(); 
+
   
   }});
 

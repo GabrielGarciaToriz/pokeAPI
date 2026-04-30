@@ -29,6 +29,8 @@ private service = inject(Service);
      this.service.getById(id).subscribe(data => {
        this.pokemon = data.object;
        console.log(data)
+       
+       
      });
    }
  }

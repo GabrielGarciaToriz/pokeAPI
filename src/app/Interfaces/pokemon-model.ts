@@ -13,11 +13,11 @@ export interface PokemonModel {
     front_shiny: string
   },
   stats:{
-   specialattack: number,
+   "special-attack": number,
     defense: number,
     attack: number,
     hp: number,
-    special_defense: number,
+    "special-defense": number,
     speed: number
    },
    moves: string[]

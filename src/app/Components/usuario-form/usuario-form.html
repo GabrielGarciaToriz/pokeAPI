@@ -30,7 +30,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Fecha de Nacimiento: </label>
-                    <input type="date" class="form-control" >
+                    <input type="date" class="form-control" formControlName = "fechaNacimiento">
 
                 </div>
 
@@ -50,17 +50,17 @@
                     <label class="form-label">Sexo: </label> <br>
                     <input class="form-check-input" type="radio" value="M" id="radioSexoM" checked formControlName = "sexo">
                     <label class="form-check-label" for="radioSexoM">Masculino</label> <br>
-                    <input class="form-check-input" type="radio" value="F" id="radioSexoF">
+                    <input class="form-check-input" type="radio" value="F" id="radioSexoF" formControlName = "sexo">
                     <label class="form-check-label" for="radioSexoF">Femenino</label>
 
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Rol: </label>
-                    <select class="form-select" >
-                        <option value="0" selected>Selecciona un rol</option>
-                        <option value="1">Lider de gimnasio</option>
-                        <option value="2">Maestro pokemon</option>
+                    <select class="form-select" formControlName = "rol">
+                        <option value=0 selected>Selecciona un rol</option>
+                        <option value=1>Lider de gimnasio</option>
+                        <option value=2>Maestro pokemon</option>
                     </select>
 
 
@@ -69,7 +69,7 @@
 
                 <div class="justify-content-center d-flex">
                     <a class="btn btnRegresar me-5" [routerLink]="['/usuarios']">Regresar</a>
-                            <button type="submit" class="btn btnCrearCuenta btn-lg ms-5">Crear Cuenta</button>
+                            <button type="submit" class="btn btnCrearCuenta btn-lg ms-5" >Crear Cuenta</button>
                 </div>
                 
             </form>

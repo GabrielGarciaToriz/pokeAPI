@@ -1,52 +1,68 @@
 <div class="titulo">
-    <h1 class="ps-3">PokeApi <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt=""> </h1>
+    <h1 class="ps-3">PokeApi <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+            alt=""> </h1>
 
 </div>
 <div class=" bg-transparent p-5">
 
     <div class="m-4 d-flex justify-content-end">
-            <a class="btn btnPaginacion" [routerLink]="['/usuarios']">Usuarios</a>
+        <a class="btn btnPaginacion" [routerLink]="['/usuarios']">Usuarios</a>
 
     </div>
 
     <div>
-        <input [(ngModel)]="searchTerm" type="text" class="form-control mb-4 p-4 busquedaPokemon" placeholder="Buscar Pokemon por nombre ..." (input)="filtrar()">
+        <input [(ngModel)]="searchTerm" type="text" class="form-control mb-4 p-4 busquedaPokemon"
+            placeholder="Buscar Pokemon por nombre ..." (input)="filtrar()">
     </div>
 
 
 
     <div class="row row-cols-1 row-cols-md-4 g-2 bg-transparent">
-        
-    @for (pokemon of pokemonsFiltrados; track pokemon.name) {
-    
-  
+
+        @for (pokemon of pokemonsFiltrados; track pokemon.name) {
+
+
+
 
         <div class="card g-4 border border-0 row bg.danger">
 
             <div class="card border border-0 ">
                 <div class="card-body border border-0 rounded-4 col zoom front">
 
+                    <div class="container  d-flex">
+                        <div class="justify-content-start d-flex align-items-center">
+                            <input type="checkbox" class="me-5">
+                        </div>
+                        <div class="justify-content-end d-flex align-items-center">
+                            <a class="btn ms-4" [routerLink]="['/pokemon/'+ pokemon.idPokemon]"><i
+                                    class="bi bi-info-circle info"></i></a>
+                        </div>
+
+                    </div>
+
+
+
+
 
                     <div class="tipos rounded-pill">
-                    <p class="text-center">Tipo: {{pokemon.types}}
-</p> 
+                        <p class="text-center">Tipo: {{pokemon.types}}
+                        </p>
                     </div>
-                    <a class="btn " [routerLink]="['/pokemon/'+ pokemon.idPokemon]"><i class="bi bi-info-circle info"></i></a>
 
-                    <div class="rounded-circle divImagenPokemon text-white" >
-                    <!-- <p>{{pokemon.url}}</p> -->
 
-                    <img [src]="pokemon.sprites.front_default" alt="" class="imgPokemon">
-  
-                </div>
+                    <div class="rounded-circle divImagenPokemon text-white">
+                        <!-- <p>{{pokemon.url}}</p> -->
+
+                        <img [src]="pokemon.sprites.front_default" alt="" class="imgPokemon">
+
+                    </div>
                     <p class="text-center fw-bold">No. {{pokemon.idPokemon}}</p>
-                    
+
 
                     <div class="alturaPesoDiv">
-                                            <p class="text-center ">Altura: {{pokemon.height}} mts. <br>
-                                            
-                                            Peso: {{pokemon.weight}} kg.</p>
+                        <p class="text-center ">Altura: {{pokemon.height}} mts. <br>
+
+                            Peso: {{pokemon.weight}} kg.</p>
 
                     </div>
 
@@ -58,21 +74,21 @@
                     </div>
 
                 </div>
-                
+
             </div>
 
-        
+
         </div>
-    }
+        }
 
 
-   </div>
+    </div>
 
 
-  <div class="mt-5 justify-content-center d-flex">
-  <button (click)="PaginaAnterior()" class="btn btnPaginacion m-4">Anterior</button>
-  <button (click)="PaginaSiguiente()" class="btn btnPaginacion m-4">Siguiente</button>
-</div>
+    <div class="mt-5 justify-content-center d-flex">
+        <button (click)="PaginaAnterior()" class="btn btnPaginacion m-4">Anterior</button>
+        <button (click)="PaginaSiguiente()" class="btn btnPaginacion m-4">Siguiente</button>
+    </div>
 
 
 

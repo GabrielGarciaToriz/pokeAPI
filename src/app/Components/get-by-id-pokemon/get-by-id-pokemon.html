@@ -31,7 +31,10 @@
 
                     Ataque Especial: <br>
 
-                    <!--¨problemas con el nombre del ataque especial-->
+                    <div style="background:#eee; width:100%; height:10px;">
+                        <div [style.width.%]="pokemon?.stats?.['special-attack']" style="background:green; height:10px;">
+                        </div>
+                    </div>
                     Defensa:
                     <div style="background:#eee; width:100%; height:10px;">
                         <div [style.width.%]="pokemon?.stats?.defense" style="background:green; height:10px;">
@@ -47,8 +50,14 @@
                         <div [style.width.%]="pokemon?.stats?.hp" style="background:green; height:10px;">
                         </div>
                     </div>
-                    <p>Defensa especial: {{pokemon?.stats?.special_defense}}</p>
-                    <!--nuevamente problemas con el nombre de la defensa especial-->
+                    Defensa especial: 
+                    <div style="background:#eee; width:100%; height:10px;">
+                        <div [style.width.%]="pokemon?.stats?.['special-defense']" style="background:green; height:10px;">
+                        </div>
+                    </div> <br>
+
+
+
                     <p class="fw-bold">Más información</p>
                    <span class="fw-bold">No.</span> {{pokemon?.idPokemon}} <br>
                    <span class="fw-bold">Altura:</span> {{pokemon?.height}} mts. <br>
