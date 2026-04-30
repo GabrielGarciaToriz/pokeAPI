@@ -1,1 +1,81 @@
-<p>usuario-form works!</p>
+<div class="titulo justify-content-center d-flex">
+    <h1>Crear nuevo usuario</h1>
+
+</div>
+
+<div class="container mt-5">
+
+    <div class="card shadow border-0">
+
+        <div class="card card-body p-4">
+
+            <form [formGroup]="formulario" (submit)="enviarDatos()">
+                <div class="mb-3">
+                    <label class="form-label">Nombre: </label>
+                    <input type="text" class="form-control" formControlName = "nombre">
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Apellido Paterno: </label>
+                    <input type="text" class="form-control" formControlName = "apellidoPaterno">
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Apellido Materno: </label>
+                    <input type="text" class="form-control" formControlName = "apellidoMaterno">
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Fecha de Nacimiento: </label>
+                    <input type="date" class="form-control" >
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre de usuario: </label>
+                    <input type="text" class="form-control" formControlName = "userName">
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contraseña: </label>
+                    <input type="password" class="form-control" formControlName = "password">
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Sexo: </label> <br>
+                    <input class="form-check-input" type="radio" value="M" id="radioSexoM" checked formControlName = "sexo">
+                    <label class="form-check-label" for="radioSexoM">Masculino</label> <br>
+                    <input class="form-check-input" type="radio" value="F" id="radioSexoF">
+                    <label class="form-check-label" for="radioSexoF">Femenino</label>
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Rol: </label>
+                    <select class="form-select" >
+                        <option value="0" selected>Selecciona un rol</option>
+                        <option value="1">Lider de gimnasio</option>
+                        <option value="2">Maestro pokemon</option>
+                    </select>
+
+
+
+                </div>
+
+                <div class="justify-content-center d-flex">
+                    <a class="btn btnRegresar me-5" [routerLink]="['/usuarios']">Regresar</a>
+                            <button type="submit" class="btn btnCrearCuenta btn-lg ms-5">Crear Cuenta</button>
+                </div>
+                
+            </form>
+        </div>
+
+
+    </div>
+
+    

@@ -1,0 +1,42 @@
+.titulo{
+    
+      background-color: #E3350D;
+}
+label{
+    font-weight: bold;
+    color: #2D3748;
+}
+
+.btnRegresar{
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+
+.btnRegresar:hover{
+    background-color: #E3350D;
+    color: #2D3748;
+    font-weight: bold;
+    border: none;
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+
+.btnCrearCuenta{
+    background-color: #176a00;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+
+.btnCrearCuenta:hover{
+    background-color: #06c316;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    transition: 0.2s;
+    transform: scale(1.1);
+}

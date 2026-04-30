@@ -28,10 +28,11 @@ getUsuarios(){
 }
 
 deleteUsuarios(idusuario: number) {
-  this.service.deleteUsuarios(idusuario).subscribe(data => {
+  this.service.deleteUsuarios(idusuario).subscribe({next: (data) => {
     console.log(data);
     this.getUsuarios(); 
-  });
+  
+  }});
 
 }
 }

@@ -59,4 +59,9 @@ getUsuarios(): Observable<ResultModel<UsuarioModel>> {
 deleteUsuarios(idusuario: number): Observable<ResultModel<UsuarioModel>> {
   return this.http.delete<ResultModel<UsuarioModel>>(this.urlUsuarios + "/" + idusuario);
 }
+
+
+addUsuario(usuario: UsuarioModel): Observable<ResultModel<UsuarioModel>> {
+ return this.http.post<ResultModel<UsuarioModel>>(this.urlUsuarios + "/agregar", usuario);
+}
 }
