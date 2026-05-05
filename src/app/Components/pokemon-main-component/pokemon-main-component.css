@@ -17,7 +17,7 @@
 .titulo {
     font-family: 'Pokemon Solid', sans-serif;
     color: yellow;
-    -webkit-text-stroke: 2px black;
+    -webkit-text-stroke: 3px blue;
     background-color: #E3350D;
 }
 
