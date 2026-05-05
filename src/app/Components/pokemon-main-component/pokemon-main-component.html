@@ -1,3 +1,5 @@
+    @if(pokemones.length >0){
+
 <div class="titulo">
     <h1 class="ps-3">PokeApi <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
             alt=""> </h1>
@@ -19,7 +21,8 @@
 
     <div class="row row-cols-1 row-cols-md-4 g-2 bg-transparent">
 
-        @for (pokemon of pokemonsFiltrados; track pokemon.name) {
+
+        @for (pokemon of pokemones; track pokemon.name) {
 
 
 
@@ -83,8 +86,7 @@
 
 
     </div>
-
-
+   
     <div class="mt-5 justify-content-center d-flex">
         <button (click)="PaginaAnterior()" class="btn btnPaginacion m-4">Anterior</button>
         <button (click)="PaginaSiguiente()" class="btn btnPaginacion m-4">Siguiente</button>
@@ -100,3 +102,12 @@
 
 
 </footer>
+
+ } @else {
+    <div class="justify-content-center d-flex w-100 vh-100 align-items-center titulo">
+
+        <p class="textPantallaCarga">Cargando... <img
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
+                alt="" class="ms-5"></p>
+    </div>
+    }

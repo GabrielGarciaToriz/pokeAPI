@@ -50,16 +50,21 @@
     border: none;
     width: 130px;
     transition: 0.3s;
+    
 }
 
 .btnPaginacion:hover {
     background-color: #E3350D;
-    color: #FFFF;
+    color: yellow;
     font-weight: bold;
     border: none;
     width: 130px;
     transition: 0.2s;
     transform: scale(1.1);
+      font-family: 'Pokemon Solid', sans-serif;
+          -webkit-text-stroke: 1px blue;
+
+
 }
 
 .busquedaPokemon {
@@ -114,4 +119,9 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:checked {
     background: linear-gradient(red 45%, black 45%, black 55%, white 55%, yellow 100%);
+}
+
+.textPantallaCarga{
+    font-size: 100px;
+    font-weight: bold;
 }
