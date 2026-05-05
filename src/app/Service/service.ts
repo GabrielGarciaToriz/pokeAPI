@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 import { Observable } from 'rxjs';
 
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
@@ -12,8 +12,8 @@ import { UsuarioModel } from '../Interfaces/usuario-model';
 })
 export class Service {
 
-  private url: string = "http://192.167.1.24:8080/api/pokemon";
-  private urlUsuarios: string = "http://192.167.1.24:8080/api/usuario";
+  private url: string = "http://192.167.1.5:8080/api/pokemon";
+  private urlUsuarios: string = "http://192.167.1.5:8080/api/usuario";
 
   constructor (private http: HttpClient){}
 
@@ -23,9 +23,9 @@ export class Service {
    return this.http.get<ResultModel<PokemonModel>>(this.url + "/" + id);
 } 
    
-getAll(): Observable<ResultModel<PokemonModel>> {
-  return this.http.get<ResultModel<PokemonModel>>(this.url);
-}
+ getAll(): Observable<ResultModel<PokemonModel>> {
+   return this.http.get<ResultModel<PokemonModel>>(this.url);
+ }
 
 // getAll(limit: number, offset: number) {
 //   return this.http
@@ -64,4 +64,13 @@ deleteUsuarios(idusuario: number): Observable<ResultModel<UsuarioModel>> {
 addUsuario(usuario: UsuarioModel): Observable<ResultModel<UsuarioModel>> {
  return this.http.post<ResultModel<UsuarioModel>>(this.urlUsuarios + "/agregar", usuario);
 }
+
+paginacion(page: number, limit: number): Observable<ResultModel<PokemonModel>>{
+  const params = new HttpParams().set('offset', page).set('limit', limit);
+
+  return this.http.get<ResultModel<PokemonModel>>(this.url, {params})
+
+}
+
+
 }

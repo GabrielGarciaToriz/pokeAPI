@@ -1,4 +1,4 @@
-    @if(pokemones.length >0){
+@if(pokemonesPaginados.length >0 || pokemones.length >0 || pokemonsFiltrados.length >0){
 
 <div class="titulo">
     <h1 class="ps-3">PokeApi <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
@@ -14,7 +14,102 @@
 
     <div>
         <input [(ngModel)]="searchTerm" type="text" class="form-control mb-4 p-4 busquedaPokemon"
-            placeholder="Buscar Pokemon por nombre ..." (input)="filtrar()">
+            placeholder="Buscar Pokemon por nombre o id ..." (input)="filtrar()">
+    </div>
+
+
+ @if(pokemonsFiltrados.length){
+
+        <div class="subtitulo m-3 p-3">
+
+            <h1>Pokemones encontrados</h1>
+
+        </div>
+    <div class="row row-cols-1 row-cols-md-4 g-2 bg-transparent">
+
+       
+
+        @for (pokemon of pokemonsFiltrados; track pokemon.name) {
+
+
+
+
+
+        <div class="card g-4 border border-0 row bg.danger">
+
+            <div class="card border border-0 ">
+                <div class="card-body border border-0 rounded-4 col zoom front">
+
+                    <div class="container  d-flex">
+                        <div class="justify-content-start d-flex align-items-center">
+                            <input type="checkbox" class="me-5">
+                        </div>
+                        <div class="justify-content-end d-flex align-items-center">
+                            <a class="btn ms-4" [routerLink]="['/pokemon/'+ pokemon.idPokemon]"><i
+                                    class="bi bi-info-circle info"></i></a>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="tipos rounded-pill">
+                        <p class="text-center">Tipo: {{pokemon.types}}
+                        </p>
+                    </div>
+
+
+                    <div class="rounded-circle divImagenPokemon text-white">
+                        <!-- <p>{{pokemon.url}}</p> -->
+
+                        <img [src]="pokemon.sprites.front_default" alt="" class="imgPokemon">
+
+                    </div>
+                    <p class="text-center fw-bold">No. {{pokemon.idPokemon}}</p>
+
+
+                    <div class="alturaPesoDiv">
+                        <p class="text-center ">Altura: {{pokemon.height}} mts. <br>
+
+                            Peso: {{pokemon.weight}} kg.</p>
+
+                    </div>
+
+
+
+                    <div class="rounded-pill nombrePokemon">
+                        <p>{{pokemon.name.toUpperCase() }}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        }
+       
+
+
+
+
+    </div>
+     }@else {
+        <div class="justify-content-center d-flex align-items-center">
+            <p class="notFoundText">No se encuentra el pokemon que desea buscar :(</p>
+
+
+        </div>
+        }
+
+    <div class="subtitulo m-3 p-3">
+
+        <h1>Lista de todos los pokemones</h1>
+
     </div>
 
 
@@ -22,7 +117,7 @@
     <div class="row row-cols-1 row-cols-md-4 g-2 bg-transparent">
 
 
-        @for (pokemon of pokemones; track pokemon.name) {
+        @for (pokemon of pokemonesPaginados; track pokemon.name) {
 
 
 
@@ -86,10 +181,19 @@
 
 
     </div>
-   
+
+
+
+
+
     <div class="mt-5 justify-content-center d-flex">
-        <button (click)="PaginaAnterior()" class="btn btnPaginacion m-4">Anterior</button>
-        <button (click)="PaginaSiguiente()" class="btn btnPaginacion m-4">Siguiente</button>
+        <button (click)="cambiarPagina(page - 20)" class="btn btnPaginacion me-5">
+            Anterior
+        </button>
+
+        <button (click)="cambiarPagina(page + 20)" class="btn btnPaginacion ms-5">
+            Siguiente
+        </button>
     </div>
 
 
@@ -103,11 +207,11 @@
 
 </footer>
 
- } @else {
-    <div class="justify-content-center d-flex w-100 vh-100 align-items-center titulo">
+} @else {
+<div class="justify-content-center d-flex w-100 vh-100 align-items-center titulo">
 
-        <p class="textPantallaCarga">Cargando... <img
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
-                alt="" class="ms-5"></p>
-    </div>
-    }
+    <p class="textPantallaCarga">Cargando... <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif" alt=""
+            class="ms-5"></p>
+</div>
+}

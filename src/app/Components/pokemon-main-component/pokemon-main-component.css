@@ -125,3 +125,16 @@ input[type="checkbox"]:checked {
     font-size: 100px;
     font-weight: bold;
 }
+
+.notFoundText{
+    color:#2D3748;
+    font-weight: bold;
+    size: 20px;
+}
+
+.subtitulo{
+       font-family: 'Pokemon Solid', sans-serif;
+    color: yellow;
+    -webkit-text-stroke: 3px black;
+    background-color: #2D3748;
+}

@@ -16,15 +16,18 @@ label {
     font-weight: bold;
     border: none;
     transition: 0.3s;
+    
 }
 
 .btnRegresar:hover {
     background-color: #E3350D;
-    color: #2D3748;
+    color: yellow;
     font-weight: bold;
     border: none;
     transition: 0.2s;
     transform: scale(1.1);
+    font-family: 'Pokemon Solid', sans-serif;
+          -webkit-text-stroke: 1px blue;
 }
 
 .btnCrearCuenta {
