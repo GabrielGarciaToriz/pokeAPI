@@ -1,0 +1,72 @@
+.tituloLogin {
+  font-family: 'Pokemon Solid', sans-serif;
+
+}
+
+
+.loginBackgroundBody {
+  background-color: #E3350D;
+
+}
+
+.titulo {
+
+  background-color: #E3350D;
+  font-family: 'Pokemon Solid', sans-serif;
+  color: yellow;
+  -webkit-text-stroke: 3px blue;
+}
+
+
+
+.pokeball {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 300px;
+  height: 300px;
+  border: 2px solid #2D3748;
+  background: linear-gradient(red 47%, black 47%, black 53%, white 53%, white 100%);
+  border-radius: 50%;
+  /* Esto lo hace redondo */
+  outline: none;
+  margin-bottom: 10%;
+}
+
+input {
+  color: #2D3748;
+  font-weight: bold;
+}
+
+span {
+  color: #2D3748;
+  font-weight: bolder;
+}
+
+a {
+  color: white;
+  transition: 0.2s;
+
+}
+
+.btnEnviar {
+  background-color: white;
+  color: #2D3748;
+  font-weight: bold;
+  transition: 0.3s;
+
+}
+
+.btnEnviar:hover {
+  background-color: #2D3748;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+  transform: scale(1.1);
+
+}
+
+a:hover {
+  color: #2D3748;
+  transition: 0.2s;
+  transform: scale(1.1);
+}

@@ -12,8 +12,8 @@ import { UsuarioModel } from '../Interfaces/usuario-model';
 })
 export class Service {
 
-  private url: string = "http://192.167.0.249:8080/api/pokemon";
-  private urlUsuarios: string = "http://192.167.0.249:8080/api/usuario";
+  private url: string = "http://192.167.1.8:8080/api/pokemon";
+  private urlUsuarios: string = "http://192.167.1.8:8080/api/usuario";
 
   constructor (private http: HttpClient){}
 

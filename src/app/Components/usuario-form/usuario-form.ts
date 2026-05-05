@@ -20,6 +20,7 @@ constructor (private service: Service, private router: Router){}
 
 private formularioReactiv = inject(FormBuilder);
 
+
 public formulario = this.formularioReactiv.group({
   nombre: [''],
   apellidoMaterno: [''],

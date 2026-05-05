@@ -3,11 +3,13 @@ import { PokemonMainComponent } from './Components/pokemon-main-component/pokemo
 import { GetByIdPokemon } from './Components/get-by-id-pokemon/get-by-id-pokemon';
 import { UsuariosPokemones } from './Components/usuarios-pokemones/usuarios-pokemones';
 import { UsuarioForm } from './Components/usuario-form/usuario-form';
+import { Login } from './Components/login/login';
 
 export const routes: Routes = [
         {path:"", component: PokemonMainComponent},
         {path:"pokemon/:idUsuario", component: GetByIdPokemon},
         {path:"usuarios", component: UsuariosPokemones},
-        {path: "formulario", component: UsuarioForm}
+        {path: "formulario", component: UsuarioForm},
+        {path: "login", component: Login}
 
 ];
