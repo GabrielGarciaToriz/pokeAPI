@@ -28,7 +28,7 @@ public formulario = this.formularioReactiv.group({
   userName: [''],
   password: [''],
   sexo: [''],
-  email:[''],
+  correo:[''],
   fechaNacimiento:this.formularioReactiv.control<Date | null>(null)
 
   

@@ -1,6 +1,6 @@
 @if (usuarios.length> 0) {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<div class="titulo text-center mb-5">
+<div class="titulo text-center mb-4 p-4">
     <h1>Usuarios</h1>
 </div>
 <div class="container">
@@ -47,6 +47,7 @@
                 <td>
                     <p>Username: {{usuario.userName}}</p>
                     <p>Fecha de nacimiento: {{usuario.fechaNacimiento}}</p>
+                    <p>Correo: {{usuario.correo}}</p>
                 </td>
                 <td class="justify-content-center">
                     <p><a class="btn btn-warning"><i class="bi bi-info-circle"></i></a></p>

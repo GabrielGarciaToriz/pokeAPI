@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { PokemonModel } from '../../Interfaces/pokemon-model';
 import { Service } from '../../Service/service';
 import { FormsModule } from '@angular/forms'; // 1. Importar
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pokemon-main-component',
@@ -78,6 +79,14 @@ actualizarPagina() {
 cambiarPagina(nuevaPagina: number) {
   this.page = nuevaPagina;
   this.paginacion();
+}
+
+cambiarChecbox(){
+  Swal.fire({
+  title: "¡Se ha agregado a sus favoritos!",
+  icon: "success",
+  draggable: true
+});
 }
 
   

@@ -9,6 +9,6 @@ export interface UsuarioModel{
     userName: string,
     password: string,
     sexo: string,
-    email: string,
+    correo: string,
     rol: RolModel;
 }

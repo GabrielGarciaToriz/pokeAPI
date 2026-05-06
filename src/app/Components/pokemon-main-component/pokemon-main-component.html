@@ -18,16 +18,16 @@
     </div>
 
 
- @if(pokemonsFiltrados.length){
+    @if(pokemonsFiltrados.length){
 
-        <div class="subtitulo m-3 p-3">
+    <div class="subtitulo m-3 p-3">
 
-            <h1>Pokemones encontrados</h1>
+        <h1>Pokemones encontrados</h1>
 
-        </div>
+    </div>
     <div class="row row-cols-1 row-cols-md-4 g-2 bg-transparent">
 
-       
+
 
         @for (pokemon of pokemonsFiltrados; track pokemon.name) {
 
@@ -42,7 +42,7 @@
 
                     <div class="container  d-flex">
                         <div class="justify-content-start d-flex align-items-center">
-                            <input type="checkbox" class="me-5">
+                            <input type="checkbox" class="me-5" (change)="cambiarChecbox()">
                         </div>
                         <div class="justify-content-end d-flex align-items-center">
                             <a class="btn ms-4" [routerLink]="['/pokemon/'+ pokemon.idPokemon]"><i
@@ -92,19 +92,19 @@
         </div>
 
         }
-       
+
 
 
 
 
     </div>
-     }@else {
-        <div class="justify-content-center d-flex align-items-center">
-            <p class="notFoundText">No se encuentra el pokemon que desea buscar :(</p>
+    }@else {
+    <div class="justify-content-center d-flex align-items-center">
+        <p class="notFoundText">No se encuentra el pokemon que desea buscar :(</p>
 
 
-        </div>
-        }
+    </div>
+    }
 
     <div class="subtitulo m-3 p-3">
 
@@ -129,6 +129,7 @@
 
                     <div class="container  d-flex">
                         <div class="justify-content-start d-flex align-items-center">
+
                             <input type="checkbox" class="me-5">
                         </div>
                         <div class="justify-content-end d-flex align-items-center">

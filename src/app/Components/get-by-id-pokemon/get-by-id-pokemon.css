@@ -34,3 +34,9 @@
     object-fit: contain;
 }
 
+.nombrePokemon {
+
+  font-family: 'Pokemon Solid', sans-serif;
+  color: yellow;
+  -webkit-text-stroke: 3px blue;
+}
