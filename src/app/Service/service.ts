@@ -3,7 +3,7 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http'
 import { Observable, tap } from 'rxjs';
 
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
-import { PokemonModel } from '../Interfaces/pokemon-model';
+import { PokemonModel, PokemonResponse } from '../Interfaces/pokemon-model';
 import { ResultModel } from '../Interfaces/result-model';
 import { UsuarioModel } from '../Interfaces/usuario-model';
 
