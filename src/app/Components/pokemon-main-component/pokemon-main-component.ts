@@ -18,24 +18,25 @@ export class PokemonMainComponent implements OnInit {
   public searchTerm: string = '';
   public pokemonsFiltrados: PokemonModel[] = [];
   public pokemones: PokemonModel[] = [];
-  public pokemonesPaginados: PokemonModel [] = []
+  public pokemonesPaginados: PokemonModel[] = [];
 
-  constructor(private service: Service) { }
+  constructor(private service: Service) {}
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.paginacion();
 
     this.getAll();
   }
 
-   getAll() {
-     this.service.getAll().subscribe(data => {
-       this.pokemones = data.objects;
-       console.log(data);
+  getAll() {
+    this.service.getAll().subscribe((data) => {
+      this.pokemones = data.objects;
+      console.log(data);
 
-       this.total = data.objects.length;});
-       this.filtrar();
-   }
+      this.total = data.objects.length;
+    });
+    this.filtrar();
+  }
 
   // PaginaSiguiente() {
   //   this.offset += this.limit;
@@ -49,45 +50,39 @@ export class PokemonMainComponent implements OnInit {
   //   }
   // }
 
- 
-
-filtrar() {
-  this.pokemonsFiltrados = this.pokemones.filter(p =>
-    p.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || p.idPokemon.toString().includes(this.searchTerm.toLowerCase())
-  );
-}
-
-paginacion(){
-  this.service.paginacion(this.page, this.limit).subscribe(data=>
-  {
-    this.pokemonesPaginados = data.objects;
-    this.total = data.objects.length;
-    console.log(this.total);
+  filtrar() {
+    this.pokemonsFiltrados = this.pokemones.filter(
+      (p) =>
+        p.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        p.idPokemon.toString().includes(this.searchTerm.toLowerCase()),
+    );
   }
-  )
-}
 
+  paginacion() {
+    this.service.paginacion(this.page, this.limit).subscribe((data) => {
+      this.pokemonesPaginados = data.objects;
+      this.total = data.objects.length;
+      console.log(this.total);
+    });
+  }
 
-actualizarPagina() {
-  const inicio = (this.page - 1) * this.limit;
-  const fin = inicio + this.limit;
+  actualizarPagina() {
+    const inicio = (this.page - 1) * this.limit;
+    const fin = inicio + this.limit;
 
-  this.pokemonesPaginados = this.pokemones.slice(inicio, fin);
-}
+    this.pokemonesPaginados = this.pokemones.slice(inicio, fin);
+  }
 
+  cambiarPagina(nuevaPagina: number) {
+    this.page = nuevaPagina;
+    this.paginacion();
+  }
 
-cambiarPagina(nuevaPagina: number) {
-  this.page = nuevaPagina;
-  this.paginacion();
-}
-
-cambiarChecbox(){
-  Swal.fire({
-  title: "¡Se ha agregado a sus favoritos!",
-  icon: "success",
-  draggable: true
-});
-}
-
-  
+  cambiarChecbox() {
+    Swal.fire({
+      title: '¡Se ha agregado a sus favoritos!',
+      icon: 'success',
+      draggable: true,
+    });
+  }
 }

@@ -3,7 +3,7 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http'
 import { Observable, tap } from 'rxjs';
 
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
-import { PokemonModel, PokemonResponse } from '../Interfaces/pokemon-model';
+import { PokemonModel } from '../Interfaces/pokemon-model';
 import { ResultModel } from '../Interfaces/result-model';
 import { UsuarioModel } from '../Interfaces/usuario-model';
 
@@ -12,9 +12,9 @@ import { UsuarioModel } from '../Interfaces/usuario-model';
 })
 export class Service {
 
-  private url: string = "http://192.167.1.42:8080/api/pokemon";
-  private urlUsuarios: string = "http://192.167.1.42:8080/api/usuario";
-  private urlLogin: string = "http://192.167.1.42:8080/api/auth/login"
+  private url: string = "http://192.168.137.1:8080/api/pokemon";
+  private urlUsuarios: string = "http://192.168.137.1:8080/api/usuario";
+  private urlLogin: string = "http://192.168.137.1:8080/api/auth/login"
 
   constructor (private http: HttpClient){}
 
@@ -22,8 +22,8 @@ export class Service {
 
  getById(id: number){
    return this.http.get<ResultModel<PokemonModel>>(this.url + "/" + id);
-} 
-   
+}
+
  getAll(): Observable<ResultModel<PokemonModel>> {
    return this.http.get<ResultModel<PokemonModel>>(this.url);
  }
@@ -84,7 +84,7 @@ login(usuario: UsuarioModel): Observable<ResultModel<UsuarioModel>>{
     tap((res:any) =>{
       localStorage.setItem('token',res.token)
     }
-  
+
   )
   );
 }
