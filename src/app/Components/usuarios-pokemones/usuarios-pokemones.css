@@ -1,0 +1,44 @@
+.titulo{
+      font-family: 'Pokemon Solid', sans-serif;
+    color: yellow;
+     -webkit-text-stroke: 3px blue; 
+      background-color: #E3350D;
+      font-size: 10px;
+}
+
+.thHead{
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+}
+
+.btnRegresar{
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+
+.btnRegresar:hover{
+    background-color: #E3350D;
+    color: yellow;
+    font-weight: bold;
+    border: none;
+    transition: 0.2s;
+    transform: scale(1.1);
+    font-family: 'Pokemon Solid', sans-serif;
+          -webkit-text-stroke: 1px blue;
+}
+
+.sexoSpanMan{
+    color: blue;
+}
+.sexoSpanWoman{
+    color: violet;
+}
+
+.textPantallaCarga{
+    font-size: 100px;
+    font-weight: bold;
+}

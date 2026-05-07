@@ -1,0 +1,48 @@
+.titulo {
+    font-family: 'Pokemon Solid', sans-serif;
+    color: yellow;
+     -webkit-text-stroke: 3px blue; 
+    background-color: #E3350D;
+}
+
+label {
+    font-weight: bold;
+    color: #2D3748;
+}
+
+.btnRegresar {
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+    
+}
+
+.btnRegresar:hover {
+    background-color: #E3350D;
+    color: yellow;
+    font-weight: bold;
+    border: none;
+    transition: 0.2s;
+    transform: scale(1.1);
+    font-family: 'Pokemon Solid', sans-serif;
+          -webkit-text-stroke: 1px blue;
+}
+
+.btnCrearCuenta {
+    background-color: #176a00;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+
+.btnCrearCuenta:hover {
+    background-color: #06c316;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    transition: 0.2s;
+    transform: scale(1.1);
+}

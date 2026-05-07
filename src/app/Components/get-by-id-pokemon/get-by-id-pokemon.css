@@ -1,0 +1,42 @@
+.titulo{
+    
+      background-color: #E3350D;
+}
+
+.imagenPrincipal{
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.btnRegresar{
+    background-color: #2D3748;
+    color: #FFFF;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+
+.btnRegresar:hover{
+    background-color: #E3350D;
+    color: #2D3748;
+    font-weight: bold;
+    border: none;
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+
+.animacionPrincipal{
+    margin: 20%;
+    width: 40%;
+    height: 40%;
+    object-fit: contain;
+}
+
+.nombrePokemon {
+
+  font-family: 'Pokemon Solid', sans-serif;
+  color: yellow;
+  -webkit-text-stroke: 3px blue;
+}
