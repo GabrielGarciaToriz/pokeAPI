@@ -9,7 +9,9 @@
 
 
 
-    <div class="card card-body loginBackgroundBody align-items-center rounded-4 w-50">
+    <form [formGroup]="formulario" (submit)="enviarDatos()">
+
+            <div class="card card-body loginBackgroundBody align-items-center rounded-4 w-80">
 
         <div class="tituloLogin">
             <h4>Inicio de sesión</h4>
@@ -24,17 +26,28 @@
 
 
         <div class="mb-3 align-items-center text-white">
-            <label for="form-label">Nombre:</label>
-            <input type="text" class="form-control text-center">
+            <label for="form-label">Correo:</label>
+            <input type="email" class="form-control text-center" formControlName="correo">
         </div>
 
         <div class="mb-3 align-items-center text-white">
             <label for="form-label">Contraseña:</label>
-            <input type="password" class="form-control text-center">
+            <input type="password" class="form-control text-center" formControlName="password">
+
+
+            <div class="mb-3">
+                @if (errorMessage) {
+                              <p class="text-warning">{{ errorMessage }}</p>
+
+            }
+
+
+            </div>
+                       
         </div>
 
         <div class="mb-3">
-            <button type="submit" class="btn btnEnviar" [routerLink]="'/pokemones'">Acceder</button>
+            <button type="submit" class="btn btnEnviar" >Acceder</button>
         </div>
 
         <div>
@@ -44,6 +57,11 @@
 
 
     </div>
+
+
+    </form>
+
+
 
 
 

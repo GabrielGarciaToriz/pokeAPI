@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http'
-import { Observable } from 'rxjs';
+import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http'
+import { Observable, tap } from 'rxjs';
 
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { PokemonModel } from '../Interfaces/pokemon-model';
@@ -12,8 +12,9 @@ import { UsuarioModel } from '../Interfaces/usuario-model';
 })
 export class Service {
 
-  private url: string = "http://192.167.1.5:8080/api/pokemon";
-  private urlUsuarios: string = "http://192.167.1.5:8080/api/usuario";
+  private url: string = "http://192.167.1.42:8080/api/pokemon";
+  private urlUsuarios: string = "http://192.167.1.42:8080/api/usuario";
+  private urlLogin: string = "http://192.167.1.42:8080/api/auth/login"
 
   constructor (private http: HttpClient){}
 
@@ -53,7 +54,13 @@ export class Service {
 // }
 
 getUsuarios(): Observable<ResultModel<UsuarioModel>> {
-  return this.http.get<ResultModel<UsuarioModel>>(this.urlUsuarios);
+   const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  return this.http.get<ResultModel<UsuarioModel>>(this.urlUsuarios, {headers});
 }
 
 deleteUsuarios(idusuario: number): Observable<ResultModel<UsuarioModel>> {
@@ -72,5 +79,27 @@ paginacion(page: number, limit: number): Observable<ResultModel<PokemonModel>>{
 
 }
 
-
+login(usuario: UsuarioModel): Observable<ResultModel<UsuarioModel>>{
+  return this.http.post<ResultModel<UsuarioModel>>(this.urlLogin, usuario).pipe(
+    tap((res:any) =>{
+      localStorage.setItem('token',res.token)
+    }
+  
+  )
+  );
 }
+
+getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+  }
+}
+
+
