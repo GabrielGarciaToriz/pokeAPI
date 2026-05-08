@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioModel } from '../../Interfaces/usuario-model';
-import { Service } from '../../Service/service';
+import { UsuarioModel } from '../../Interfaces/usuario.model';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
-
+import { UsuarioService } from '../../Service/user/usuario.service';
+import { Injectable } from '@angular/core';
 @Component({
   selector: 'app-usuarios-pokemones',
   standalone: true,
@@ -11,17 +11,20 @@ import Swal from 'sweetalert2';
   templateUrl: './usuarios-pokemones.html',
   styleUrl: './usuarios-pokemones.css',
 })
+@Injectable({ providedIn: 'root' })
 export class UsuariosPokemones implements OnInit {
   public usuarios: UsuarioModel[] = [];
 
-  constructor(private service: Service) {}
+  constructor(
+    private userService: UsuarioService,
+  ) {}
 
   ngOnInit(): void {
     this.getUsuarios();
   }
 
   getUsuarios() {
-    this.service.getUsuarios().subscribe({
+    this.userService.getUsuarios().subscribe({
       next: (res) => {
         if (res.correct) {
           this.usuarios = res.objects ?? [];
@@ -31,8 +34,8 @@ export class UsuariosPokemones implements OnInit {
         }
       },
       error: () => {
-        Swal.fire({ title: 'Error', text: "No se pudo conectar al servidor", icon: 'error' });
-      }
+        Swal.fire({ title: 'Error', text: 'No se pudo conectar al servidor', icon: 'error' });
+      },
     });
   }
 
@@ -44,12 +47,16 @@ export class UsuariosPokemones implements OnInit {
     if (usuario.pokemones && usuario.pokemones.length > 0) {
       pokemonesHtml = `
         <div class="d-flex flex-wrap gap-2 justify-content-center mt-3">
-          ${usuario.pokemones.map((p: any) => `
+          ${usuario.pokemones
+            .map(
+              (p: any) => `
             <div class="text-center shadow-sm" style="background: #f8f9fa; border: 2px solid #e2e8f0; border-radius: 12px; padding: 10px; width: 90px;">
               <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.idPokemon || p.id}.png" width="60" alt="poke"/>
               <small class="d-block fw-bold text-dark text-truncate" style="font-size: 11px;">${p.name ? p.name.toUpperCase() : 'POKÉMON'}</small>
             </div>
-          `).join('')}
+          `,
+            )
+            .join('')}
         </div>
       `;
     } else {
@@ -80,7 +87,7 @@ export class UsuariosPokemones implements OnInit {
       `,
       confirmButtonText: 'Cerrar',
       confirmButtonColor: '#2D3748',
-      width: '550px'
+      width: '550px',
     });
   }
 
@@ -93,10 +100,10 @@ export class UsuariosPokemones implements OnInit {
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
       confirmButtonColor: '#d33',
-      cancelButtonColor: '#2D3748'
+      cancelButtonColor: '#2D3748',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.service.deleteUsuarios(idUsuario).subscribe({
+        this.userService.deleteUsuarios(idUsuario).subscribe({
           next: (res) => {
             if (res.correct) {
               Swal.fire('Eliminado', 'Entrenador eliminado exitosamente', 'success');
@@ -105,7 +112,7 @@ export class UsuariosPokemones implements OnInit {
               Swal.fire('Error', res.errorMessage, 'error');
             }
           },
-          error: () => Swal.fire('Error', 'No se pudo conectar', 'error')
+          error: () => Swal.fire('Error', 'No se pudo conectar', 'error'),
         });
       }
     });

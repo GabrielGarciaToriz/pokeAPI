@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormsModule } from '@angular/forms';
-import { UsuarioModel } from '../../Interfaces/usuario-model';
+import { UsuarioModel } from '../../Interfaces/usuario.model';
 import { Service } from '../../Service/service';
-import { AuthService } from '../../Service/auth.service';
+import { AuthService } from '../../Service/auth/auth.service';
 
 @Component({
   selector: 'app-login',

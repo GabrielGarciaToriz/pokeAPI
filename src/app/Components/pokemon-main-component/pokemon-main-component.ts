@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PokemonModel } from '../../Interfaces/pokemon-model';
+import { PokemonModel } from '../../Interfaces/pokemon.model';
 import { Service } from '../../Service/service';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';

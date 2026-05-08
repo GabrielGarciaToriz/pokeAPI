@@ -1,4 +1,4 @@
-import { RolModel } from "./rol-model";
+import { RolModel } from "./rol.model";
 
 export interface UsuarioModel {
     idUsuarioPokemon: number;
