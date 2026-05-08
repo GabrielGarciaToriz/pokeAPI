@@ -13,9 +13,9 @@ import { RolModel } from '../Interfaces/rol-model';
 })
 export class Service {
 
-  private url: string = "http://192.167.0.58:8080/api/pokemon";
-  private urlUsuarios: string = "http://192.167.0.58:8080/api/usuario";
-  private urlLogin: string = "http://192.167.0.58:8080/api/auth/login"
+  private url: string = "http://192.167.0.98:8080/api/pokemon";
+  private urlUsuarios: string = "http://192.167.0.98:8080/api/usuario";
+  private urlLogin: string = "http://192.167.0.98:8080/api/auth/login"
 
   constructor(private http: HttpClient) { }
 

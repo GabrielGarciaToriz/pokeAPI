@@ -1,5 +1,4 @@
 @if (pokemonesPaginados.length > 0 || pokemones.length > 0 || pokemonsFiltrados.length > 0) {
-
   <!-- Header sticky -->
   <div class="titulo">
     <h1>
@@ -15,7 +14,6 @@
   </div>
 
   <div class="px-4 py-4">
-
     <!-- Barra de búsqueda -->
     <input
       [(ngModel)]="searchTerm"
@@ -34,30 +32,30 @@
         <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-3 mb-5">
           @for (pokemon of pokemonsFiltrados; track pokemon.idPokemon) {
             <div class="col">
-              <div class="zoom">
-                <div class="d-flex justify-content-between align-items-center">
+              <div class="zoom card-tcg">
+                <div
+                  class="d-flex justify-content-between align-items-center w-100 px-2 pt-2 position-absolute top-0 start-0 z-1"
+                >
                   <input type="checkbox" (change)="cambiarChecbox()" />
-                  <a [routerLink]="['/pokemon/' + pokemon.idPokemon]">
-                    <i class="bi bi-info-circle info"></i>
+                  <a [routerLink]="['/pokemon/' + pokemon.idPokemon]" class="btn-info-icon">
+                    <i class="bi bi-info-circle-fill"></i>
                   </a>
                 </div>
 
-                <div class="divImagenPokemon">
-                  <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="imgPokemon" />
+                <div class="pokemon-art-mini mt-4 mx-2">
+                  <img
+                    [src]="pokemon.sprites.front_default"
+                    [alt]="pokemon.name"
+                    class="imgPokemonMini"
+                  />
                 </div>
 
-                <p class="text-center fw-bold mb-1">Nº {{ pokemon.idPokemon }}</p>
-
-                <div class="tipos rounded-pill mb-1">
-                  <p>{{ pokemon.types }}</p>
-                </div>
-
-                <div class="alturaPesoDiv">
-                  <p>{{ pokemon.height }}m · {{ pokemon.weight }}kg</p>
-                </div>
-
-                <div class="nombrePokemon">
-                  <p class="m-0">{{ pokemon.name.toUpperCase() }}</p>
+                <div class="info-bottom bg-white mt-auto p-2 text-center">
+                  <span class="text-muted d-block" style="font-size: 0.7rem; font-weight: 800"
+                    >Nº {{ pokemon.idPokemon }}</span
+                  >
+                  <h5 class="nombre-pokemon-tcg m-0">{{ pokemon.name.toUpperCase() }}</h5>
+                  <div class="tipos-badge mt-1">{{ pokemon.types }}</div>
                 </div>
               </div>
             </div>
@@ -68,7 +66,7 @@
           <img
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png"
             alt="No encontrado"
-            style="width:80px; image-rendering:pixelated; opacity:0.4;"
+            style="width: 80px; image-rendering: pixelated; opacity: 0.4"
           />
           <p class="notFoundText mt-3">No se encontró "{{ searchTerm }}"</p>
         </div>
@@ -76,37 +74,35 @@
     }
 
     <!-- Sección: lista paginada -->
-    <div class="subtitulo mb-3">
-      <i class="bi bi-grid-3x3-gap-fill me-2"></i>Todos los Pokémon
-    </div>
+    <div class="subtitulo mb-3"><i class="bi bi-grid-3x3-gap-fill me-2"></i>Todos los Pokémon</div>
 
     <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-3">
       @for (pokemon of pokemonesPaginados; track pokemon.idPokemon) {
         <div class="col">
-          <div class="zoom">
-            <div class="d-flex justify-content-between align-items-center">
+          <div class="zoom card-tcg">
+            <div
+              class="d-flex justify-content-between align-items-center w-100 px-2 pt-2 position-absolute top-0 start-0 z-1"
+            >
               <input type="checkbox" (change)="cambiarChecbox()" />
-              <a [routerLink]="['/pokemon/' + pokemon.idPokemon]">
-                <i class="bi bi-info-circle info"></i>
+              <a [routerLink]="['/pokemon/' + pokemon.idPokemon]" class="btn-info-icon">
+                <i class="bi bi-info-circle-fill"></i>
               </a>
             </div>
 
-            <div class="divImagenPokemon">
-              <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="imgPokemon" />
+            <div class="pokemon-art-mini mt-4 mx-2">
+              <img
+                [src]="pokemon.sprites.front_default"
+                [alt]="pokemon.name"
+                class="imgPokemonMini"
+              />
             </div>
 
-            <p class="text-center fw-bold mb-1">Nº {{ pokemon.idPokemon }}</p>
-
-            <div class="tipos rounded-pill mb-1">
-              <p>{{ pokemon.types }}</p>
-            </div>
-
-            <div class="alturaPesoDiv">
-              <p>{{ pokemon.height }}m · {{ pokemon.weight }}kg</p>
-            </div>
-
-            <div class="nombrePokemon">
-              <p class="m-0">{{ pokemon.name.toUpperCase() }}</p>
+            <div class="info-bottom bg-white mt-auto p-2 text-center">
+              <span class="text-muted d-block" style="font-size: 0.7rem; font-weight: 800"
+                >Nº {{ pokemon.idPokemon }}</span
+              >
+              <h5 class="nombre-pokemon-tcg m-0">{{ pokemon.name.toUpperCase() }}</h5>
+              <div class="tipos-badge mt-1">{{ pokemon.types }}</div>
             </div>
           </div>
         </div>
@@ -115,32 +111,28 @@
 
     <!-- Paginación -->
     <div class="d-flex justify-content-center align-items-center gap-4 mt-5 mb-3">
-      <button
-        (click)="cambiarPagina(page - 20)"
-        class="btn btnPaginacion"
-        [disabled]="page <= 0"
-      >
+      <button (click)="cambiarPagina(page - 20)" class="btn btnPaginacion" [disabled]="page <= 0">
         ← Anterior
       </button>
 
-      <span style="font-family:'Bangers',cursive; font-size:18px; color:#2D3748; letter-spacing:1px;">
-        Página {{ (page / 20) + 1 }}
+      <span
+        style="
+          font-family: 'Bangers', cursive;
+          font-size: 18px;
+          color: #2d3748;
+          letter-spacing: 1px;
+        "
+      >
+        Página {{ page / 20 + 1 }}
       </span>
 
-      <button
-        (click)="cambiarPagina(page + 20)"
-        class="btn btnPaginacion"
-      >
-        Siguiente →
-      </button>
+      <button (click)="cambiarPagina(page + 20)" class="btn btnPaginacion">Siguiente →</button>
     </div>
-
   </div>
 
   <footer class="text-center py-3">
     <p class="m-0">© PokeApi</p>
   </footer>
-
 } @else {
   <!-- Pantalla de carga -->
   <div class="d-flex justify-content-center align-items-center w-100 vh-100 titulo">
@@ -149,7 +141,7 @@
       <img
         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
         alt="Pikachu cargando"
-        style="width:80px;"
+        style="width: 80px"
       />
     </p>
   </div>

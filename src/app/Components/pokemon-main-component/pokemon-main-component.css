@@ -2,11 +2,11 @@
 
 /* ── Variables ─────────────────────────────────────────── */
 :root {
-  --poke-red:    #E3350D;
-  --poke-dark:   #2D3748;
+  --poke-red: #E3350D;
+  --poke-dark: #2D3748;
   --poke-yellow: #FFD700;
-  --poke-white:  #F8F9FA;
-  --poke-gray:   #EDF2F7;
+  --poke-white: #F8F9FA;
+  --poke-gray: #EDF2F7;
 }
 
 /* ── Header ────────────────────────────────────────────── */
@@ -42,8 +42,13 @@
 }
 
 @keyframes bounce {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-6px); }
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-6px);
+  }
 }
 
 /* ── Botón Usuarios ─────────────────────────────────────── */
@@ -78,7 +83,7 @@
   padding: 14px 20px;
   transition: 0.3s;
   outline: none;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .busquedaPokemon:focus {
@@ -103,134 +108,109 @@ input::placeholder {
   display: inline-block;
 }
 
-/* ── Tarjeta Pokémon ────────────────────────────────────── */
-.zoom {
-  background-color: var(--poke-red);
-  border-radius: 20px;
+/* ── Tarjeta Pokémon (Estilo Carta TCG Mini) ───────────────── */
+.card-tcg {
+  background: linear-gradient(135deg, var(--poke-red) 0%, #b72506 100%);
+  border: 8px solid var(--poke-yellow);
+  border-radius: 16px;
   width: 100%;
-  height: 380px;
-  padding: 16px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  height: 280px;
+  /* Altura fija para que la grilla sea pareja */
+  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   position: relative;
   overflow: hidden;
 }
 
-.zoom::before {
-  content: '';
-  position: absolute;
-  top: -30px;
-  right: -30px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  pointer-events: none;
+.card-tcg:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(227, 53, 13, 0.4);
 }
 
-.zoom:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 12px 28px rgba(227, 53, 13, 0.45);
-}
-
-/* ── Imagen Pokémon ─────────────────────────────────────── */
-.divImagenPokemon {
-  width: 100%;
-  height: 58%;
-  background-color: var(--poke-dark);
-  border-radius: 14px;
+/* ── Imagen Pokémon (Arte) ──────────────────────────────────── */
+.pokemon-art-mini {
+  background: radial-gradient(circle, #ffffff 0%, #e2e8f0 100%);
+  border: 3px solid var(--poke-dark);
+  border-radius: 6px;
+  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  margin-bottom: 8px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-.imgPokemon {
-  width: 85%;
-  height: 85%;
+.imgPokemonMini {
+  width: 110px;
+  height: 110px;
   object-fit: contain;
   image-rendering: pixelated;
-  transition: transform 0.3s;
+  filter: drop-shadow(2px 5px 5px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
 }
 
-.zoom:hover .imgPokemon {
-  transform: scale(1.1);
+.card-tcg:hover .imgPokemonMini {
+  transform: scale(1.2);
+  /* Zoom al pokemon al pasar el mouse */
 }
 
-/* ── Nombre Pokémon ─────────────────────────────────────── */
-.nombrePokemon {
-  background-color: #fff;
-  color: var(--poke-red);
+/* ── Información Inferior (Nombre y Tipo) ───────────────────── */
+.info-bottom {
+  border-top: 4px solid var(--poke-dark);
+  border-bottom-left-radius: 6px;
+  /* Para que no se salga del borde amarillo */
+  border-bottom-right-radius: 6px;
+}
+
+.nombre-pokemon-tcg {
   font-family: 'Bangers', cursive;
-  font-size: 16px;
-  letter-spacing: 1px;
-  text-align: center;
-  border-radius: 20px;
-  padding: 4px 0;
-}
-
-/* ── Tipos ──────────────────────────────────────────────── */
-.tipos {
-  background-color: var(--poke-yellow);
   color: var(--poke-dark);
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800;
-  font-size: 11px;
-  border-radius: 20px;
-  padding: 2px 8px;
-  text-align: center;
-}
-
-.tipos p { margin: 0; }
-
-/* ── Altura y peso ──────────────────────────────────────── */
-.alturaPesoDiv p {
-  font-family: 'Nunito', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.85);
-  margin: 0;
-  text-align: center;
-}
-
-/* ── Número Pokémon ─────────────────────────────────────── */
-.zoom .text-center.fw-bold {
-  font-family: 'Nunito', sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  color: rgba(255,255,255,0.6);
-  margin: 0;
-}
-
-/* ── Ícono info ─────────────────────────────────────────── */
-.info {
-  color: var(--poke-yellow);
   font-size: 22px;
-  transition: 0.2s;
+  letter-spacing: 1px;
 }
 
-.info:hover {
-  color: #fff;
+.tipos-badge {
+  display: inline-block;
+  background-color: var(--poke-dark);
+  color: var(--poke-yellow);
+  font-family: 'Nunito', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+/* ── Ícono info sobre la carta ──────────────────────────────── */
+.btn-info-icon {
+  color: var(--poke-white);
+  font-size: 24px;
+  transition: 0.2s;
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.6));
+}
+
+.btn-info-icon:hover {
+  color: var(--poke-yellow);
   transform: scale(1.2);
 }
 
-/* ── Checkbox Pokéball ──────────────────────────────────── */
+/* ── Checkbox Pokéball (Se mantiene el tuyo pero ajustado) ──── */
 input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   width: 24px;
   height: 24px;
-  border: 2px solid rgba(255,255,255,0.4);
-  background-color: rgba(255,255,255,0.15);
+  border: 2px solid var(--poke-white);
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   cursor: pointer;
   outline: none;
   transition: 0.2s;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 input[type="checkbox"]:checked {
@@ -293,8 +273,15 @@ footer {
 
 /* ── Animación entrada de cards ─────────────────────────── */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .zoom {
