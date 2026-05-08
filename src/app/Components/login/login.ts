@@ -4,6 +4,8 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormsModule } from '@angul
 import { UsuarioModel } from '../../Interfaces/usuario-model';
 import { Service } from '../../Service/service';
 import { AuthService } from '../../Service/auth.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -40,7 +42,11 @@ export class Login {
           this.router.navigate(['/pokemones'])
         },
         error: () => {
-          this.errorMessage = "No se ha encontrado el usuario"
+          Swal.fire({
+                title: '¡El usuario no existe!',
+                icon: 'error',
+                draggable: true,
+              });
         }
       }
 

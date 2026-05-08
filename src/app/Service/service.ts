@@ -13,9 +13,11 @@ import { RolModel } from '../Interfaces/rol-model';
 })
 export class Service {
 
-  private url: string = "http://192.167.0.58:8080/api/pokemon";
-  private urlUsuarios: string = "http://192.167.0.58:8080/api/usuario";
-  private urlLogin: string = "http://192.167.0.58:8080/api/auth/login"
+  private url: string = "http://192.167.0.98:8080/api/pokemon";
+  private urlUsuarios: string = "http://192.167.0.98:8080/api/usuario";
+  private urlLogin: string = "http://192.167.0.98:8080/api/auth/login"
+  private urlRoles: string = "http://192.167.0.98:8080/api/catalogo/rol";
+
 
   constructor(private http: HttpClient) { }
 
@@ -71,7 +73,6 @@ export class Service {
     localStorage.removeItem('token');
   }
 
-  private urlRoles: string = "http://192.167.0.58:8080/api/catalogo/rol";
 
   getRoles(): Observable<ResultModel<RolModel>> {
     return this.http.get<ResultModel<RolModel>>(this.urlRoles);

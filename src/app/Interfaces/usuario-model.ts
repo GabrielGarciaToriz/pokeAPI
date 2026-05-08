@@ -11,6 +11,8 @@ export interface UsuarioModel {
     sexo: string,
     correo: string,
     rol?: {
-        idRol: number
+        idRol: number,
+        Rol: string
     };
+    activo: boolean;
 }

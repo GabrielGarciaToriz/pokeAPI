@@ -6,10 +6,11 @@ import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { RolModel } from '../../Interfaces/rol-model';
+import { Location } from '@angular/common'; // 1. Importar Location
 
 @Component({
   selector: 'app-usuario-form',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule],
   templateUrl: './usuario-form.html',
   styleUrl: './usuario-form.css',
 })
@@ -18,7 +19,7 @@ export class UsuarioForm {
   public usuario: UsuarioModel | undefined;
   public roles: RolModel[] = [];
 
-  constructor(private service: Service, private router: Router) { }
+  constructor(private service: Service, private router: Router, private location : Location) { }
 
   private formularioReactiv = inject(FormBuilder);
 
@@ -105,4 +106,11 @@ export class UsuarioForm {
 
 
   }
+
+regresar(): void{
+  this.location.back();
+}
+
+
+
 }
