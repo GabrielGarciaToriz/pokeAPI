@@ -17,6 +17,7 @@ export class Service {
   private urlUsuarios: string = "http://192.167.0.98:8080/api/usuario";
   private urlLogin: string = "http://192.167.0.98:8080/api/auth/login"
   private urlRoles: string = "http://192.167.0.98:8080/api/catalogo/rol";
+  private urlAdicional: string = "https://pokeapi.co/api/v2/pokemon-species";
 
 
   constructor(private http: HttpClient) { }
@@ -76,6 +77,18 @@ export class Service {
 
   getRoles(): Observable<ResultModel<RolModel>> {
     return this.http.get<ResultModel<RolModel>>(this.urlRoles);
+  }
+
+  getDatosAdicionales(idPokemon: number): Observable<ResultModel<PokemonModel>>{
+    return this.http.get<ResultModel<PokemonModel>>(this.urlAdicional + "/" + idPokemon
+
+    )
+  }
+
+    getPokemonDescription(nombre: string): Observable<any> {
+    return this.http.get(
+      `https://pokeapi.co/api/v2/pokemon-species/${nombre}`
+    );
   }
 
 }

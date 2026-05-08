@@ -24,7 +24,10 @@ export interface PokemonModel {
   cries?: {
     latest: string;
     legacy: string | null;
-  };
+  },
+  flavor_text_entries:{
+    flavor_text: string
+  }
   }
 
 
