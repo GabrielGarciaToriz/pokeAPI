@@ -82,7 +82,10 @@ export class PokemonMainComponent implements OnInit {
     this.paginacion();
   }
 
+
+  private urlEsFavorito: string = "http://";
   cambiarChecbox(): void {
+
     Swal.fire({
       title: '¡Se ha agregado a sus favoritos!',
       icon: 'success',
