@@ -34,7 +34,7 @@
 }
 
 .titulo{
-    
+
       background-color: #E3350D;
 }
 
@@ -46,7 +46,6 @@
     color: #E3350D;
 }
 
-.divImagenPokemon {
 .divImagenPokemon{
     width: 100%;
     height: 60%;
@@ -72,7 +71,7 @@
     border: none;
     width: 130px;
     transition: 0.3s;
-    
+
 }
 
 .btnPaginacion:hover {

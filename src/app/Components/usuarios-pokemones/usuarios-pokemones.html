@@ -1,81 +1,71 @@
-@if (usuarios.length> 0) {
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<div class="titulo text-center mb-4 p-4">
+@if (usuarios.length > 0) {
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <div class="titulo text-center mb-4 p-4">
     <h1>Usuarios</h1>
-</div>
-<div class="container">
+  </div>
+  <div class="container">
     <div class="m-4 d-flex justify-content-end">
-        <a class="btn btnRegresar" [routerLink]="['/formulario']"><i class="bi bi-person-fill-add"></i> Crear nuevo
-            usuario</a>
-
+      <a class="btn btnRegresar" [routerLink]="['/formulario']"
+        ><i class="bi bi-person-fill-add"></i> Crear nuevo usuario</a
+      >
     </div>
 
-   
     <table class="table table-hover">
-        <thead class="thHead">
-            <tr>
-                <td>
-                    Nombre
-                </td>
-                <td>
-                    Rol
-                </td>
-                <td>
-                    Otros datos
-                </td>
-                <td>
-                    Acciones
-                </td>
-            </tr>
-        </thead>
-        @for (usuario of usuarios; track $index) {
-
+      <thead class="thHead">
+        <tr>
+          <td>Nombre</td>
+          <td>Rol</td>
+          <td>Otros datos</td>
+          <td>Acciones</td>
+        </tr>
+      </thead>
+      @for (usuario of usuarios; track $index) {
         <tbody>
-            <tr>
-                <td>
-                    <p>{{usuario.nombre}} {{usuario.apellidoPaterno}} {{usuario.apellidoMaterno}}</p>
+          <tr>
+            <td>
+              <p>
+                {{ usuario.nombre }} {{ usuario.apellidoPaterno }} {{ usuario.apellidoMaterno }}
+              </p>
 
-                    @if (usuario.sexo.toUpperCase() == 'M') {
-                    <p><span class="sexoSpanMan"><i class="bi bi-person-standing"></i> </span></p>
-                    } @else{
-                    <p><span class="sexoSpanWoman"><i class="bi bi-person-standing-dress"></i> </span></p>
-                    }
-                </td>
-                <td>
-                    <p>{{usuario.rol.Rol}}</p>
-                </td>
-                <td>
-                    <p>Username: {{usuario.userName}}</p>
-                    <p>Fecha de nacimiento: {{usuario.fechaNacimiento}}</p>
-                    <p>Correo: {{usuario.correo}}</p>
-                </td>
-                <td class="justify-content-center">
-                    <p><a class="btn btn-warning"><i class="bi bi-info-circle"></i></a></p>
-                    <p><a class="btn btn-danger" (click)="deleteUsuarios(usuario.idUsuarioPokemon)"><i
-                                class="bi bi-trash"></i></a></p>
-                </td>
-
-            </tr>
+              @if (usuario.sexo.toUpperCase() == 'M') {
+                <p>
+                  <span class="sexoSpanMan"><i class="bi bi-person-standing"></i> </span>
+                </p>
+              } @else {
+                <p>
+                  <span class="sexoSpanWoman"><i class="bi bi-person-standing-dress"></i> </span>
+                </p>
+              }
+            </td>
+            <td>
+              <p>{{ usuario.rol.Rol }}</p>
+            </td>
+            <td>
+              <p>Username: {{ usuario.userName }}</p>
+              <p>Fecha de nacimiento: {{ usuario.fechaNacimiento }}</p>
+              <p>Correo: {{ usuario.correo }}</p>
+            </td>
+            <td class="justify-content-center">
+              <p>
+                <a class="btn btn-warning"><i class="bi bi-info-circle"></i></a>
+              </p>
+              <p>
+                <a class="btn btn-danger" (click)="deleteUsuarios(usuario.idUsuarioPokemon)"
+                  ><i class="bi bi-trash"></i
+                ></a>
+              </p>
+            </td>
+          </tr>
         </tbody>
-        }
+      }
     </table>
+  </div>
 
-
-    
-
-
-
-
-</div>
-
-<div class="justify-content-center d-flex m-4">
+  <div class="justify-content-center d-flex m-4">
     <a class="btn btnRegresar" [routerLink]="['/pokemones']">Regresar</a>
-</div>
-}@else {
-    <div class="justify-content-center d-flex w-100 vh-100 align-items-center titulo">
-
-        <p class="textPantallaCarga">Cargando usuarios... <img
-                
-                alt="" class="ms-5"></p>
-    </div>
-    }
+  </div>
+} @else {
+  <div class="justify-content-center d-flex w-100 vh-100 align-items-center titulo">
+    <p class="textPantallaCarga">Cargando usuarios... <img alt="" class="ms-5" /></p>
+  </div>
+}

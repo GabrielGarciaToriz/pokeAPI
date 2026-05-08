@@ -1,14 +1,16 @@
 import { RolModel } from "./rol-model";
 
-export interface UsuarioModel{
+export interface UsuarioModel {
     idUsuarioPokemon: number;
     nombre: string,
     apellidoMaterno: string,
     apellidoPaterno: string,
-    fechaNacimiento: Date, 
+    fechaNacimiento: Date,
     userName: string,
     password: string,
     sexo: string,
     correo: string,
-    rol: RolModel;
+    rol?: {
+        idRol: number
+    };
 }
