@@ -1,26 +1,30 @@
-import { HttpClient } from "@angular/common/http";
-import { ResultModel } from "../../Interfaces/result.model";
-import { Observable } from "rxjs";
-import { PokemonModel } from "../../Interfaces/pokemon.model";
-import {UsuarioModel} from "../../Interfaces/usuario.model";
+import { HttpClient } from '@angular/common/http';
+import { ResultModel } from '../../Interfaces/result.model';
+import { Observable } from 'rxjs';
+import { PokemonModel } from '../../Interfaces/pokemon.model';
+import { UsuarioModel } from '../../Interfaces/usuario.model';
 import { Injectable } from '@angular/core';
+import { API_ROUTES } from '../../routes/api.routes';
+import { PokemonDTO } from '../../Interfaces/pokemon.dto';
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {
-    private urlUsuarios: string = "http://192.167.0.98:8080/api/usuario";
+  private urlUsuarios: string = 'http://192.167.0.98:8080/api/usuario';
+  private utlPokemonFavorito: String = 'http://192.167.0.98:8080/api/favorito';
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) { }
+  getUsuarios(): Observable<ResultModel<UsuarioModel>> {
+    return this.http.get<ResultModel<UsuarioModel>>(API_ROUTES.USUARIO.BASE);
+  }
 
-    getUsuarios(): Observable<ResultModel<UsuarioModel>> {
-        return this.http.get<ResultModel<UsuarioModel>>(this.urlUsuarios);
-    }
+  deleteUsuarios(idusuario: number): Observable<ResultModel<UsuarioModel>> {
+    return this.http.delete<ResultModel<UsuarioModel>>(API_ROUTES.USUARIO.BASE + '/' + idusuario);
+  }
 
-    deleteUsuarios(idusuario: number): Observable<ResultModel<UsuarioModel>> {
-        return this.http.delete<ResultModel<UsuarioModel>>(this.urlUsuarios + "/" + idusuario);
-    }
-
-
-    addUsuario(usuario: UsuarioModel): Observable<ResultModel<UsuarioModel>> {
-        return this.http.post<ResultModel<UsuarioModel>>(this.urlUsuarios + "/agregar", usuario);
-    }
+  addUsuario(usuario: UsuarioModel): Observable<ResultModel<UsuarioModel>> {
+    return this.http.post<ResultModel<UsuarioModel>>(API_ROUTES.USUARIO.BASE + '/agregar', usuario);
+  }
+  getPokemonFavoritoUsuario(idUsuario : number): Observable<ResultModel<PokemonDTO>>{
+    return this.http.get<ResultModel<PokemonDTO>>(API_ROUTES.POKEMON.FAVORITO + '/' + idUsuario);
+  }
 }

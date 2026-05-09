@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
-import { API_ROUTES } from '../routes/api.routes';
+import { API_ROUTES } from '../../routes/api.routes';
 import { ResultModel } from '../../Interfaces/result.model';
 import { UsuarioModel } from '../../Interfaces/usuario.model';
 
