@@ -14,6 +14,9 @@ export class PokemonService {
   getAll(): Observable<ResultModel<PokemonModel>> {
     return this.http.get<ResultModel<PokemonModel>>(API_ROUTES.POKEMON.BASE);
   }
+  getTodos(): Observable<ResultModel<PokemonModel>> {
+    return this.http.get<ResultModel<PokemonModel>>(API_ROUTES.POKEMON.TODOS);
+  }
 
   getPokemonById(id: number): Observable<ResultModel<PokemonModel>> {
     return this.http.get<ResultModel<PokemonModel>>(`${API_ROUTES.POKEMON.BASE}/${id}`);

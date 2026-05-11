@@ -72,39 +72,33 @@ export class UsuarioForm {
       },
     } as UsuarioModel;
 
-    this.usuarioService.addUsuario(this.usuario).subscribe(
-      {
-        next: (res) => {
-          if (res.correct) {
-            Swal.fire({
-              title: 'El usuario se ha creado con éxito',
-              icon: 'success',
-              draggable: true
-            });
-            this.router.navigate(['/usuarios']);
-          } else {
-            Swal.fire({
-              title: 'Error al crear usuario',
-              text: res.errorMessage,
-              icon: 'error'
-            });
-          }
-        },
-        error: () => {
+    this.usuarioService.addUsuario(this.usuario).subscribe({
+      next: (res) => {
+        if (res.correct) {
+          Swal.fire({
+            title: 'El usuario se ha creado con éxito',
+            icon: 'success',
+            draggable: true
+          });
+          this.router.navigate(['/usuarios']);
+        } else {
           Swal.fire({
             title: 'Error al crear usuario',
             text: res.errorMessage,
-            icon: 'error',
+            icon: 'error'
           });
         }
       },
-      error: () => {
+      error: (err) => {
+        // En caso de que la petición HTTP falle (error 400, 500, etc.)
+        // Usamos 'err' en lugar de 'res'
         Swal.fire({
           title: 'Error de conexión',
-          text: 'No se pudo crear el usuario',
+          text: 'No se pudo crear el usuario. ' + (err.message || ''),
           icon: 'error',
         });
-      },
+      }
     });
+  
   }
 }

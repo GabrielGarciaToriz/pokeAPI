@@ -3,6 +3,7 @@ import { PokemonModel } from '../../Interfaces/pokemon.model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { PokemonService } from '../../Service/pokemon/pokemon.service';
+import { PokemonStateService } from "../../Service/pokemon/pokemon.state.service";
 
 @Component({
   selector: 'app-get-by-id-pokemon',
@@ -14,28 +15,32 @@ import { PokemonService } from '../../Service/pokemon/pokemon.service';
 @Injectable({ providedIn: 'root' })
 export class GetByIdPokemon implements OnInit {
   constructor(
+    private pokemonStateService: PokemonStateService,
     private pokemonService: PokemonService,
     private route: ActivatedRoute,
-  ) {}
+  ) { }
 
   public pokemon: PokemonModel | undefined;
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const idUsuario = params['idUsuario'];
-      this.getById(idUsuario);
+      const idUsuario = Number(params['idUsuario']);
+      this.cargarPokemon(idUsuario);
     });
   }
 
-  getById(id: number) {
-    this.pokemonService.getPokemonById(id).subscribe((data) => {
-      this.pokemon = data.object;
-      console.log('Pokémon cargado:', this.pokemon);
+
+  cargarPokemon(idPokemon: number): void {
+    const memoria = this.pokemonStateService.obtenerPorId(idPokemon);
+    if (memoria) {
+      this.pokemon = memoria;
       if (this.pokemon?.cries?.latest) {
         this.reproducirCry(this.pokemon.cries.latest);
       }
-    });
+      return;
+    }
   }
+
   private reproducirCry(url: string): void {
     const audio = new Audio(url);
     audio.volume = 0.5;
