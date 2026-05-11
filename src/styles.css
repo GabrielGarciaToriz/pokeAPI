@@ -1,0 +1,13 @@
+.swal2-popup {
+  background-color: #2d3748 !important;
+}
+
+/* Cambiar color del título */
+.swal2-title {
+  color: #ffff !important;
+}
+
+.swal2-confirm {
+  background-color: #E3350D !important;
+  color: white !important;
+}

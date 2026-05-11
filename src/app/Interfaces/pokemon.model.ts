@@ -1,7 +1,7 @@
-import { SpritesModels } from "./sprites-models";
+import { SpritesModels } from "./sprites.model";
 
 export interface PokemonModel {
-  idPokemon: number,
+    idPokemon: number,
   name: string,
   weight: number,
   height: number,
@@ -12,17 +12,21 @@ export interface PokemonModel {
     front_default: string,
     front_shiny: string
   },
-  stats:{
-   "special-attack": number,
+  stats: {
+    "special-attack": number,
     defense: number,
     attack: number,
     hp: number,
     "special-defense": number,
     speed: number
-   },
-   moves: string[]
+  },
+  moves: string[],
+  cries?: {
+    latest: string;
+    legacy: string | null;
+  };
 
-  }
+}
 
 
 

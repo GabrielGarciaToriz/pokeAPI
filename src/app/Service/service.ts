@@ -3,20 +3,19 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http'
 import { Observable, tap } from 'rxjs';
 
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
-import { PokemonModel } from '../Interfaces/pokemon-model';
-import { ResultModel } from '../Interfaces/result-model';
-import { UsuarioModel } from '../Interfaces/usuario-model';
-import { RolModel } from '../Interfaces/rol-model';
+import { PokemonModel } from '../Interfaces/pokemon.model';
+import { ResultModel } from '../Interfaces/result.model';
+import { UsuarioModel } from '../Interfaces/usuario.model';
+import { RolModel } from '../Interfaces/rol.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Service {
 
-  private url: string = "http://192.167.0.58:8080/api/pokemon";
-  private urlUsuarios: string = "http://192.167.0.58:8080/api/usuario";
-  private urlLogin: string = "http://192.167.0.58:8080/api/auth/login"
-
+  private url: string = "http://192.167.0.98:8080/api/pokemon";
+  private urlUsuarios: string = "http://192.167.0.98:8080/api/usuario";
+  private urlLogin: string = "http://192.167.0.98:8080/api/auth/login"
   constructor(private http: HttpClient) { }
 
 

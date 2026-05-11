@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { UsuarioModel } from '../../Interfaces/usuario-model';
+import { UsuarioModel } from '../../Interfaces/usuario.model';
 import { Service } from '../../Service/service';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { RolModel } from '../../Interfaces/rol-model';
+import { RolModel } from '../../Interfaces/rol.model';
+
+import { CatalogoService } from '../../Service/catalog/catalogo.service';
 
 @Component({
   selector: 'app-usuario-form',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule],
   templateUrl: './usuario-form.html',
   styleUrl: './usuario-form.css',
 })
@@ -18,7 +20,7 @@ export class UsuarioForm {
   public usuario: UsuarioModel | undefined;
   public roles: RolModel[] = [];
 
-  constructor(private service: Service, private router: Router) { }
+  constructor(private CatalogoService: CatalogoService, private service: Service, private router: Router) { }
 
   private formularioReactiv = inject(FormBuilder);
 
@@ -41,7 +43,7 @@ export class UsuarioForm {
   }
 
   cargarRoles(): void {
-    this.service.getRoles().subscribe({
+    this.CatalogoService.getRoles().subscribe({
       next: (res) => {
         if (res.correct) {
           this.roles = res.objects ?? [];
@@ -62,8 +64,6 @@ export class UsuarioForm {
       }
     });
   }
-
-
 
   enviarDatos() {
     const formValue = this.formulario.value;
