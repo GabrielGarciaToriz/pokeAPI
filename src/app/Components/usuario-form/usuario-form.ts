@@ -11,7 +11,7 @@ import { CatalogoService } from '../../Service/catalog/catalogo.service';
 
 @Component({
   selector: 'app-usuario-form',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule],
   templateUrl: './usuario-form.html',
   styleUrl: './usuario-form.css',
 })

@@ -1,7 +1,7 @@
 import { SpritesModels } from "./sprites.model";
 
 export interface PokemonModel {
-  idPokemon: number,
+    idPokemon: number,
   name: string,
   weight: number,
   height: number,
