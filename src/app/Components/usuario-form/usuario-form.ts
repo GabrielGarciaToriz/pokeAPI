@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UsuarioModel } from '../../Interfaces/usuario.model';
-import { Service } from '../../Service/service';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { RolModel } from '../../Interfaces/rol.model';
 
 import { CatalogoService } from '../../Service/catalog/catalogo.service';
+import {UsuarioService} from "../../Service/user/usuario.service";
 
 @Component({
   selector: 'app-usuario-form',
@@ -20,7 +20,7 @@ export class UsuarioForm {
   public usuario: UsuarioModel | undefined;
   public roles: RolModel[] = [];
 
-  constructor(private CatalogoService: CatalogoService, private service: Service, private router: Router) { }
+  constructor(private CatalogoService: CatalogoService, private router: Router, private usuarioService: UsuarioService) { }
 
   private formularioReactiv = inject(FormBuilder);
 
@@ -75,7 +75,7 @@ export class UsuarioForm {
       }
     } as UsuarioModel;
 
-    this.service.addUsuario(this.usuario).subscribe(
+    this.usuarioService.addUsuario(this.usuario).subscribe(
       {
         next: (res) => {
           if (res.correct) {
