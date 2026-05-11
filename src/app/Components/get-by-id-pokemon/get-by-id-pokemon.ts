@@ -44,7 +44,8 @@ export class GetByIdPokemon implements OnInit {
       if (this.pokemon?.cries?.latest) {
         this.reproducirCry(this.pokemon.cries.latest);
       }
-    });
+      return;
+    }
   }
 
 

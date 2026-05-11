@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { PokemonModel } from '../../Interfaces/pokemon.model';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { PokemonService } from '../../Service/pokemon/pokemon.service';
 import { PokemonStateService } from '../../Service/pokemon/pokemon.state.service';
 
 @Component({
@@ -19,15 +20,18 @@ export class PokemonMainComponent implements OnInit {
   public pokemones: PokemonModel[] = [];
   public pokemonesPaginados: PokemonModel[] = [];
 
-  constructor(private pokemonStateService: PokemonStateService) { }
+  constructor(
+    private pokemonService: PokemonService,
+    private pokemonStateService: PokemonStateService,
+  ) { }
 
   ngOnInit(): void {
     this.pokemonStateService.obtenerTodos().subscribe({
-      next: (todos) => {
-        this.pokemones = todos;
+      next: (result) => {
+        this.pokemones = result;
         this.aplicarPagina();
       },
-      error: () => {
+      error: (err) => {
         Swal.fire({ title: 'Error de conexión', icon: 'error' });
       }
     });
@@ -50,9 +54,8 @@ export class PokemonMainComponent implements OnInit {
     if (nuevaPagina < 0) return;
     this.page = nuevaPagina;
     this.aplicarPagina();
+
   }
 
-  cambiarChecbox(): void {
-    Swal.fire({ title: '¡Agregado a favoritos!', icon: 'success', draggable: true });
-  }
+
 }
