@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PokemonModel } from '../../Interfaces/pokemon.model';
-import { Service } from '../../Service/service';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import {PokemonService} from "../../Service/pokemon/pokemon.service";
 
 @Component({
   selector: 'app-pokemon-main-component',
@@ -21,7 +21,7 @@ export class PokemonMainComponent implements OnInit {
   public pokemones: PokemonModel[] = [];
   public pokemonesPaginados: PokemonModel[] = [];
 
-  constructor(private service: Service) {}
+  constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
     this.paginacion();
@@ -29,7 +29,7 @@ export class PokemonMainComponent implements OnInit {
   }
 
   getAll(): void {
-    this.service.getAll().subscribe({
+    this.pokemonService.getAll().subscribe({
       next: (res) => {
         if (res.correct) {
           this.pokemones = res.objects ?? [];
@@ -55,7 +55,7 @@ export class PokemonMainComponent implements OnInit {
   }
 
   paginacion(): void {
-    this.service.paginacion(this.page, this.limit).subscribe({
+    this.pokemonService.paginacion(this.page, this.limit).subscribe({
       next: (res) => {
         if (res.correct) {
           this.pokemonesPaginados = res.objects ?? [];

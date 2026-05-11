@@ -19,11 +19,7 @@ export class UsuarioForm {
   public usuario: UsuarioModel | undefined;
   public roles: RolModel[] = [];
 
-  constructor(
-    private CatalogoService: CatalogoService,
-    private UsuarioService: UsuarioService,
-    private router: Router,
-  ) {}
+  constructor(private CatalogoService: CatalogoService, private router: Router, private usuarioService: UsuarioService) { }
 
   private formularioReactiv = inject(FormBuilder);
 
@@ -76,16 +72,25 @@ export class UsuarioForm {
       },
     } as UsuarioModel;
 
-    this.UsuarioService.addUsuario(this.usuario).subscribe({
-      next: (res) => {
-        if (res.correct) {
-          Swal.fire({
-            title: 'El usuario se ha creado con éxito',
-            icon: 'success',
-            draggable: true,
-          });
-          this.router.navigate(['/usuarios']);
-        } else {
+    this.usuarioService.addUsuario(this.usuario).subscribe(
+      {
+        next: (res) => {
+          if (res.correct) {
+            Swal.fire({
+              title: 'El usuario se ha creado con éxito',
+              icon: 'success',
+              draggable: true
+            });
+            this.router.navigate(['/usuarios']);
+          } else {
+            Swal.fire({
+              title: 'Error al crear usuario',
+              text: res.errorMessage,
+              icon: 'error'
+            });
+          }
+        },
+        error: () => {
           Swal.fire({
             title: 'Error al crear usuario',
             text: res.errorMessage,
