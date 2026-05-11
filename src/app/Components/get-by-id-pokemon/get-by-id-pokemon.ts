@@ -45,9 +45,8 @@ export class GetByIdPokemon implements OnInit {
         this.reproducirCry(this.pokemon.cries.latest);
       }
       return;
-    }
+    });
   }
-
 
   private reproducirCry(url: string): void {
     const audio = new Audio(url);
