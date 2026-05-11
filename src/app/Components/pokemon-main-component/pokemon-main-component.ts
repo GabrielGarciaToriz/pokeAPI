@@ -13,10 +13,9 @@ import { PokemonStateService } from '../../Service/pokemon/pokemon.state.service
   styleUrl: './pokemon-main-component.css',
 })
 export class PokemonMainComponent implements OnInit {
-  public limit: number = 20;
-  public page: number = 0;
-  public total: number = 0;
-  public searchTerm: string = '';
+  public limit = 40;
+  public page = 0;
+  public searchTerm = '';
   public pokemonsFiltrados: PokemonModel[] = [];
   public pokemones: PokemonModel[] = [];
   public pokemonesPaginados: PokemonModel[] = [];
@@ -45,6 +44,7 @@ export class PokemonMainComponent implements OnInit {
         p.idPokemon.toString().includes(term)
     );
   }
+
   aplicarPagina(): void {
     const inicio = this.page;
     this.pokemonesPaginados = this.pokemones.slice(inicio, inicio + this.limit);

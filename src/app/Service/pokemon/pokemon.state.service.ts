@@ -1,42 +1,47 @@
+// pokemon-state.service.ts
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, take, filter, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap, filter, take } from 'rxjs';
 import { PokemonModel } from '../../Interfaces/pokemon.model';
-import { PokemonService } from './pokemon.service';
+import {PokemonService as Service} from "./pokemon.service";
 
 @Injectable({ providedIn: 'root' })
 export class PokemonStateService {
-  private pokemons$ = new BehaviorSubject<PokemonModel[] | null>(null);
+
+  private pokemones$ = new BehaviorSubject<PokemonModel[] | null>(null);
   private cargando = false;
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(private service: Service) {}
 
   obtenerTodos(): Observable<PokemonModel[]> {
-    if (this.pokemons$.value === null && !this.cargando) {
+    if (!this.pokemones$.value && !this.cargando) {
       this.cargando = true;
 
-      this.pokemonService
-        .getTodos()
-        .pipe(take(1))
-        .subscribe({
-          next: (result) => {
-            if (result.correct) {
-              this.pokemons$.next(result.objects ?? []);
-            }
-            this.cargando = false;
-          },
-          error: () => {
-            this.cargando = false;
-          },
-        });
+      this.service.getAll().pipe(take(1)).subscribe({
+        next: (result) => {
+          if (result.correct) {
+            this.pokemones$.next(result.objects ?? []);
+          }
+          this.cargando = false;
+        },
+        error: () => { this.cargando = false; }
+      });
     }
-    return this.pokemons$.pipe(filter((pokemon): pokemon is PokemonModel[] => pokemon !== null));
+
+    return this.pokemones$.pipe(
+      filter((p): p is PokemonModel[] => p !== null)
+    );
   }
 
   obtenerPorId(id: number): PokemonModel | undefined {
-    return this.pokemons$.value?.find((p) => p.idPokemon === id);
+    return this.pokemones$.value?.find(p => p.idPokemon === id);
   }
 
-  get cargados(): boolean {
-    return this.pokemons$.value !== null;
+  invalidarCache(): void {
+    this.pokemones$.next(null);
+    this.cargando = false;
+  }
+
+  get yaFueCargado(): boolean {
+    return this.pokemones$.value !== null;
   }
 }

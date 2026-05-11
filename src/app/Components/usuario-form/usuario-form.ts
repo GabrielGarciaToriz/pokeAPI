@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { RolModel } from '../../Interfaces/rol.model';
 
 import { CatalogoService } from '../../Service/catalog/catalogo.service';
-import {UsuarioService} from "../../Service/user/usuario.service";
+import { UsuarioService } from "../../Service/user/usuario.service";
 
 @Component({
   selector: 'app-usuario-form',
@@ -72,16 +72,25 @@ export class UsuarioForm {
       },
     } as UsuarioModel;
 
-    this.usuarioService.addUsuario(this.usuario).subscribe({
-      next: (res) => {
-        if (res.correct) {
-          Swal.fire({
-            title: 'El usuario se ha creado con éxito',
-            icon: 'success',
-            draggable: true
-          });
-          this.router.navigate(['/usuarios']);
-        } else {
+    this.usuarioService.addUsuario(this.usuario).subscribe(
+      {
+        next: (res) => {
+          if (res.correct) {
+            Swal.fire({
+              title: 'El usuario se ha creado con éxito',
+              icon: 'success',
+              draggable: true
+            });
+            this.router.navigate(['/usuarios']);
+          } else {
+            Swal.fire({
+              title: 'Error al crear usuario',
+              text: res.errorMessage,
+              icon: 'error'
+            });
+          }
+        },
+        error: (res) => {
           Swal.fire({
             title: 'Error al crear usuario',
             text: res.errorMessage,
@@ -102,3 +111,5 @@ export class UsuarioForm {
   
   }
 }
+
+

@@ -28,18 +28,26 @@ export class GetByIdPokemon implements OnInit {
       this.cargarPokemon(idUsuario);
     });
   }
+  private cargarPokemon(id: number): void {
+    const enMemoria = this.pokemonStateService.obtenerPorId(id);
 
+    if (enMemoria) {
+      this.pokemon = enMemoria;
+      if (this.pokemon?.cries?.latest) {
+        this.reproducirCry(this.pokemon.cries.latest);
+      }
+      return;
+    }
 
-  cargarPokemon(idPokemon: number): void {
-    const memoria = this.pokemonStateService.obtenerPorId(idPokemon);
-    if (memoria) {
-      this.pokemon = memoria;
+    this.pokemonService.getPokemonById(id).subscribe(data => {
+      this.pokemon = data.object;
       if (this.pokemon?.cries?.latest) {
         this.reproducirCry(this.pokemon.cries.latest);
       }
       return;
     }
   }
+
 
   private reproducirCry(url: string): void {
     const audio = new Audio(url);
