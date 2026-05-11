@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UsuarioModel } from '../../Interfaces/usuario.model';
-import { Service } from '../../Service/service';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { RolModel } from '../../Interfaces/rol.model';
 
 import { CatalogoService } from '../../Service/catalog/catalogo.service';
+import {UsuarioService} from "../../Service/user/usuario.service";
 
 @Component({
   selector: 'app-usuario-form',
@@ -16,14 +16,16 @@ import { CatalogoService } from '../../Service/catalog/catalogo.service';
   styleUrl: './usuario-form.css',
 })
 export class UsuarioForm {
-
   public usuario: UsuarioModel | undefined;
   public roles: RolModel[] = [];
 
-  constructor(private CatalogoService: CatalogoService, private service: Service, private router: Router) { }
+  constructor(
+    private CatalogoService: CatalogoService,
+    private UsuarioService: UsuarioService,
+    private router: Router,
+  ) {}
 
   private formularioReactiv = inject(FormBuilder);
-
 
   public formulario = this.formularioReactiv.group({
     nombre: [''],
@@ -34,9 +36,8 @@ export class UsuarioForm {
     sexo: [''],
     correo: [''],
     fechaNacimiento: this.formularioReactiv.control<Date | null>(null),
-    idRol: [0]
-
-  })
+    idRol: [0],
+  });
 
   ngOnInit(): void {
     this.cargarRoles();
@@ -51,7 +52,7 @@ export class UsuarioForm {
           Swal.fire({
             title: 'Error al cargar roles',
             text: res.errorMessage,
-            icon: 'error'
+            icon: 'error',
           });
         }
       },
@@ -59,9 +60,9 @@ export class UsuarioForm {
         Swal.fire({
           title: 'Error de conexión',
           text: 'No se pudieron cargar los roles',
-          icon: 'error'
+          icon: 'error',
         });
-      }
+      },
     });
   }
 
@@ -71,38 +72,34 @@ export class UsuarioForm {
     this.usuario = {
       ...formValue,
       rol: {
-        idRol: Number(formValue.idRol)
-      }
+        idRol: Number(formValue.idRol),
+      },
     } as UsuarioModel;
 
-    this.service.addUsuario(this.usuario).subscribe(
-      {
-        next: (res) => {
-          if (res.correct) {
-            Swal.fire({
-              title: 'El usuario se ha creado con éxito',
-              icon: 'success',
-              draggable: true
-            });
-            this.router.navigate(['/usuarios']);
-          } else {
-            Swal.fire({
-              title: 'Error al crear usuario',
-              text: res.errorMessage,
-              icon: 'error'
-            });
-          }
-        },
-        error: () => {
+    this.UsuarioService.addUsuario(this.usuario).subscribe({
+      next: (res) => {
+        if (res.correct) {
           Swal.fire({
-            title: 'Error de conexión',
-            text: 'No se pudo crear el usuario',
-            icon: 'error'
+            title: 'El usuario se ha creado con éxito',
+            icon: 'success',
+            draggable: true,
+          });
+          this.router.navigate(['/usuarios']);
+        } else {
+          Swal.fire({
+            title: 'Error al crear usuario',
+            text: res.errorMessage,
+            icon: 'error',
           });
         }
-      }
-    );
-
-
+      },
+      error: () => {
+        Swal.fire({
+          title: 'Error de conexión',
+          text: 'No se pudo crear el usuario',
+          icon: 'error',
+        });
+      },
+    });
   }
 }
