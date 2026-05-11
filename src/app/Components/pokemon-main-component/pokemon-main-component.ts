@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { PokemonModel } from '../../Interfaces/pokemon.model';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import {PokemonService} from "../../Service/pokemon/pokemon.service";
+import { PokemonStateService } from '../../Service/pokemon/pokemon.state.service';
 
 @Component({
   selector: 'app-pokemon-main-component',
@@ -12,35 +12,23 @@ import {PokemonService} from "../../Service/pokemon/pokemon.service";
   styleUrl: './pokemon-main-component.css',
 })
 export class PokemonMainComponent implements OnInit {
-
-  public limit: number = 20;
-  public page: number = 0;
-  public total: number = 0;
-  public searchTerm: string = '';
+  public limit = 40;
+  public page = 0;
+  public searchTerm = '';
   public pokemonsFiltrados: PokemonModel[] = [];
   public pokemones: PokemonModel[] = [];
   public pokemonesPaginados: PokemonModel[] = [];
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(private pokemonStateService: PokemonStateService) { }
 
   ngOnInit(): void {
-    this.paginacion();
-    this.getAll();
-  }
-
-  getAll(): void {
-    this.pokemonService.getAll().subscribe({
-      next: (res) => {
-        if (res.correct) {
-          this.pokemones = res.objects ?? [];
-          this.total = this.pokemones.length;
-          this.filtrar();
-        } else {
-          Swal.fire({ title: 'Error al cargar pokémones', text: res.errorMessage, icon: 'error' });
-        }
+    this.pokemonStateService.obtenerTodos().subscribe({
+      next: (todos) => {
+        this.pokemones = todos;
+        this.aplicarPagina();
       },
       error: () => {
-        Swal.fire({ title: 'Error de conexión', text: 'No se pudo conectar con el servidor', icon: 'error' });
+        Swal.fire({ title: 'Error de conexión', icon: 'error' });
       }
     });
   }
@@ -48,48 +36,23 @@ export class PokemonMainComponent implements OnInit {
   filtrar(): void {
     const term = this.searchTerm.toLowerCase();
     this.pokemonsFiltrados = this.pokemones.filter(
-      (p) =>
-        p.name.toLowerCase().includes(term) ||
+      p => p.name.toLowerCase().includes(term) ||
         p.idPokemon.toString().includes(term)
     );
   }
 
-  paginacion(): void {
-    this.pokemonService.paginacion(this.page, this.limit).subscribe({
-      next: (res) => {
-        if (res.correct) {
-          this.pokemonesPaginados = res.objects ?? [];
-          this.total = this.pokemonesPaginados.length;
-        } else {
-          Swal.fire({ title: 'Error al paginar', text: res.errorMessage, icon: 'error' });
-        }
-      },
-      error: () => {
-        Swal.fire({ title: 'Error de conexión', text: 'No se pudo conectar con el servidor', icon: 'error' });
-      }
-    });
-  }
-
-  actualizarPagina(): void {
-    const inicio = (this.page - 1) * this.limit;
-    const fin = inicio + this.limit;
-    this.pokemonesPaginados = this.pokemones.slice(inicio, fin);
+  aplicarPagina(): void {
+    const inicio = this.page;
+    this.pokemonesPaginados = this.pokemones.slice(inicio, inicio + this.limit);
   }
 
   cambiarPagina(nuevaPagina: number): void {
     if (nuevaPagina < 0) return;
     this.page = nuevaPagina;
-    this.paginacion();
+    this.aplicarPagina();
   }
 
-
-  private urlEsFavorito: string = "http://";
   cambiarChecbox(): void {
-
-    Swal.fire({
-      title: '¡Se ha agregado a sus favoritos!',
-      icon: 'success',
-      draggable: true,
-    });
+    Swal.fire({ title: '¡Agregado a favoritos!', icon: 'success', draggable: true });
   }
 }
