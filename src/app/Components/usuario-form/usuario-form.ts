@@ -16,14 +16,12 @@ import {UsuarioService} from "../../Service/user/usuario.service";
   styleUrl: './usuario-form.css',
 })
 export class UsuarioForm {
-
   public usuario: UsuarioModel | undefined;
   public roles: RolModel[] = [];
 
   constructor(private CatalogoService: CatalogoService, private router: Router, private usuarioService: UsuarioService) { }
 
   private formularioReactiv = inject(FormBuilder);
-
 
   public formulario = this.formularioReactiv.group({
     nombre: [''],
@@ -34,9 +32,8 @@ export class UsuarioForm {
     sexo: [''],
     correo: [''],
     fechaNacimiento: this.formularioReactiv.control<Date | null>(null),
-    idRol: [0]
-
-  })
+    idRol: [0],
+  });
 
   ngOnInit(): void {
     this.cargarRoles();
@@ -51,7 +48,7 @@ export class UsuarioForm {
           Swal.fire({
             title: 'Error al cargar roles',
             text: res.errorMessage,
-            icon: 'error'
+            icon: 'error',
           });
         }
       },
@@ -59,9 +56,9 @@ export class UsuarioForm {
         Swal.fire({
           title: 'Error de conexión',
           text: 'No se pudieron cargar los roles',
-          icon: 'error'
+          icon: 'error',
         });
-      }
+      },
     });
   }
 
@@ -71,8 +68,8 @@ export class UsuarioForm {
     this.usuario = {
       ...formValue,
       rol: {
-        idRol: Number(formValue.idRol)
-      }
+        idRol: Number(formValue.idRol),
+      },
     } as UsuarioModel;
 
     this.usuarioService.addUsuario(this.usuario).subscribe(
@@ -95,14 +92,19 @@ export class UsuarioForm {
         },
         error: () => {
           Swal.fire({
-            title: 'Error de conexión',
-            text: 'No se pudo crear el usuario',
-            icon: 'error'
+            title: 'Error al crear usuario',
+            text: res.errorMessage,
+            icon: 'error',
           });
         }
-      }
-    );
-
-
+      },
+      error: () => {
+        Swal.fire({
+          title: 'Error de conexión',
+          text: 'No se pudo crear el usuario',
+          icon: 'error',
+        });
+      },
+    });
   }
 }
