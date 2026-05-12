@@ -98,16 +98,7 @@ export class UsuarioForm {
           });
         }
       },
-      error: (err) => {
-        // En caso de que la petición HTTP falle (error 400, 500, etc.)
-        // Usamos 'err' en lugar de 'res'
-        Swal.fire({
-          title: 'Error de conexión',
-          text: 'No se pudo crear el usuario. ' + (err.message || ''),
-          icon: 'error',
-        });
-      }
-    });
+    );
   
   }
 }
