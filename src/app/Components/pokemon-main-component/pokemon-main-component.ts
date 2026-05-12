@@ -20,15 +20,10 @@ export class PokemonMainComponent implements OnInit {
   public pokemones: PokemonModel[] = [];
   public pokemonesPaginados: PokemonModel[] = [];
 
-<<<<<<< HEAD
   constructor(
     private pokemonService: PokemonService,
     private pokemonStateService: PokemonStateService,
   ) { }
-=======
-
-  private service = inject(Service)
->>>>>>> fix/dilan-sweetAlertFavoritos_y_descripciónPokemones
 
   ngOnInit(): void {
     this.pokemonStateService.obtenerTodos().subscribe({

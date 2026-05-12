@@ -19,13 +19,7 @@ export class UsuarioForm {
   public usuario: UsuarioModel | undefined;
   public roles: RolModel[] = [];
 
-<<<<<<< HEAD
   constructor(private CatalogoService: CatalogoService, private router: Router, private usuarioService: UsuarioService) { }
-=======
-  private service = inject(Service)
-
-  constructor(private CatalogoService: CatalogoService, private router: Router) { }
->>>>>>> fix/dilan-sweetAlertFavoritos_y_descripciónPokemones
 
   private formularioReactiv = inject(FormBuilder);
 

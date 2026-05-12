@@ -18,12 +18,7 @@ export class Login {
 
   public usuario: UsuarioModel | undefined;
 
-<<<<<<< HEAD
   constructor( private router: Router, private authService: AuthService) { }
-=======
-  private authService = inject(AuthService)
-  constructor(private service: Service, private router: Router) { }
->>>>>>> fix/dilan-sweetAlertFavoritos_y_descripciónPokemones
 
   private formularioReactivo = inject(FormBuilder);
 
