@@ -9,8 +9,8 @@ import { PokemonDTO } from '../../Interfaces/pokemon.dto';
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {
-  private urlUsuarios: string = 'http://192.167.0.98:8080/api/usuario';
-  private utlPokemonFavorito: String = 'http://192.167.0.98:8080/api/favorito';
+  private urlUsuarios: string = 'http://192.167.0.135:8080/api/usuario';
+  private utlPokemonFavorito: String = 'http://192.167.0.135:8080/api/favorito';
   constructor(private http: HttpClient) {}
 
   getUsuarios(): Observable<ResultModel<UsuarioModel>> {
@@ -26,5 +26,9 @@ export class UsuarioService {
   }
   getPokemonFavoritoUsuario(idUsuario : number): Observable<ResultModel<PokemonDTO>>{
     return this.http.get<ResultModel<PokemonDTO>>(API_ROUTES.POKEMON.FAVORITO + '/' + idUsuario);
+  }
+
+  detailsUsuario(idUsuario: number): Observable<ResultModel<UsuarioModel>>{
+    return this.http.get<ResultModel<UsuarioModel>>(API_ROUTES.USUARIO.BASE + '/' + idUsuario);
   }
 }

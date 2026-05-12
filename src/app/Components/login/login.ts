@@ -19,7 +19,8 @@ export class Login {
 
   public usuario: UsuarioModel | undefined;
 
-  constructor(private service: Service, private router: Router, private authService: AuthService) { }
+  private authService = inject(AuthService)
+  constructor(private service: Service, private router: Router) { }
 
   private formularioReactivo = inject(FormBuilder);
 

@@ -2,8 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Service } from '../../Service/service';
 import { PokemonModel } from '../../Interfaces/pokemon.model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { PokemonService } from '../../Service/pokemon/pokemon.service';
 
 @Component({
   selector: 'app-get-by-id-pokemon',
@@ -12,24 +10,36 @@ import { PokemonService } from '../../Service/pokemon/pokemon.service';
   templateUrl: './get-by-id-pokemon.html',
   styleUrl: './get-by-id-pokemon.css',
 })
-@Injectable({ providedIn: 'root' })
 export class GetByIdPokemon implements OnInit {
-  constructor(
-    private pokemonService: PokemonService,
-    private route: ActivatedRoute,
-  ) {}
+  private route = inject(ActivatedRoute);
+  private service = inject(Service);
+
+    public descripcion: string = '';
 
   public pokemon: PokemonModel | undefined;
+
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const idUsuario = params['idUsuario'];
       this.getById(idUsuario);
+
+      this.service.getPokemonDescription(idUsuario)
+      .subscribe(data => {
+
+        const entrada = data.flavor_text_entries.find(
+          (x: any) => x.language.name === 'es'
+        );
+
+        this.descripcion = entrada?.flavor_text;
+      });
     });
+    
   }
+  
 
   getById(id: number) {
-    this.pokemonService.getPokemonById(id).subscribe((data) => {
+    this.service.getById(id).subscribe((data) => {
       this.pokemon = data.object;
       console.log('Pokémon cargado:', this.pokemon);
       if (this.pokemon?.cries?.latest) {
@@ -44,4 +54,13 @@ export class GetByIdPokemon implements OnInit {
       console.warn('No se pudo reproducir el grito automáticamente:', err);
     });
   }
+
+  getdesc(id: number){
+    this.service.getDatosAdicionales(id).subscribe((data)=>{
+      this.pokemon = data.object;
+      console.log(data)
+    })
+  }
+
+  
 }

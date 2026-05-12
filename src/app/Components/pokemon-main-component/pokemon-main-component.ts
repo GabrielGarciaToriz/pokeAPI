@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PokemonModel } from '../../Interfaces/pokemon.model';
 import { Service } from '../../Service/service';
@@ -21,7 +21,8 @@ export class PokemonMainComponent implements OnInit {
   public pokemones: PokemonModel[] = [];
   public pokemonesPaginados: PokemonModel[] = [];
 
-  constructor(private service: Service) {}
+
+  private service = inject(Service)
 
   ngOnInit(): void {
     this.paginacion();

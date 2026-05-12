@@ -78,6 +78,8 @@ export class UsuariosPokemones implements OnInit {
                   <i class="bi bi-star-fill text-warning me-2"></i> Equipo / Favoritos
                 </h5>
                 ${pokemonesHtml}
+
+                
               </div>
             `,
             confirmButtonText: 'Cerrar',
