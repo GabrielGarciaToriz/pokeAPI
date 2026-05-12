@@ -1,10 +1,7 @@
 <div class="titulo">
   <h1 class="ps-3">
     PokeApi
-    <img
-      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-      alt=""
-    />
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="" />
   </h1>
 </div>
 
@@ -30,18 +27,21 @@
 
         <div class="mb-3">
           @if (errorMessage) {
-            <p class="text-warning">{{ errorMessage }}</p>
+          <p class="text-warning">{{ errorMessage }}</p>
           }
         </div>
       </div>
 
       <div class="mb-3">
-        
         <button type="submit" class="btn btnEnviar">Acceder</button>
-      </div>
+     
+        <div class="mb-2">
+          <a [routerLink]="['/forgot-password']">¿Olvidaste tu contraseña?</a>
+        </div>
 
-      <div>
-        <p><span>¿No tiene una cuenta? </span> <a [routerLink]="['/formulario']">¡Cree una!</a></p>
+        <div>
+          <p><span>¿No tiene una cuenta? </span> <a [routerLink]="['/formulario']">¡Cree una!</a></p>
+        </div>
       </div>
     </div>
   </form>

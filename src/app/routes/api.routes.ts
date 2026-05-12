@@ -13,4 +13,7 @@ export const API_ROUTES = {
   CATALOGO: {
     ROL: 'http://localhost:8080/api/catalogo/rol',
   },
+  PASSWORD: {
+    BASE: 'http://localhost:8080/api/auth/password',
+  }
 };
