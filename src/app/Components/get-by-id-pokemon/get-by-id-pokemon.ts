@@ -49,7 +49,6 @@ export class GetByIdPokemon implements OnInit {
     );
   }
 
-
   private reproducirCry(url: string): void {
     const audio = new Audio(url);
     audio.volume = 0.5;
