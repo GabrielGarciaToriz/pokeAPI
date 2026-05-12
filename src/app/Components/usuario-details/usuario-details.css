@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --poke-red: #E3350D;
+  --poke-dark: #2D3748;
+  --poke-yellow: #FFD700;
+  --poke-white: #F8F9FA;
+  --poke-gray: #EDF2F7;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.titulo {
+  background-color: var(--poke-red);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 4px solid var(--poke-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.titulo h1 {
+  font-family: 'Bangers', cursive;
+  font-size: 32px;
+  color: var(--poke-yellow);
+  letter-spacing: 3px;
+  -webkit-text-stroke: 2px #00008B;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titulo h1 img {
+  width: 40px;
+  height: 40px;
+  image-rendering: pixelated;
+  animation: bounce 1s infinite alternate;
+}

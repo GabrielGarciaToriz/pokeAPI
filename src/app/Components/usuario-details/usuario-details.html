@@ -1,0 +1,37 @@
+<div class="titulo">
+
+    <h1>Información de {{usuario?.activo}}</h1>
+
+</div>
+<div class="container align-items-center">
+<div class=" text-center">
+      <div class="card shadow border-0 h-100 rounded-4">
+        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+          
+          <img
+            [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + usuario?.idUsuarioPokemon + '.svg'"
+            class="imagenPrincipal img-fluid mb-4"
+            alt="Imagen de {{ usuario?.nombre }}"
+          />
+          
+          <div class="d-flex w-100 justify-content-around text-center mt-auto p-3 bg-light rounded-3">
+            <div>
+              <span class="d-block text-muted small fw-bold">NÚMERO</span>
+              <span class="fw-bold fs-5 text-dark">#{{ usuario?.idUsuarioPokemon }}</span>
+            </div>
+            <div>
+              <span class="d-block text-muted small fw-bold">ALTURA</span>
+              <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoMaterno }} m</span>
+            </div>
+            <div>
+              <span class="d-block text-muted small fw-bold">PESO</span>
+              <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoPaterno }} kg</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+</div>

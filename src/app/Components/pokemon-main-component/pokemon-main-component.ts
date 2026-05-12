@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PokemonModel } from '../../Interfaces/pokemon.model';
 import { FormsModule } from '@angular/forms';
@@ -20,10 +20,15 @@ export class PokemonMainComponent implements OnInit {
   public pokemones: PokemonModel[] = [];
   public pokemonesPaginados: PokemonModel[] = [];
 
+<<<<<<< HEAD
   constructor(
     private pokemonService: PokemonService,
     private pokemonStateService: PokemonStateService,
   ) { }
+=======
+
+  private service = inject(Service)
+>>>>>>> fix/dilan-sweetAlertFavoritos_y_descripciónPokemones
 
   ngOnInit(): void {
     this.pokemonStateService.obtenerTodos().subscribe({
