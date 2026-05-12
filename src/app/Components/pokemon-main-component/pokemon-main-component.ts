@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PokemonModel } from '../../Interfaces/pokemon.model';
 import { FormsModule } from '@angular/forms';
