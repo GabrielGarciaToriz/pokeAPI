@@ -6,6 +6,7 @@ import { UsuarioForm } from './Components/usuario-form/usuario-form';
 import { Login } from './Components/login/login';
 import { ForgotPassword } from './Components/forgotPassword/forgot.password';
 import { ResetPassword } from './Components/resetPassword/reset.password';
+import { UsuarioDetails } from './Components/usuario-details/usuario-details';
 
 export const routes: Routes = [
         { path: "pokemones", component: PokemonMainComponent },
@@ -13,6 +14,7 @@ export const routes: Routes = [
         { path: "usuarios", component: UsuariosPokemones },
         { path: "formulario", component: UsuarioForm },
         { path: "", component: Login },
+        {path: "usuario/:idUsuario", component:UsuarioDetails},
         { path: 'forgot-password', component: ForgotPassword },
         { path: 'reset-password', component: ResetPassword },
 

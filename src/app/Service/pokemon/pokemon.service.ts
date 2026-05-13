@@ -33,4 +33,14 @@ export class PokemonService {
       {}
     );
   }
+
+    getDatosAdicionales(idPokemon: number): Observable<ResultModel<PokemonModel>>{
+    return this.http.get<ResultModel<PokemonModel>>(API_ROUTES.POKEMON.DESCRIPCION + "/" + idPokemon);
+  }
+
+    getPokemonDescription(nombre: number): Observable<any> {
+    return this.http.get(
+      `https://pokeapi.co/api/v2/pokemon-species/${nombre}`
+    );
+  }
 }
