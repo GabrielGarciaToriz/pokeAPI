@@ -5,12 +5,13 @@ import { UsuarioService } from '../../Service/user/usuario.service';
 import { Service } from '../../Service/service';
 import { PokemonDTO } from '../../Interfaces/pokemon.dto';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-usuario-details',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe],
   templateUrl: './usuario-details.html',
   styleUrl: './usuario-details.css',
 })
