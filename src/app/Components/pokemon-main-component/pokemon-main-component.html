@@ -1,4 +1,5 @@
-@if (pokemonesPaginados.length > 0 || pokemones.length > 0 || pokemonsFiltrados.length > 0) {
+@if (pokemonesPaginados.length > 0 || pokemones.length > 0) {
+
 <!-- Header sticky -->
 <div class="titulo">
   <h1>
@@ -11,76 +12,152 @@
 </div>
 
 <div class="px-4 py-4">
+
   <!-- Barra de búsqueda -->
-  <input [(ngModel)]="searchTerm" type="text" class="form-control mb-4 busquedaPokemon w-100"
-    placeholder="Buscar Pokémon por nombre o número..." (input)="filtrar()" />
+  <div class="search-bar mb-5">
+    <div class="search-fields">
 
-  <!-- Sección: resultados de búsqueda -->
-  @if (searchTerm.length > 0) {
-  @if (pokemonsFiltrados.length > 0) {
-  <div class="subtitulo mb-3">
-    <i class="bi bi-search me-2"></i>Resultados ({{ pokemonsFiltrados.length }})
-  </div>
-  <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-3 mb-5">
-    @for (pokemon of pokemonsFiltrados; track pokemon.idPokemon) {
-    <div class="col">
-      <div class="zoom card-tcg">
-        <div
-          class="d-flex justify-content-between align-items-center w-100 px-2 pt-2 position-absolute top-0 start-0 z-1">
-          <input type="checkbox" />
-          <a [routerLink]="['/pokemon/' + pokemon.idPokemon]" class="btn-info-icon">
-            <i class="bi bi-info-circle-fill"></i>
-          </a>
-        </div>
-
-        <div class="pokemon-art-mini mt-4 mx-2">
-          <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="imgPokemonMini" />
-        </div>
-
-        <div class="info-bottom bg-white mt-auto p-2 text-center">
-          <span class="text-muted d-block" style="font-size: 0.7rem; font-weight: 800">Nº {{ pokemon.idPokemon }}</span>
-          <h5 class="nombre-pokemon-tcg m-0">{{ pokemon.name.toUpperCase() }}</h5>
-          <div class="tipos-badge mt-1">{{ pokemon.types }}</div>
-        </div>
+      <div class="search-field">
+        <label class="search-label">Número / ID</label>
+        <input
+          [(ngModel)]="searchId"
+          type="number"
+          min="1"
+          class="busquedaPokemon"
+          placeholder="Ej: 25"
+          (keyup.enter)="buscar()"
+        />
       </div>
+
+      <div class="search-field">
+        <label class="search-label">Nombre</label>
+        <input
+          [(ngModel)]="searchNombre"
+          type="text"
+          class="busquedaPokemon"
+          placeholder="Ej: pikachu"
+          (keyup.enter)="buscar()"
+        />
+      </div>
+
+      <div class="search-field">
+        <label class="search-label">Tipo 1</label>
+        <select [(ngModel)]="searchTipo1" (ngModelChange)="onTipo1Change()" class="busquedaPokemon busquedaSelect">
+          <option value="">— Cualquiera —</option>
+          @for (tipo of tipos; track tipo.idTipoPokemon) {
+            <option [value]="tipo.nombre">{{ tipo.nombre }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="search-field">
+        <label class="search-label">
+          Tipo 2
+          @if (searchTipo1 === '') {
+            <span class="search-label-hint">(elige Tipo 1 primero)</span>
+          }
+        </label>
+        <select
+          [(ngModel)]="searchTipo2"
+          class="busquedaPokemon busquedaSelect"
+          [disabled]="searchTipo1 === ''"
+        >
+          <option value="">— Ninguno —</option>
+          @for (tipo of tiposParaTipo2; track tipo.idTipoPokemon) {
+            <option [value]="tipo.nombre">{{ tipo.nombre }}</option>
+          }
+        </select>
+      </div>
+
     </div>
+
+    <div class="search-actions">
+      <button
+        class="btnBuscar"
+        (click)="buscar()"
+        [disabled]="!hayFiltros || buscando"
+      >
+        @if (buscando) {
+          <span class="spinner-border spinner-border-sm me-2"></span> Buscando...
+        } @else {
+          <i class="bi bi-search me-2"></i> Buscar
+        }
+      </button>
+
+      @if (yaBusco) {
+        <button class="btnLimpiar" (click)="limpiarBusqueda()">
+          <i class="bi bi-x-circle me-1"></i> Limpiar
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Resultados de búsqueda -->
+  @if (yaBusco) {
+    <div class="subtitulo mb-3">
+      <i class="bi bi-search me-2"></i>
+      @if (pokemonsFiltrados.length > 0) {
+        Resultados ({{ pokemonsFiltrados.length }})
+      } @else {
+        Sin resultados
+      }
+    </div>
+
+    @if (pokemonsFiltrados.length > 0) {
+      <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-3 mb-5">
+        @for (pokemon of pokemonsFiltrados; track pokemon.idPokemon) {
+          <div class="col">
+            <div class="zoom card-tcg">
+              <div class="d-flex justify-content-end align-items-center w-100 px-2 pt-2 position-absolute top-0 start-0 z-1">
+                <a [routerLink]="['/pokemon/' + pokemon.idPokemon]" class="btn-info-icon">
+                  <i class="bi bi-info-circle-fill"></i>
+                </a>
+              </div>
+              <div class="pokemon-art-mini mt-4 mx-2">
+                <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="imgPokemonMini" />
+              </div>
+              <div class="info-bottom bg-white mt-auto p-2 text-center">
+                <span class="text-muted d-block" style="font-size: 0.7rem; font-weight: 800">Nº {{ pokemon.idPokemon }}</span>
+                <h5 class="nombre-pokemon-tcg m-0">{{ pokemon.name.toUpperCase() }}</h5>
+                <div class="tipos-badge mt-1">{{ pokemon.types.join(' / ') }}</div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="d-flex flex-column justify-content-center align-items-center py-5 mb-4">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png"
+          alt="No encontrado" style="width: 80px; image-rendering: pixelated; opacity: 0.4" />
+        <p class="notFoundText mt-3">No se encontraron resultados</p>
+      </div>
     }
-  </div>
-  } @else {
-  <div class="d-flex flex-column justify-content-center align-items-center py-5">
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png" alt="No encontrado"
-      style="width: 80px; image-rendering: pixelated; opacity: 0.4" />
-    <p class="notFoundText mt-3">No se encontró "{{ searchTerm }}"</p>
-  </div>
-  }
   }
 
-  <!-- Sección: lista paginada -->
-  <div class="subtitulo mb-3"><i class="bi bi-grid-3x3-gap-fill me-2"></i>Todos los Pokémon</div>
+  <!-- Lista paginada -->
+  <div class="subtitulo mb-3">
+    <i class="bi bi-grid-3x3-gap-fill me-2"></i>Todos los Pokémon
+  </div>
 
   <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-3">
     @for (pokemon of pokemonesPaginados; track pokemon.idPokemon) {
-    <div class="col">
-      <div class="zoom card-tcg">
-        <div
-          class="d-flex justify-content-between align-items-center w-100 px-2 pt-2 position-absolute top-0 start-0 z-1">
-
-          <a [routerLink]="['/pokemon/' + pokemon.idPokemon]" class="btn-info-icon">
-            <i class="bi bi-info-circle-fill"></i>
-          </a>
-        </div>
-
-        <div class="pokemon-art-mini mt-4 mx-2">
-          <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="imgPokemonMini" />
-        </div>
-
-        <div class="info-bottom bg-white mt-auto p-2 text-center">
-          <span class="text-muted d-block" style="font-size: 0.7rem; font-weight: 800">Nº {{ pokemon.idPokemon }}</span>
-          <h5 class="nombre-pokemon-tcg m-0">{{ pokemon.name.toUpperCase() }}</h5>
-          <div class="tipos-badge mt-1">{{ pokemon.types }}</div>
+      <div class="col">
+        <div class="zoom card-tcg">
+          <div class="d-flex justify-content-end align-items-center w-100 px-2 pt-2 position-absolute top-0 start-0 z-1">
+            <a [routerLink]="['/pokemon/' + pokemon.idPokemon]" class="btn-info-icon">
+              <i class="bi bi-info-circle-fill"></i>
+            </a>
+          </div>
+          <div class="pokemon-art-mini mt-4 mx-2">
+            <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="imgPokemonMini" />
+          </div>
+          <div class="info-bottom bg-white mt-auto p-2 text-center">
+            <span class="text-muted d-block" style="font-size: 0.7rem; font-weight: 800">Nº {{ pokemon.idPokemon }}</span>
+            <h5 class="nombre-pokemon-tcg m-0">{{ pokemon.name.toUpperCase() }}</h5>
+            <div class="tipos-badge mt-1">{{ pokemon.types.join(' / ') }}</div>
+          </div>
         </div>
       </div>
-    </div>
     }
   </div>
 
@@ -89,23 +166,21 @@
     <button (click)="cambiarPagina(page - 20)" class="btn btnPaginacion" [disabled]="page <= 0">
       ← Anterior
     </button>
-
-    <span style="
-          font-family: 'Bangers', cursive;
-          font-size: 18px;
-          color: #2d3748;
-          letter-spacing: 1px;
-        ">
+    <span style="font-family: 'Bangers', cursive; font-size: 18px; color: #2d3748; letter-spacing: 1px;">
       Página {{ page / 20 + 1 }}
     </span>
-
-    <button (click)="cambiarPagina(page + 20)" class="btn btnPaginacion">Siguiente →</button>
+    <button (click)="cambiarPagina(page + 20)" class="btn btnPaginacion"
+      [disabled]="page + 20 >= pokemones.length">
+      Siguiente →
+    </button>
   </div>
+
 </div>
 
 <footer class="text-center py-3">
   <p class="m-0">© PokeApi</p>
 </footer>
+
 } @else {
 <!-- Pantalla de carga -->
 <div class="d-flex justify-content-center align-items-center w-100 vh-100 titulo">

@@ -1,8 +1,8 @@
 // pokemon-state.service.ts
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap, filter, take } from 'rxjs';
+import { BehaviorSubject, Observable, filter, take } from 'rxjs';
 import { PokemonModel } from '../../Interfaces/pokemon.model';
-import {PokemonService as Service} from "./pokemon.service";
+import { PokemonService as Service } from "./pokemon.service";
 
 @Injectable({ providedIn: 'root' })
 export class PokemonStateService {
@@ -16,14 +16,16 @@ export class PokemonStateService {
     if (!this.pokemones$.value && !this.cargando) {
       this.cargando = true;
 
-      this.service.getAll().pipe(take(1)).subscribe({
+      this.service.getTodos().pipe(take(1)).subscribe({
         next: (result) => {
           if (result.correct) {
             this.pokemones$.next(result.objects ?? []);
           }
           this.cargando = false;
         },
-        error: () => { this.cargando = false; }
+        error: () => { 
+          this.cargando = false; 
+        }
       });
     }
 

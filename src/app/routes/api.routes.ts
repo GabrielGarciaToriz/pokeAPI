@@ -1,19 +1,20 @@
 export const API_ROUTES = {
   AUTH: {
-    LOGIN: 'http://localhost:8080/api/auth/login',
+    LOGIN: 'http://192.167.0.195:8080/api/auth/login',
   },
   POKEMON: {
-    BASE: 'http://localhost:8080/api/pokemon',
-    FAVORITO: 'http://localhost:8080/api/favorito',
-    TODOS: 'http://localhost:8080/api/pokemon/todos',
+    BASE: 'http://192.167.0.195:8080/api/pokemon',
+    FAVORITO: 'http://192.167.0.195:8080/api/favorito',
+    TODOS: 'http://192.167.0.195:8080/api/pokemon/todos',
   },
   USUARIO: {
-    BASE: 'http://localhost:8080/api/usuario',
+    BASE: 'http://192.167.0.195:8080/api/usuario',
   },
   CATALOGO: {
-    ROL: 'http://localhost:8080/api/catalogo/rol',
+    ROL: 'http://192.167.0.195:8080/api/catalogo/rol',
+    TIPOS: 'http://192.167.0.195:8080/api/catalogo/tipos',
   },
   PASSWORD: {
-    BASE: 'http://localhost:8080/api/auth/password',
+    BASE: 'http://192.167.0.195:8080/api/auth/password',
   }
 };
