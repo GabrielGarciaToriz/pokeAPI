@@ -40,3 +40,11 @@
   image-rendering: pixelated;
   animation: bounce 1s infinite alternate;
 }
+
+.textPantallaCarga {
+  font-family: 'Bangers', cursive;
+  font-size: 50px;
+  color: #FFD700;
+  -webkit-text-stroke: 2px #00008B;
+  letter-spacing: 3px;
+}
