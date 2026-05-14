@@ -5,14 +5,36 @@ import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../Service/user/usuario.service';
 
+// Angular Material
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 @Component({
   selector: 'app-usuarios-pokemones',
   standalone: true,
-  imports: [RouterLink],
+  imports: [
+    RouterLink,
+    // Angular Material
+    MatToolbarModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+  ],
   templateUrl: './usuarios-pokemones.html',
   styleUrl: './usuarios-pokemones.css',
 })
-// ELIMINADO: @Injectable({ providedIn: 'root' }) 
 export class UsuariosPokemones implements OnInit {
   public usuarios: UsuarioModel[] = [];
   public pokemonsFavoritos: PokemonDTO[] = [];
@@ -37,7 +59,6 @@ export class UsuariosPokemones implements OnInit {
       },
     });
   }
-
 
   deleteUsuarios(idUsuario: number): void {
     Swal.fire({
