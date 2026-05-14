@@ -1,72 +1,305 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap');
 
-/* ── Encabezado Principal ───────────────────────────────── */
-.titulo {
-  background-color: #E3350D;
-  border-bottom: 5px solid #2D3748;
+:root {
+  --border-thick: 3px solid #1a1a1a;
+  --text-dark: #1f2937;
 }
 
-.titulo h1 {
+/* ── Pantalla de carga ─────────────────────────────────── */
+.poke-loading {
+  min-height: 100vh;
+  background-color: #2D3748;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.poke-loading-text {
   font-family: 'Bangers', cursive;
+  font-size: 3rem;
   color: #FFD700;
-  letter-spacing: 3px;
   -webkit-text-stroke: 2px #00008B;
+  letter-spacing: 3px;
   margin: 0;
-  font-size: 40px;
+  animation: pulse 1.2s infinite alternate;
 }
 
-/* ── Tarjetas de Entrenador ─────────────────────────────── */
+@keyframes pulse {
+  from { opacity: 1; }
+  to   { opacity: 0.5; }
+}
+
+/* ── Wrapper con fondo tipo madera/escritorio ──────────── */
+.poke-wrapper {
+  min-height: 100vh;
+  /* Patrón simple que simula madera oscura */
+  background-color: #5c4033;
+  background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 2px, transparent 2px, transparent 8px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header Banner ─────────────────────────────────────── */
+.poke-header-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.poke-title-banner {
+  background: #f8f9fa;
+  border-bottom: var(--border-thick);
+  border-right: var(--border-thick);
+  border-bottom-right-radius: 40px;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+}
+
+.poke-title-banner h1 {
+  font-family: 'Bangers', cursive;
+  font-size: 2.2rem;
+  color: #1e3a8a;
+  margin: 0;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+.title-icon {
+  color: #FFD700;
+  -webkit-text-stroke: 1px #000;
+  transform: scale(1.2);
+}
+
+/* ── Contenedor ────────────────────────────────────────── */
+.poke-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 16px;
+  width: 100%;
+}
+
+/* ── Botones de Acción (Action Bar) ────────────────────── */
+.poke-actions-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.poke-btn {
+  font-family: 'Bangers', cursive;
+  font-size: 1.2rem;
+  padding: 8px 20px;
+  border: var(--border-thick);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #000;
+  box-shadow: 4px 4px 0px #000;
+  transition: transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+}
+
+.poke-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+.btn-teal {
+  background-color: #6ee7b7;
+}
+
+.btn-gold {
+  background-color: #fcd34d;
+}
+
+/* ── Grid ──────────────────────────────────────────────── */
+.poke-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 30px;
+}
+
+/* ── Tarjetas (Game Cards) ─────────────────────────────── */
 .trainer-card {
   border-radius: 16px;
-  overflow: hidden;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  font-family: 'Nunito', sans-serif;
-}
-
-.trainer-card .card-header {
-  border-bottom: 4px solid #E3350D !important;
+  box-shadow: 6px 6px 15px rgba(0,0,0,0.6);
+  transition: transform 0.2s;
 }
 
 .trainer-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
-  border: 2px solid #FFD700;
+  transform: translateY(-5px);
 }
 
-/* ── Botones ────────────────────────────────────────────── */
-.btnRegresar {
-  background-color: #2D3748;
-  color: #FFD700;
+/* Carcasa gris metálica exterior */
+.card-metallic-frame {
+  background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+  border: var(--border-thick);
+  border-radius: 16px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pantalla de color interior */
+.card-inner-screen {
+  border: 2px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 16px 16px 24px 16px;
+  min-height: 220px;
+  position: relative;
+}
+
+/* Temas de las tarjetas (colores) */
+.theme-fire .card-inner-screen {
+  background: linear-gradient(to bottom right, #fca5a5, #ef4444);
+}
+.theme-electric .card-inner-screen {
+  background: linear-gradient(to bottom right, #d1d5db, #9ca3af); 
+  /* Nota: En tu imagen, los de Pikachu tienen fondo gris con la cinta amarilla */
+}
+.theme-grass .card-inner-screen {
+  background: linear-gradient(to bottom right, #a7f3d0, #10b981);
+}
+.theme-water .card-inner-screen {
+  background: linear-gradient(to bottom right, #bae6fd, #0ea5e9);
+}
+
+/* Cinta flotante (Ribbon) */
+.status-ribbon {
+  position: absolute;
+  top: 40px;
+  right: -5px;
+  background-color: #fde68a; /* Beige/Amarillo claro */
+  border: 2px solid #000;
+  padding: 4px 12px;
   font-family: 'Bangers', cursive;
+  font-size: 1.1rem;
+  color: #000;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+  z-index: 10;
+  border-radius: 4px;
+}
+.status-ribbon.ribbon-active {
+  background-color: #fcd34d;
+}
+
+/* ── Card Header ───────────────────────────────────────── */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.card-header mat-icon {
+  background: white;
+  border-radius: 50%;
+  border: 2px solid #000;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 18px;
-  letter-spacing: 1px;
-  border: none;
-  transition: 0.3s;
 }
 
-.btnRegresar:hover {
-  background-color: #E3350D;
-  color: #FFFFFF;
-  transform: scale(1.05);
-}
-
-.btnNuevo {
-  background-color: #28a745;
-  color: white;
-  transition: 0.3s;
-}
-
-.btnNuevo:hover {
-  background-color: #218838;
-  transform: scale(1.05);
-}
-
-/* ── Pantalla de Carga ──────────────────────────────────── */
-.textPantallaCarga {
+.card-header h2 {
   font-family: 'Bangers', cursive;
-  font-size: 50px;
-  color: #FFD700;
-  -webkit-text-stroke: 2px #00008B;
-  letter-spacing: 3px;
+  font-size: 1.6rem;
+  color: #000;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* ── Card Body (Listado de info) ───────────────────────── */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-box {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.info-text .label {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+}
+
+.info-text .value {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #000;
+  word-break: break-all;
+}
+
+/* ── Card Footer Metálico ──────────────────────────────── */
+.card-footer-metallic {
+  margin-top: 10px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.action-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+.btn-info-card {
+  background-color: #10b981;
+  color: white;
+}
+
+.btn-delete-card {
+  background-color: #ef4444;
+  color: white;
 }

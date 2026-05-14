@@ -1,48 +1,75 @@
-<div class="titulo">
-  <h1 class="ps-3">
-    PokeApi
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="" />
-  </h1>
-</div>
+<div class="poke-wrapper">
 
-<div class="container mt-5 justify-content-center rounded-4 align-items-center d-flex w-25">
-  <form [formGroup]="formulario" (submit)="enviarDatos()">
-    <div class="card card-body loginBackgroundBody align-items-center rounded-4 w-80">
-      <div class="tituloLogin">
-        <h4>Inicio de sesión</h4>
+  <!-- Header -->
+  <mat-toolbar class="poke-toolbar">
+    <span class="poke-logo">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" class="poke-icon" />
+      PokeApi
+    </span>
+  </mat-toolbar>
+
+  <!-- Card central -->
+  <div class="poke-center">
+    <mat-card class="poke-card">
+
+      <!-- Pokeball decorativa -->
+      <div class="pokeball-deco">
+        <div class="pokeball-top"></div>
+        <div class="pokeball-band">
+          <div class="pokeball-button"></div>
+        </div>
+        <div class="pokeball-bottom"></div>
       </div>
 
-      <div class="fondoPokeball d-flex justify-content-center">
-        <div class="pokeball"></div>
-      </div>
+      <mat-card-header class="poke-card-header">
+        <mat-card-title class="poke-title">Inicio de Sesión</mat-card-title>
+        <mat-card-subtitle class="poke-subtitle">Accede a tu Pokédex</mat-card-subtitle>
+      </mat-card-header>
 
-      <div class="mb-3 align-items-center text-white">
-        <label for="form-label">Correo:</label>
-        <input type="email" class="form-control text-center" formControlName="correo" />
-      </div>
+      <mat-card-content>
+        <form [formGroup]="formulario" (submit)="enviarDatos()" class="poke-form">
 
-      <div class="mb-3 align-items-center text-white">
-        <label for="form-label">Contraseña:</label>
-        <input type="password" class="form-control text-center" formControlName="password" />
+          <mat-form-field appearance="outline" class="poke-field">
+            <mat-label>Correo</mat-label>
+            <input matInput type="email" formControlName="correo" placeholder="entrenador@pokemon.com" />
+            <mat-icon matSuffix>catching_pokemon</mat-icon>
+          </mat-form-field>
 
-        <div class="mb-3">
+          <mat-form-field appearance="outline" class="poke-field">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+            <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
           @if (errorMessage) {
-          <p class="text-warning">{{ errorMessage }}</p>
+            <mat-error class="poke-error">
+              <mat-icon>error_outline</mat-icon>
+              {{ errorMessage }}
+            </mat-error>
           }
-        </div>
-      </div>
 
-      <div class="mb-3 align-items-center justify-content-center">
-        <button type="submit" class="btn btnEnviar">Acceder</button>
-     
-      </div>
-       <div class="mb-2">
-          <a [routerLink]="['/forgot-password']">¿Olvidaste tu contraseña?</a>
-        </div>
+          <button mat-raised-button class="poke-btn-submit" type="submit">
+            <mat-icon>login</mat-icon>
+            ¡Acceder!
+          </button>
 
-        <div>
-          <p><span>¿No tiene una cuenta? </span> <a [routerLink]="['/formulario']">¡Cree una!</a></p>
-        </div>
-    </div>
-  </form>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions class="poke-actions">
+        <a mat-button class="poke-link" [routerLink]="['/forgot-password']">
+          ¿Olvidaste tu contraseña?
+        </a>
+        <mat-divider></mat-divider>
+        <p class="poke-register">
+          ¿No tienes cuenta?
+          <a mat-button class="poke-link-accent" [routerLink]="['/formulario']">¡Regístrate!</a>
+        </p>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+
 </div>

@@ -1,20 +1,6 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap');
 
-
-.tituloLogin {
-  font-family: 'Pokemon Solid', sans-serif;
-
-}
-
-
-.loginBackgroundBody {
-  background-color: #ffff;
-    box-shadow:  0 4px 8px rgba(0,0,0,0.3);
-}
-
-
-/* ── Variables ─────────────────────────────────────────── */
+/* ── Variables Pokémon ─────────────────────────────── */
 :root {
   --poke-red:    #E3350D;
   --poke-dark:   #2D3748;
@@ -23,33 +9,35 @@
   --poke-gray:   #EDF2F7;
 }
 
-/* ── Header ────────────────────────────────────────────── */
-.titulo {
-  background-color: var(--poke-red);
-  padding: 12px 24px;
+/* ── Wrapper general ───────────────────────────────── */
+.poke-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top, #fff5f5 0%, #ffeaea 60%, #ffe0d0 100%);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+/* ── Toolbar ───────────────────────────────────────── */
+.poke-toolbar {
+  background-color: var(--poke-red) !important;
   border-bottom: 4px solid var(--poke-dark);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-
-.titulo h1 {
+.poke-logo {
   font-family: 'Bangers', cursive;
-  font-size: 32px;
+  font-size: 2rem;
   color: var(--poke-yellow);
   letter-spacing: 3px;
-  -webkit-text-stroke: 2px #00008B;
-  margin: 0;
+  -webkit-text-stroke: 1.5px #00008B;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.titulo h1 img {
+.poke-icon {
   width: 40px;
   height: 40px;
   image-rendering: pixelated;
@@ -61,82 +49,216 @@
   to   { transform: translateY(-6px); }
 }
 
+/* ── Centering ─────────────────────────────────────── */
+.poke-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+}
 
+/* ── Card ──────────────────────────────────────────── */
+.poke-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px !important;
+  border: 3px solid var(--poke-dark) !important;
+  box-shadow: 6px 6px 0px var(--poke-dark) !important;
+  background: #fff !important;
+  overflow: visible !important;
+  position: relative;
+}
 
-.pokeball {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 300px;
-  height: 300px;
-  border: 2px solid #2D3748;
-  background: linear-gradient(red 47%, black 47%, black 53%, white 53%, white 100%);
+/* ── Pokeball decorativa ───────────────────────────── */
+.pokeball-deco {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  /* Esto lo hace redondo */
-  outline: none;
-  margin-bottom: 10%;
+  border: 3px solid var(--poke-dark);
+  overflow: hidden;
+  box-shadow: 3px 3px 0 var(--poke-dark);
+  z-index: 10;
 }
 
-input {
-  color: #2D3748;
-  font-weight: bold;
-  border-color: #2D3748;
-  box-shadow: #2D3748;
-    box-shadow: 0 2px 6px #2D3748;
-    font-style:oblique;
-
+.pokeball-top {
+  height: 37px;
+  background-color: var(--poke-red);
 }
 
-input:hover {
-  color: #2D3748;
-  font-weight: bold;
-  border-color: #E3350D;
-  box-shadow: #E3350D;
-    box-shadow: 0 2px 6px #E3350D;
-    font-style:oblique;
-
+.pokeball-band {
+  height: 6px;
+  background-color: var(--poke-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-input:focus {
-  color: #2D3748;
-  font-weight: bold;
-  border-color: #E3350D;
-  box-shadow: #E3350D;
-    box-shadow: 0 4px 8px #E3350D;
-    font-style:oblique;
-
+.pokeball-button {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: 3px solid var(--poke-dark);
+  border-radius: 50%;
+  margin-top: -4px;
 }
 
-span {
-  color: #2D3748;
-  font-weight: bolder;
+.pokeball-bottom {
+  height: 37px;
+  background-color: var(--poke-white);
 }
 
-a {
-  color: #E3350D;
-  transition: 0.2s;
-
+/* ── Card Header ───────────────────────────────────── */
+.poke-card-header {
+  padding-top: 44px !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center;
 }
 
-.btnEnviar {
-  background-color: white;
-  border-color:#2D3748;
-  color: #2D3748;
-  font-weight: bold;
-  transition: 0.3s;
-
+.poke-title {
+  font-family: 'Bangers', cursive !important;
+  font-size: 2rem !important;
+  color: var(--poke-red) !important;
+  letter-spacing: 2px;
+  -webkit-text-stroke: 1px var(--poke-dark);
 }
 
-.btnEnviar:hover {
-  background-color: #2D3748;
-  color: white;
-  font-weight: bold;
-  transition: 0.3s;
-  transform: scale(1.1);
-
+.poke-subtitle {
+  font-family: 'Nunito', sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--poke-dark) !important;
 }
 
-a:hover {
-  color: #2D3748;
-  transition: 0.2s;
-  transform: scale(1.1);
+/* ── Formulario ────────────────────────────────────── */
+.poke-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.poke-field {
+  width: 100%;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Color del label */
+.poke-field .mat-mdc-floating-label {
+  color: var(--poke-dark) !important;
+  font-weight: 700;
+}
+
+/* Borde outline */
+.poke-field .mdc-notched-outline__leading,
+.poke-field .mdc-notched-outline__notch,
+.poke-field .mdc-notched-outline__trailing {
+  border-color: var(--poke-dark) !important;
+  border-width: 2px !important;
+}
+
+/* Hover y focus en rojo */
+.poke-field:hover .mdc-notched-outline__leading,
+.poke-field:hover .mdc-notched-outline__notch,
+.poke-field:hover .mdc-notched-outline__trailing,
+.poke-field.mat-focused .mdc-notched-outline__leading,
+.poke-field.mat-focused .mdc-notched-outline__notch,
+.poke-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: var(--poke-red) !important;
+}
+
+/* Input text */
+.poke-field input.mat-mdc-input-element {
+  color: var(--poke-dark);
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Iconos */
+.poke-field .mat-icon {
+  color: var(--poke-dark);
+}
+
+/* ── Error ─────────────────────────────────────────── */
+.poke-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--poke-red) !important;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 4px 0;
+}
+
+/* ── Botón submit ──────────────────────────────────── */
+.poke-btn-submit {
+  background-color: var(--poke-red) !important;
+  color: var(--poke-yellow) !important;
+  font-family: 'Bangers', cursive !important;
+  font-size: 1.2rem !important;
+  letter-spacing: 2px;
+  border: 2px solid var(--poke-dark) !important;
+  border-radius: 8px !important;
+  box-shadow: 3px 3px 0 var(--poke-dark) !important;
+  padding: 8px 24px !important;
+  transition: transform 0.15s, box-shadow 0.15s !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.poke-btn-submit:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--poke-dark) !important;
+}
+
+.poke-btn-submit:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--poke-dark) !important;
+}
+
+/* ── Actions (links abajo) ─────────────────────────── */
+.poke-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 16px !important;
+}
+
+.poke-link {
+  color: var(--poke-dark) !important;
+  font-family: 'Nunito', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+}
+
+.poke-link:hover {
+  color: var(--poke-red) !important;
+}
+
+.poke-register {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: var(--poke-dark);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.poke-link-accent {
+  color: var(--poke-red) !important;
+  font-family: 'Nunito', sans-serif !important;
+  font-weight: 800 !important;
+}
+
+.poke-link-accent:hover {
+  color: var(--poke-dark) !important;
 }
