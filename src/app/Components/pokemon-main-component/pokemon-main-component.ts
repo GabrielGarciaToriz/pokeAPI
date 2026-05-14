@@ -7,10 +7,12 @@ import Swal from 'sweetalert2';
 import { PokemonService } from '../../Service/pokemon/pokemon.service';
 import { PokemonStateService } from '../../Service/pokemon/pokemon.state.service';
 import { CatalogoService } from '../../Service/catalogo/catalogo.service';
+import { CommonModule } from "@angular/common";
 
 @Component({
+  standalone: true,
   selector: 'app-pokemon-main-component',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, CommonModule],
   templateUrl: './pokemon-main-component.html',
   styleUrl: './pokemon-main-component.css',
 })
@@ -76,14 +78,14 @@ export class PokemonMainComponent implements OnInit {
 
     const idStr = this.searchId != null ? String(this.searchId).trim() : '';
     const id = idStr !== '' ? parseInt(idStr, 10) : undefined;
-    
+
     const nombreStr = this.searchNombre != null ? this.searchNombre.trim() : '';
     const nombre = nombreStr !== '' ? nombreStr : undefined;
-    
+
     const tipo = this.searchTipo1 !== '' ? this.searchTipo1 : undefined;
 
     this.buscando = true;
-    this.yaBusco  = false;
+    this.yaBusco = false;
 
     this.pokemonService.buscarPokemon(id, nombre, tipo).subscribe({
       next: (response) => {
