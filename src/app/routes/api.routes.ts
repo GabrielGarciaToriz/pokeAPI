@@ -1,3 +1,4 @@
+const IP = "192.167.0.106";
 export const API_ROUTES = {
   AUTH: {
     LOGIN: 'http://192.167.0.106:8080/api/auth/login',
