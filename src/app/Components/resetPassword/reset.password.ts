@@ -19,11 +19,9 @@ function passwordsIguales(control: AbstractControl): ValidationErrors | null {
 export class ResetPassword implements OnInit {
 
      private fb = inject(FormBuilder);
-    //private route = inject(ActivatedRoute);
-    //  private passwordResetService = inject(PasswordResetService);
+
 
     constructor(
-        //private fb: FormBuilder,
         private route: ActivatedRoute,
         private passwordResetService: PasswordResetService
     ) { }

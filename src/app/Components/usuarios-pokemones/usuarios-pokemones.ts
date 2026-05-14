@@ -5,14 +5,28 @@ import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../Service/user/usuario.service';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-usuarios-pokemones',
   standalone: true,
-  imports: [RouterLink],
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+  ],
   templateUrl: './usuarios-pokemones.html',
   styleUrl: './usuarios-pokemones.css',
 })
-// ELIMINADO: @Injectable({ providedIn: 'root' }) 
 export class UsuariosPokemones implements OnInit {
   public usuarios: UsuarioModel[] = [];
   public pokemonsFavoritos: PokemonDTO[] = [];
@@ -38,7 +52,6 @@ export class UsuariosPokemones implements OnInit {
     });
   }
 
-
   deleteUsuarios(idUsuario: number): void {
     Swal.fire({
       title: '¿Eliminar Entrenador?',
@@ -47,7 +60,7 @@ export class UsuariosPokemones implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#d33',
+      confirmButtonColor: '#E3350D',
       cancelButtonColor: '#2D3748',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -64,5 +77,11 @@ export class UsuariosPokemones implements OnInit {
         });
       }
     });
+  }
+
+  // Asigna un tema visual dependiendo de la posición en el arreglo
+  getCardTheme(index: number): string {
+    const themes = ['theme-fire', 'theme-electric', 'theme-grass', 'theme-water'];
+    return themes[index % themes.length];
   }
 }
