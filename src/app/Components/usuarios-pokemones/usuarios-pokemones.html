@@ -48,12 +48,8 @@
         </div>
 
         <div class="card-footer bg-white border-0 d-flex justify-content-end gap-2 pb-3">
-          <a class="btn btn-outline-warning rounded-circle" [routerLink]="'/usuario/'+ usuario.idUsuarioPokemon"><i class="bi bi-info"></i></a>
-
-          <button class="btn btn-outline-primary rounded-circle" (click)="verDetalles(usuario)"
-            title="Ver Detalles y Favoritos">
-            <i class="bi bi-eye-fill"></i>
-          </button>
+          <a class="btn btn-outline-warning rounded-circle" [routerLink]="'/usuario/'+ usuario.idUsuarioPokemon"><i
+              class="bi bi-info"></i></a>
           <button class="btn btn-outline-danger rounded-circle" (click)="deleteUsuarios(usuario.idUsuarioPokemon)"
             title="Eliminar">
             <i class="bi bi-trash-fill"></i>

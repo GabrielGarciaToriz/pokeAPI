@@ -1,37 +1,109 @@
+@if (usuario) {
 <div class="titulo">
-
-    <h1>Información de {{usuario?.activo}}</h1>
+  <h1>Información de {{usuario?.nombre}}</h1>
 
 </div>
 <div class="container align-items-center">
-<div class=" text-center">
-      <div class="card shadow border-0 h-100 rounded-4">
-        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-          
-          <img
-            [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' + usuario?.idUsuarioPokemon + '.svg'"
-            class="imagenPrincipal img-fluid mb-4"
-            alt="Imagen de {{ usuario?.nombre }}"
-          />
-          
-          <div class="d-flex w-100 justify-content-around text-center mt-auto p-3 bg-light rounded-3">
-            <div>
-              <span class="d-block text-muted small fw-bold">NÚMERO</span>
-              <span class="fw-bold fs-5 text-dark">#{{ usuario?.idUsuarioPokemon }}</span>
-            </div>
-            <div>
-              <span class="d-block text-muted small fw-bold">ALTURA</span>
-              <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoMaterno }} m</span>
-            </div>
-            <div>
-              <span class="d-block text-muted small fw-bold">PESO</span>
-              <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoPaterno }} kg</span>
-            </div>
-          </div>
+  <div class=" text-center">
+    <div class="card shadow border-0 h-100 rounded-4 m-5">
+      <div class="card-body d-flex flex-column justify-content-center align-items-center">
 
+
+
+        <div class="d-flex w-100 justify-content-around text-center mt-auto p-3 bg-light rounded-3">
+          <div>
+            <span class="d-block text-muted small fw-bold">NOMBRE</span>
+            <span class="fw-bold fs-5 text-dark">{{ usuario?.nombre }}</span>
+          </div>
+          <div>
+            <span class="d-block text-muted small fw-bold">APELLIDO MATERNO</span>
+            <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoPaterno }} </span>
+          </div>
+          <div>
+            <span class="d-block text-muted small fw-bold">APELLIDO PATERNO</span>
+            <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoMaterno }}</span>
+          </div>
         </div>
+
+
       </div>
     </div>
 
+    <div class="card shadow border-0 h-100 rounded-4 m-5">
+      <div class="card-body justify-content-center align-items-center">
+
+
+
+        <div class=" w-100 justify-content-around text-center mt-auto p-3 bg-light rounded-3">
+          <div class="m-3">
+            <span class="d-block text-muted small fw-bold">FECHA DE NACIMIENTO</span>
+            <span class="fw-bold fs-5 text-dark">{{ usuario?.fechaNacimiento | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="m-3">
+            <span class="d-block text-muted small fw-bold">SEXO</span>
+            @if (usuario?.sexo?.toUpperCase() == "M") {
+            <span class="fw-bold fs-5 text-dark">Masculino</span>
+
+            } @else {
+
+            <span class="fw-bold fs-5 text-dark">Femenino</span>
+            }
+          </div>
+          <div class="m-3">
+            <span class="d-block text-muted small fw-bold">CORREO</span>
+            <span class="fw-bold fs-5 text-dark">{{ usuario?.correo }}</span>
+          </div>
+
+          <div class="m-3">
+            <span class="d-block text-muted small fw-bold">ROL</span>
+            <span class="fw-bold fs-5 text-dark">{{ usuario?.rol?.Rol }}</span>
+          </div>
+
+          <div class="m-3">
+            <span class="d-block text-muted small fw-bold">USERNAME</span>
+            <span class="fw-bold fs-5 text-dark">{{ usuario?.userName }}</span>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="card shadow border-0 h-100 rounded-4 m-5 justify-content-center align-items-center">
+      <div class="card-body">
+
+        <div class="d-flex w-100  p-3 bg-light rounded-3">
+
+          <div class="m-4">
+            <span class="fw-bold fs-5 text-dark">FAVORITOS</span>
+                      <div [innerHTML]="pokemonesHtml"> </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="justify-content-center align-items-center d-flex m-5">
+    <a class="btn btn-warning" [routerLink]="'/usuarios'">Regresar</a>
+
+
+  </div>
+
 
 </div>
+
+
+
+} @else {
+
+
+<div class="justify-content-center flex-column align-items-center d-flex bg-dark vh-100 text-white">
+  <h1 class="textPantallaCarga">CARGANDO...</h1>
+  <div class="spinner-border text-danger" style="width: 4rem; height: 4rem" role="status"></div>
+
+</div>
+}

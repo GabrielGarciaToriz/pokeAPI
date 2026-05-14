@@ -21,13 +21,25 @@ export class GetByIdPokemon implements OnInit {
   ) { }
 
   public pokemon: PokemonModel | undefined;
+      public descripcion: string = '';
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const idUsuario = Number(params['idUsuario']);
       this.cargarPokemon(idUsuario);
+
+      this.pokemonService.getPokemonDescription(idUsuario)
+      .subscribe(data => {
+
+        const entrada = data.flavor_text_entries.find(
+          (x: any) => x.language.name === 'es'
+        );
+
+        this.descripcion = entrada?.flavor_text;
+      });
     });
-  }
+    };
+  
   private cargarPokemon(id: number): void {
     const enMemoria = this.pokemonStateService.obtenerPorId(id);
 
@@ -56,4 +68,15 @@ export class GetByIdPokemon implements OnInit {
       console.warn('No se pudo reproducir el grito automáticamente:', err);
     });
   }
+   
+    
+  
+    getdesc(id: number){
+    this.pokemonService.getDatosAdicionales(id).subscribe((data)=>{
+      this.pokemon = data.object;
+      console.log(data)
+    })
+  }
+
+  
 }

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { RolModel } from '../../Interfaces/rol.model';
 
-import { CatalogoService } from '../../Service/catalog/catalogo.service';
+import { CatalogoService } from '../../Service/catalogo/catalogo.service';
 import { UsuarioService } from "../../Service/user/usuario.service";
 
 @Component({

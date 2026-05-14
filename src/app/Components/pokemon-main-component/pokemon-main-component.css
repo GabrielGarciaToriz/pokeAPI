@@ -292,3 +292,104 @@ footer {
 .zoom {
   animation: fadeInUp 0.3s ease both;
 }
+
+/* ── Barra de búsqueda nueva ────────────────────────────── */
+.search-bar {
+  background-color: var(--poke-dark);
+  border-radius: 20px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 4px solid var(--poke-yellow);
+}
+
+.search-fields {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.search-label {
+  font-family: 'Bangers', cursive;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--poke-yellow);
+  -webkit-text-stroke: 0.5px #000;
+  margin: 0;
+}
+
+.busquedaSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  color: var(--poke-white) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFD700' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px !important;
+}
+
+.busquedaSelect option {
+  background-color: var(--poke-dark);
+  color: var(--poke-white);
+}
+
+.search-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ── Botón Buscar ───────────────────────────────────────── */
+.btnBuscar {
+  background-color: var(--poke-red);
+  color: var(--poke-yellow);
+  font-family: 'Bangers', cursive;
+  font-size: 18px;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 32px;
+  transition: 0.25s;
+  -webkit-text-stroke: 0.5px #00008B;
+}
+
+.btnBuscar:hover:not(:disabled) {
+  background-color: var(--poke-yellow);
+  color: var(--poke-dark);
+  transform: scale(1.05);
+  -webkit-text-stroke: none;
+}
+
+.btnBuscar:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Botón Limpiar ──────────────────────────────────────── */
+.btnLimpiar {
+  background-color: transparent;
+  color: var(--poke-yellow);
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  border: 2px solid var(--poke-yellow);
+  border-radius: 12px;
+  padding: 8px 20px;
+  transition: 0.2s;
+  opacity: 0.8;
+}
+
+.btnLimpiar:hover {
+  opacity: 1;
+  background-color: rgba(255, 215, 0, 0.1);
+}
