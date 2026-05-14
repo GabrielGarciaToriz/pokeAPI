@@ -4,11 +4,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { PokemonService } from '../../Service/pokemon/pokemon.service';
 import { PokemonStateService } from "../../Service/pokemon/pokemon.state.service";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-get-by-id-pokemon',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './get-by-id-pokemon.html',
   styleUrl: './get-by-id-pokemon.css',
 })

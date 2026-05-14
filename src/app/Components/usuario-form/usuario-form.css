@@ -1,254 +1,204 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800&display=swap');
 
-/* ── Variables ─────────────────────────────────────────── */
-:root {
-  --poke-red:    #E3350D;
-  --poke-dark:   #2D3748;
-  --poke-yellow: #FFD700;
-  --poke-white:  #F8F9FA;
-  --poke-green:  #176a00;
-  --poke-green-h:#06c316;
-}
-
-/* ── Toolbar ───────────────────────────────────────────── */
-.poke-toolbar {
-  background-color: var(--poke-red) !important;
-  border-bottom: 5px solid var(--poke-dark);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  gap: 12px;
-}
-
-.poke-toolbar-icon {
-  color: var(--poke-yellow);
-  font-size: 2rem;
-  width: 2rem;
-  height: 2rem;
-}
-
-.poke-logo {
-  font-family: 'Bangers', cursive;
-  font-size: 2rem;
-  color: var(--poke-yellow);
-  letter-spacing: 3px;
-  -webkit-text-stroke: 1.5px #00008B;
-}
-
-/* ── Wrapper ───────────────────────────────────────────── */
-.poke-wrapper {
-  min-height: calc(100vh - 64px);
-  background: radial-gradient(ellipse at top, #fff5f5 0%, #ffeaea 60%, #ffe0d0 100%);
+/* ── Escenario ─────────────────────────────────────────── */
+.desk-environment {
+  min-height: 100vh;
+  background-color: #5c4033;
+  background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 10px);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 48px 16px;
+  align-items: center;
+  padding: 40px 20px;
 }
 
-/* ── Card ──────────────────────────────────────────────── */
-.poke-card {
+/* ── Carcasa de la Pokédex ────────────────────────────── */
+.pokedex-case {
+  background: linear-gradient(145deg, #e3350d, #c21807);
   width: 100%;
-  max-width: 600px;
-  border-radius: 20px !important;
-  border: 3px solid var(--poke-dark) !important;
-  box-shadow: 6px 6px 0px var(--poke-dark) !important;
-  background: #fff !important;
-  overflow: visible !important;
+  max-width: 580px;
+  border-radius: 30px;
+  border: 4px solid #1a1a1a;
+  padding: 25px;
+  box-shadow: 15px 15px 30px rgba(0,0,0,0.5), inset -5px -5px 10px rgba(0,0,0,0.3);
   position: relative;
 }
 
-/* ── Pokeball decorativa ───────────────────────────────── */
-.pokeball-deco {
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 3px solid var(--poke-dark);
-  overflow: hidden;
-  box-shadow: 3px 3px 0 var(--poke-dark);
-  z-index: 10;
+/* Hardware Superior */
+.pokedex-top-hardware {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
-.pokeball-top    { height: 37px; background-color: var(--poke-red); }
-.pokeball-band   { height: 6px;  background-color: var(--poke-dark); display: flex; justify-content: center; align-items: center; }
-.pokeball-button { width: 14px; height: 14px; background: white; border: 3px solid var(--poke-dark); border-radius: 50%; margin-top: -4px; }
-.pokeball-bottom { height: 37px; background-color: var(--poke-white); }
+.camera-lens {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #4fb1f7 0%, #1e3a8a 70%, #000 100%);
+  border-radius: 50%;
+  border: 5px solid #d1d5db;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  position: relative;
+}
 
-/* ── Card Header ───────────────────────────────────────── */
-.poke-card-header {
-  padding-top: 44px !important;
-  flex-direction: column !important;
-  align-items: center !important;
+.lens-reflection {
+  width: 15px;
+  height: 15px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.status-lights {
+  display: flex;
+  gap: 10px;
+}
+
+.light {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #1a1a1a;
+}
+.light-red { background: #ff4444; box-shadow: 0 0 5px #ff4444; }
+.light-yellow { background: #ffbb33; }
+.light-green { background: #00c851; }
+
+/* ── Pantalla (Interfaz de usuario) ────────────────────── */
+.pokedex-screen {
+  background: #fdfdfd;
+  border: 4px solid #1a1a1a;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: inset 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+.screen-header {
   text-align: center;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
 }
 
 .poke-title {
-  font-family: 'Bangers', cursive !important;
-  font-size: 2rem !important;
-  color: var(--poke-red) !important;
-  letter-spacing: 2px;
-  -webkit-text-stroke: 1px var(--poke-dark);
+  font-family: 'Bangers', cursive;
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: 1px;
 }
 
 .poke-subtitle {
-  font-family: 'Nunito', sans-serif !important;
-  font-weight: 700 !important;
-  color: var(--poke-dark) !important;
+  font-family: 'Nunito', sans-serif;
+  color: #666;
+  font-weight: 700;
+  margin: 0;
+  font-size: 0.9rem;
 }
 
-/* ── Formulario ────────────────────────────────────────── */
+/* ── Formulario Estilo Pantalla ────────────────────────── */
 .poke-form {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 16px 0 8px;
+  gap: 12px;
+}
+
+.poke-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .poke-field {
   width: 100%;
-  font-family: 'Nunito', sans-serif;
 }
 
-/* Fila de dos columnas */
-.poke-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-/* Label del field */
-.poke-field .mat-mdc-floating-label {
-  color: var(--poke-dark) !important;
-  font-weight: 700;
-}
-
-/* Bordes outline */
-.poke-field .mdc-notched-outline__leading,
-.poke-field .mdc-notched-outline__notch,
-.poke-field .mdc-notched-outline__trailing {
-  border-color: var(--poke-dark) !important;
+::ng-deep .poke-field .mdc-notched-outline__leading,
+::ng-deep .poke-field .mdc-notched-outline__notch,
+::ng-deep .poke-field .mdc-notched-outline__trailing {
+  border-color: #333 !important;
   border-width: 2px !important;
 }
 
-/* Hover y focus → rojo */
-.poke-field:hover .mdc-notched-outline__leading,
-.poke-field:hover .mdc-notched-outline__notch,
-.poke-field:hover .mdc-notched-outline__trailing,
-.poke-field.mat-focused .mdc-notched-outline__leading,
-.poke-field.mat-focused .mdc-notched-outline__notch,
-.poke-field.mat-focused .mdc-notched-outline__trailing {
-  border-color: var(--poke-red) !important;
-}
-
-/* Texto del input */
-.poke-field input.mat-mdc-input-element,
-.poke-field .mat-mdc-select-value {
-  color: var(--poke-dark);
-  font-weight: 700;
-  font-family: 'Nunito', sans-serif;
-}
-
-/* Iconos suffix */
-.poke-field .mat-icon {
-  color: var(--poke-dark);
-}
-
-/* ── Radio buttons ─────────────────────────────────────── */
 .poke-radio-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 4px 0 8px;
 }
 
 .poke-radio-label {
-  font-family: 'Nunito', sans-serif;
   font-weight: 800;
-  color: var(--poke-dark);
-  font-size: 0.95rem;
-}
-
-.poke-radio-options {
-  display: flex;
-  gap: 24px;
-}
-
-.poke-radio .mdc-radio__outer-circle,
-.poke-radio .mdc-radio__inner-circle {
-  border-color: var(--poke-red) !important;
-}
-
-.poke-radio .mat-mdc-radio-button.mat-accent {
-  --mdc-radio-selected-focus-icon-color: var(--poke-red);
-  --mdc-radio-selected-hover-icon-color: var(--poke-red);
-  --mdc-radio-selected-icon-color: var(--poke-red);
-  --mdc-radio-selected-pressed-icon-color: var(--poke-red);
-}
-
-.poke-radio .mdc-form-field label {
   font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  color: var(--poke-dark);
+  font-size: 0.85rem;
 }
 
-/* ── Botones de acción ─────────────────────────────────── */
-.poke-form-actions {
+.form-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ── Hardware Inferior y Botones Físicos ───────────────── */
+.pokedex-bottom-hardware {
+  margin-top: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  margin-top: 12px;
-  flex-wrap: wrap;
 }
 
-.poke-btn-back {
-  background-color: var(--poke-dark) !important;
-  color: var(--poke-yellow) !important;
-  font-family: 'Bangers', cursive !important;
-  font-size: 1.1rem !important;
-  letter-spacing: 1px;
-  border-radius: 50px !important;
-  box-shadow: 3px 3px 0 rgba(0,0,0,0.3) !important;
-  transition: transform 0.15s, box-shadow 0.15s !important;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.poke-btn-back:hover {
-  background-color: var(--poke-red) !important;
-  color: white !important;
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 rgba(0,0,0,0.3) !important;
-}
-
-.poke-btn-submit {
-  background-color: var(--poke-green) !important;
-  color: white !important;
-  font-family: 'Bangers', cursive !important;
-  font-size: 1.2rem !important;
-  letter-spacing: 2px;
-  border-radius: 50px !important;
-  border: 2px solid var(--poke-dark) !important;
-  box-shadow: 3px 3px 0 var(--poke-dark) !important;
-  transition: transform 0.15s, box-shadow 0.15s !important;
+.physical-btn {
+  font-family: 'Bangers', cursive;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border: 3px solid #1a1a1a;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: 1;
-  justify-content: center;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #1a1a1a;
+  transition: all 0.1s;
+  text-decoration: none;
 }
 
-.poke-btn-submit:hover {
-  background-color: var(--poke-green-h) !important;
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--poke-dark) !important;
+.physical-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px #1a1a1a;
 }
 
-.poke-btn-submit:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 var(--poke-dark) !important;
+.btn-black {
+  background: #333;
+  color: #fff;
+}
+
+.btn-blue {
+  background: #4fb1f7;
+  color: #1a1a1a;
+}
+
+.speaker-grill {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.speaker-grill .dot {
+  width: 6px;
+  height: 6px;
+  background: #1a1a1a;
+  border-radius: 50%;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 500px) {
+  .poke-row, .form-footer-grid, .pokedex-bottom-hardware {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .pokedex-bottom-hardware {
+      align-items: stretch;
+  }
 }
