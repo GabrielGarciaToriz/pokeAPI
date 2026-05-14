@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { RolModel } from '../../Interfaces/rol.model';
 import { CatalogoService } from '../../Service/catalogo/catalogo.service';
 import { UsuarioService } from '../../Service/user/usuario.service';
+import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
 
 // Angular Material
@@ -43,7 +44,8 @@ export class UsuarioForm implements OnInit {
   constructor(
     private catalogoService: CatalogoService,
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private location : Location
   ) {}
 
   private formularioReactiv = inject(FormBuilder);
@@ -101,4 +103,8 @@ export class UsuarioForm implements OnInit {
       },
     });
   }
+
+  regresar(): void{
+  this.location.back();
+}
 }
