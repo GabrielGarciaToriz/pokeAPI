@@ -1,82 +1,89 @@
 @if (usuario) {
-<div class="titulo">
-  <h1>Información de {{usuario?.nombre}}</h1>
+<div class="main-content ">
 
-</div>
-<div class="container align-items-center">
-  <div class=" text-center">
-    <div class="card shadow border-0 h-100 rounded-4 m-5">
-      <div class="card-body d-flex flex-column justify-content-center align-items-center">
+<div class="poke-wrapper container">
+  <div class="control-panel justify-content-center text-align-center d-flex mt-3">
+    <h1>Información de {{usuario?.nombre}}</h1>
+
+  </div>
+  <div class=" align-items-center ">
+    <div class=" text-center">
 
 
+      <div class="d-flex w-100 justify-content-around text-center mt-auto p-3 rounded-3 control-panel">
+        <div class="screw top-left"></div>
+        <div class="screw top-right"></div>
+        <div class="screw bottom-left"></div>
+        <div class="screw bottom-right"></div>
 
-        <div class="d-flex w-100 justify-content-around text-center mt-auto p-3 bg-light rounded-3">
-          <div>
-            <span class="d-block text-muted small fw-bold">NOMBRE</span>
-            <span class="fw-bold fs-5 text-dark">{{ usuario?.nombre }}</span>
-          </div>
-          <div>
-            <span class="d-block text-muted small fw-bold">APELLIDO MATERNO</span>
-            <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoPaterno }} </span>
-          </div>
-          <div>
-            <span class="d-block text-muted small fw-bold">APELLIDO PATERNO</span>
-            <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoMaterno }}</span>
-          </div>
+
+        <div class="ms-4">
+          <span class="d-block text-muted small fw-bold">NOMBRE</span>
+          <span class="fw-bold fs-5 text-dark">{{ usuario?.nombre }}</span>
         </div>
-
-
-      </div>
-    </div>
-
-    <div class="card shadow border-0 h-100 rounded-4 m-5">
-      <div class="card-body justify-content-center align-items-center">
-
-
-
-        <div class=" w-100 justify-content-around text-center mt-auto p-3 bg-light rounded-3">
-          <div class="m-3">
-            <span class="d-block text-muted small fw-bold">FECHA DE NACIMIENTO</span>
-            <span class="fw-bold fs-5 text-dark">{{ usuario?.fechaNacimiento | date:'dd/MM/yyyy' }}</span>
-          </div>
-          <div class="m-3">
-            <span class="d-block text-muted small fw-bold">SEXO</span>
-            @if (usuario?.sexo?.toUpperCase() == "M") {
-            <span class="fw-bold fs-5 text-dark">Masculino</span>
-
-            } @else {
-
-            <span class="fw-bold fs-5 text-dark">Femenino</span>
-            }
-          </div>
-          <div class="m-3">
-            <span class="d-block text-muted small fw-bold">CORREO</span>
-            <span class="fw-bold fs-5 text-dark">{{ usuario?.correo }}</span>
-          </div>
-
-          <div class="m-3">
-            <span class="d-block text-muted small fw-bold">ROL</span>
-            <span class="fw-bold fs-5 text-dark">{{ usuario?.rol?.Rol }}</span>
-          </div>
-
-          <div class="m-3">
-            <span class="d-block text-muted small fw-bold">USERNAME</span>
-            <span class="fw-bold fs-5 text-dark">{{ usuario?.userName }}</span>
-          </div>
+        <div class="ms-4">
+          <span class="d-block text-muted small fw-bold">APELLIDO MATERNO</span>
+          <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoPaterno }} </span>
         </div>
-
-
+        <div class="ms-4 me-4">
+          <span class="d-block text-muted small fw-bold">APELLIDO PATERNO</span>
+          <span class="fw-bold fs-5 text-dark">{{ usuario?.apellidoMaterno }}</span>
+        </div>
       </div>
-    </div>
 
-    <div class="card shadow border-0 h-100 rounded-4 m-5 justify-content-center align-items-center">
-      <div class="card-body">
 
-        <div class="d-flex w-100  p-3 bg-light rounded-3">
+
+      <div class="card shadow border-0 h-100 rounded-4 m-5 control-panel">
+        <div class="card-body justify-content-center align-items-center">
+
+          <div class="screw top-left"></div>
+          <div class="screw top-right"></div>
+          <div class="screw bottom-left"></div>
+          <div class="screw bottom-right"></div>
+
+
+          <div class=" w-100 text-center mt-auto p-3 monitor-glass rounded-3">
+
+            <div class="monitor-grid">
+              <div class="m-3">
+                <span class="d-block text-muted small fw-bold">FECHA DE NACIMIENTO</span>
+                <span class=" fs-5  monitor-id-tag">{{ usuario?.fechaNacimiento | date:'dd/MM/yyyy' }}</span>
+              </div>
+              <div class="m-3">
+                <span class="d-block text-muted small fw-bold">SEXO</span>
+                @if (usuario?.sexo?.toUpperCase() == "M") {
+                <span class="fw-bold fs-5 monitor-id-tag">Masculino</span>
+
+                } @else {
+
+                <span class="fw-bold fs-5 ">Femenino</span>
+                }
+              </div>
+              <div class="m-3">
+                <span class="d-block text-muted small fw-bold">CORREO</span>
+                <span class="fw-bold fs-5 monitor-id-tag">{{ usuario?.correo }}</span>
+              </div>
+
+
+              <div class="m-3">
+                <span class="d-block text-muted small fw-bold">USERNAME</span>
+                <span class="fw-bold fs-5 monitor-id-tag">{{ usuario?.userName }}</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="control-panel h-100 rounded-4 m-5 justify-content-center align-items-center">
+
+        <div class="d-flex w-100  p-3 rounded-3">
 
           <div class="m-4">
             <span class="fw-bold fs-5 text-dark">FAVORITOS</span>
-                      <div [innerHTML]="pokemonesHtml"> </div>
+            <div [innerHTML]="pokemonesHtml"> </div>
 
           </div>
 
@@ -85,13 +92,16 @@
 
       </div>
     </div>
+
+    <div class="justify-content-center align-items-center d-flex m-5">
+      <a class="btn btn-usuarios-tech" [routerLink]="'/usuarios'"> <i class="bi bi-caret-left-fill"></i>Regresar</a>
+
+    </div>
+
   </div>
 
-  <div class="justify-content-center align-items-center d-flex m-5">
-    <a class="btn btn-warning" [routerLink]="'/usuarios'">Regresar</a>
 
-
-  </div>
+</div>
 
 
 </div>
