@@ -81,7 +81,7 @@ export class UsuarioForm {
               icon: 'success',
               draggable: true
             });
-            this.router.navigate(['/usuarios']);
+            this.router.navigate(['/pokemones']);
           } else {
             Swal.fire({
               title: 'Error al crear usuario',

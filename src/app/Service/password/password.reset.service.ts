@@ -8,12 +8,11 @@ export class PasswordResetService {
 
   private base = `${API_ROUTES.PASSWORD.BASE}`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   solicitarRecuperacion(email: string): Observable<any> {
-    return this.http.post(`${this.base}/forgot`, null, {
-      params: new HttpParams().set('email', email)
-    });
+    const body = { email: email };
+    return this.http.post(`${this.base}/forgot`, body);
   }
 
   validarToken(token: string): Observable<any> {
@@ -23,10 +22,8 @@ export class PasswordResetService {
   }
 
   cambiarPassword(token: string, nuevaPassword: string): Observable<any> {
-    return this.http.post(`${this.base}/reset`, null, {
-      params: new HttpParams()
-        .set('token', token)
-        .set('nuevaPassword', nuevaPassword)
-    });
+    const body = { token: token, nuevaPassword: nuevaPassword };
+
+    return this.http.post(`${this.base}/reset`, body);
   }
 }

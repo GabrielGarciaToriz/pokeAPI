@@ -1,7 +1,8 @@
+import { UsuarioDetails } from "../Components/usuario-details/usuario-details";
 import { RolModel } from "./rol.model";
 
 export interface UsuarioModel {
-    idUsuarioPokemon: number;
+    idUsuarioPokemon: number,
     nombre: string,
     apellidoMaterno: string,
     apellidoPaterno: string,
