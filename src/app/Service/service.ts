@@ -72,7 +72,7 @@ export class Service {
     localStorage.removeItem('token');
   }
 
-  private urlRoles: string = "http://192.167.0.135:8080/api/catalogo/rol";
+  private urlRoles: string = "http://192.167.0.106:8080/api/catalogo/rol";
 
   getRoles(): Observable<ResultModel<RolModel>> {
     return this.http.get<ResultModel<RolModel>>(this.urlRoles);
