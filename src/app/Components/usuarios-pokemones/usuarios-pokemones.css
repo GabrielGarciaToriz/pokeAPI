@@ -120,26 +120,50 @@
   background-color: #fcd34d;
 }
 
-/* ── Grid ──────────────────────────────────────────────── */
+/* ... (mantiene el resto de tu CSS anterior) ... */
+
+/* Ajuste al Grid para que las etiquetas de arriba no se corten */
 .poke-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 30px;
+  gap: 45px 30px; /* Aumentamos el gap vertical para dar espacio a la etiqueta */
+  padding-top: 20px; /* Espacio para que la primera fila de etiquetas respire */
 }
 
-/* ── Tarjetas (Game Cards) ─────────────────────────────── */
-.trainer-card {
-  border-radius: 16px;
-  box-shadow: 6px 6px 15px rgba(0,0,0,0.6);
-  transition: transform 0.2s;
+/* La etiqueta ahora se posiciona arriba y fuera */
+.status-ribbon {
+  position: absolute;
+  top: -20px; /* La movemos hacia arriba fuera del marco */
+  left: 20px;  /* La alineamos a la izquierda */
+  background-color: #fde68a; 
+  border: 3px solid #1a1a1a;
+  padding: 6px 18px;
+  font-family: 'Bangers', cursive;
+  font-size: 1.1rem;
+  color: #000;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+  z-index: 20; /* Aseguramos que esté por encima de todo */
+  border-radius: 8px;
+  
+  /* Un pequeño efecto de inclinación para que parezca pegada manualmente */
+  transform: rotate(-2deg); 
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.trainer-card:hover {
-  transform: translateY(-5px);
+/* Colores dinámicos según el estado */
+.status-ribbon.ribbon-active {
+  background: linear-gradient(to bottom, #fcd34d, #f59e0b);
 }
 
-/* Carcasa gris metálica exterior */
+.status-ribbon.ribbon-inactive {
+  background: linear-gradient(to bottom, #d1d5db, #9ca3af);
+  color: #4b5563;
+}
+
+/* Aseguramos que el marco metálico no corte lo que sale de él */
 .card-metallic-frame {
+  overflow: visible !important; 
   background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
   border: var(--border-thick);
   border-radius: 16px;
@@ -147,15 +171,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-}
-
-/* Pantalla de color interior */
-.card-inner-screen {
-  border: 2px solid #1a1a1a;
-  border-radius: 12px;
-  padding: 16px 16px 24px 16px;
-  min-height: 220px;
-  position: relative;
 }
 
 /* Temas de las tarjetas (colores) */
