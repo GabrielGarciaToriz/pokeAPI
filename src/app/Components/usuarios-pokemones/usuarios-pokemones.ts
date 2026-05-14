@@ -5,30 +5,22 @@ import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../Service/user/usuario.service';
 
-// Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-usuarios-pokemones',
   standalone: true,
   imports: [
+    CommonModule,
     RouterLink,
-    // Angular Material
     MatToolbarModule,
-    MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule,
-    MatChipsModule,
-    MatDividerModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
   ],
@@ -68,7 +60,7 @@ export class UsuariosPokemones implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#d33',
+      confirmButtonColor: '#E3350D',
       cancelButtonColor: '#2D3748',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -85,5 +77,11 @@ export class UsuariosPokemones implements OnInit {
         });
       }
     });
+  }
+
+  // Asigna un tema visual dependiendo de la posición en el arreglo
+  getCardTheme(index: number): string {
+    const themes = ['theme-fire', 'theme-electric', 'theme-grass', 'theme-water'];
+    return themes[index % themes.length];
   }
 }

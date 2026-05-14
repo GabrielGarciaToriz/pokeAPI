@@ -1,4 +1,3 @@
-<!-- ── Pantalla de carga ─────────────────────────────────── -->
 @if (usuarios.length === 0) {
   <div class="poke-loading">
     <p class="poke-loading-text">Cargando Entrenadores...</p>
@@ -6,94 +5,84 @@
   </div>
 }
 
-<!-- ── Vista principal ──────────────────────────────────── -->
 @if (usuarios.length > 0) {
   <div class="poke-wrapper">
 
-    <!-- Header -->
-    <mat-toolbar class="poke-toolbar">
-      <mat-icon class="poke-toolbar-icon">groups</mat-icon>
-      <span class="poke-logo">Entrenadores Registrados</span>
-    </mat-toolbar>
+    <div class="poke-header-container">
+      <div class="poke-title-banner">
+        <mat-icon class="title-icon">catching_pokemon</mat-icon>
+        <h1>ENTRENADORES REGISTRADOS</h1>
+        <mat-icon class="title-icon">catching_pokemon</mat-icon>
+      </div>
+    </div>
 
     <div class="poke-container">
 
-      <!-- Acciones superiores -->
       <div class="poke-actions-bar">
-        <a mat-raised-button class="poke-btn-back" [routerLink]="['/pokemones']">
-          <mat-icon>arrow_back</mat-icon>
-          Volver a Pokédex
+        <a class="poke-btn btn-teal" [routerLink]="['/pokemones']">
+          <mat-icon>add</mat-icon> VOLVER A POKÉDEX <mat-icon>catching_pokemon</mat-icon>
         </a>
-        <a mat-raised-button class="poke-btn-new" [routerLink]="['/formulario']">
-          <mat-icon>person_add</mat-icon>
-          Nuevo Entrenador
+        <a class="poke-btn btn-gold" [routerLink]="['/formulario']">
+          <mat-icon>star</mat-icon> NUEVO ENTRENADOR <mat-icon>person</mat-icon>
         </a>
       </div>
 
-      <!-- Grid de cards -->
       <div class="poke-grid">
         @for (usuario of usuarios; track $index) {
-          <mat-card class="trainer-card">
-
-            <!-- Header de la card -->
-            <mat-card-header class="trainer-card-header">
-              <div class="trainer-header-content">
-                <div class="trainer-name-row">
-                  <mat-icon class="trainer-avatar-icon">catching_pokemon</mat-icon>
-                  <mat-card-title class="trainer-name">
-                    {{ usuario.nombre }} {{ usuario.apellidoPaterno }}
-                  </mat-card-title>
-                </div>
-                <mat-chip
-                  [class]="usuario.activo ? 'chip-activo' : 'chip-inactivo'"
-                  [highlighted]="true">
-                  <mat-icon matChipAvatar>{{ usuario.activo ? 'check_circle' : 'cancel' }}</mat-icon>
-                  {{ usuario.activo ? 'Activo' : 'Inactivo' }}
-                </mat-chip>
+          <div class="trainer-card" [ngClass]="getCardTheme($index)">
+            
+            <div class="card-metallic-frame">
+              
+              <div class="status-ribbon" [class.ribbon-active]="usuario.activo">
+                {{ usuario.activo ? 'ACTIVO' : 'ESTADO: DESCANSANDO (INACTIVO)' }}
               </div>
-            </mat-card-header>
 
-            <mat-divider></mat-divider>
+              <div class="card-inner-screen">
+                
+                <div class="card-header">
+                  <mat-icon>catching_pokemon</mat-icon>
+                  <h2>{{ usuario.nombre | uppercase }} {{ usuario.apellidoPaterno | uppercase }}</h2>
+                </div>
 
-            <!-- Cuerpo -->
-            <mat-card-content class="trainer-card-body">
-              <mat-list dense>
-                <mat-list-item>
-                  <mat-icon matListItemIcon>badge</mat-icon>
-                  <span matListItemTitle class="info-label">Usuario</span>
-                  <span matListItemLine class="info-value">{{ usuario.userName }}</span>
-                </mat-list-item>
+                <div class="card-body">
+                  <div class="info-row">
+                    <div class="icon-box"><mat-icon>person_outline</mat-icon></div>
+                    <div class="info-text">
+                      <span class="label">Usuario</span>
+                      <span class="value">{{ usuario.userName }}</span>
+                    </div>
+                  </div>
 
-                <mat-list-item>
-                  <mat-icon matListItemIcon>alternate_email</mat-icon>
-                  <span matListItemTitle class="info-label">Correo</span>
-                  <span matListItemLine class="info-value">{{ usuario.correo }}</span>
-                </mat-list-item>
+                  <div class="info-row">
+                    <div class="icon-box"><mat-icon>mail_outline</mat-icon></div>
+                    <div class="info-text">
+                      <span class="label">Correo</span>
+                      <span class="value">{{ usuario.correo }}</span>
+                    </div>
+                  </div>
 
-                <mat-list-item>
-                  <mat-icon matListItemIcon>shield</mat-icon>
-                  <span matListItemTitle class="info-label">Rol</span>
-                  <span matListItemLine class="info-value">{{ usuario.rol?.Rol }}</span>
-                </mat-list-item>
-              </mat-list>
-            </mat-card-content>
+                  <div class="info-row">
+                    <div class="icon-box"><mat-icon>emoji_events</mat-icon></div>
+                    <div class="info-text">
+                      <span class="label">Rol</span>
+                      <span class="value">{{ usuario.rol?.Rol }}</span>
+                    </div>
+                  </div>
+                </div>
 
-            <mat-divider></mat-divider>
+              </div> <div class="card-footer-metallic">
+                <div class="action-buttons">
+                  <a class="action-btn btn-info-card" [routerLink]="'/usuario/' + usuario.idUsuarioPokemon" matTooltip="Ver detalle">
+                    <mat-icon>info</mat-icon>
+                  </a>
+                  <button class="action-btn btn-delete-card" (click)="deleteUsuarios(usuario.idUsuarioPokemon)" matTooltip="Eliminar">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
 
-            <!-- Footer con acciones -->
-            <mat-card-actions class="trainer-card-actions" align="end">
-              <a mat-icon-button class="btn-info" [routerLink]="'/usuario/' + usuario.idUsuarioPokemon"
-                matTooltip="Ver detalle">
-                <mat-icon>info</mat-icon>
-              </a>
-              <button mat-icon-button class="btn-delete"
-                (click)="deleteUsuarios(usuario.idUsuarioPokemon)"
-                matTooltip="Eliminar entrenador">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-card-actions>
-
-          </mat-card>
+            </div>
+          </div>
         }
       </div>
     </div>
