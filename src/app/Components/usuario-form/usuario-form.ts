@@ -21,7 +21,6 @@ import { MatRadioModule } from '@angular/material/radio';
 @Component({
   selector: 'app-usuario-form',
   imports: [
-    RouterLink,
     ReactiveFormsModule,
     // Angular Material
     MatToolbarModule,
@@ -42,11 +41,10 @@ export class UsuarioForm implements OnInit {
   public hidePassword = true;
 
   constructor(
-    private catalogoService: CatalogoService,
     private router: Router,
     private usuarioService: UsuarioService,
-    private location : Location
-  ) {}
+    private location: Location
+  ) { }
 
   private formularioReactiv = inject(FormBuilder);
 
@@ -63,22 +61,6 @@ export class UsuarioForm implements OnInit {
   });
 
   ngOnInit(): void {
-    this.cargarRoles();
-  }
-
-  cargarRoles(): void {
-    this.catalogoService.getRoles().subscribe({
-      next: (res) => {
-        if (res.correct) {
-          this.roles = res.objects ?? [];
-        } else {
-          Swal.fire({ title: 'Error al cargar roles', text: res.errorMessage, icon: 'error' });
-        }
-      },
-      error: () => {
-        Swal.fire({ title: 'Error de conexión', text: 'No se pudieron cargar los roles', icon: 'error' });
-      },
-    });
   }
 
   enviarDatos() {
@@ -104,7 +86,7 @@ export class UsuarioForm implements OnInit {
     });
   }
 
-  regresar(): void{
-  this.location.back();
-}
+  regresar(): void {
+    this.location.back();
+  }
 }

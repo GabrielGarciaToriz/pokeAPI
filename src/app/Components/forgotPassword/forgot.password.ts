@@ -34,7 +34,6 @@ export class ForgotPassword {
 
     this.passwordResetService.solicitarRecuperacion(correo).subscribe({
       next: () => {
-        // Siempre mostrar el mensaje genérico (no revelar si el email existe)
         this.enviado = true;
         this.cargando = false;
       },
