@@ -3,7 +3,6 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { PasswordResetService } from '../../Service/password/password.reset.service';
 
-// Validador personalizado: ambas contraseñas deben coincidir
 function passwordsIguales(control: AbstractControl): ValidationErrors | null {
     const pass = control.get('password')?.value;
     const confirmar = control.get('confirmar')?.value;
@@ -37,15 +36,12 @@ export class ResetPassword implements OnInit {
     }, { validators: passwordsIguales });
 
     ngOnInit(): void {
-        // Leer token del query param: /reset-password?token=uuid
         this.token = this.route.snapshot.queryParamMap.get('token') ?? '';
 
         if (!this.token) {
             this.tokenInvalido = true;
             return;
         }
-
-        // Validar el token contra el backend antes de mostrar el form
         this.passwordResetService.validarToken(this.token).subscribe({
             next: (res) => {
                 if (!res.correct) this.tokenInvalido = true;
@@ -68,7 +64,7 @@ export class ResetPassword implements OnInit {
                 if (res.correct) {
                     this.cambiado = true;
                 } else {
-                    this.tokenInvalido = true; // token expiró justo al enviar
+                    this.tokenInvalido = true; 
                 }
                 this.cargando = false;
             },
