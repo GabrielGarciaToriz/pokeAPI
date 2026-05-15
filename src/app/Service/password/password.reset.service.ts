@@ -11,7 +11,7 @@ export class PasswordResetService {
   constructor(private http: HttpClient) { }
 
   solicitarRecuperacion(email: string): Observable<any> {
-    const body = { email: email };
+    const body = { correo: email };
     return this.http.post(`${this.base}/forgot`, body);
   }
 
@@ -22,7 +22,7 @@ export class PasswordResetService {
   }
 
   cambiarPassword(token: string, nuevaPassword: string): Observable<any> {
-    const body = { token: token, nuevaPassword: nuevaPassword };
+    const body = { token: token, newPassword: nuevaPassword };
 
     return this.http.post(`${this.base}/reset`, body);
   }
