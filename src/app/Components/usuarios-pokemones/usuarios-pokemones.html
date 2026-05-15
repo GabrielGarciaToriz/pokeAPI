@@ -65,10 +65,14 @@
               </div>
 
               <div class="info-row">
-                <div class="icon-box"><mat-icon>emoji_events</mat-icon></div>
+                @if (usuario.sexo.toUpperCase() === "M") {
+                <div class="icon-box"><i class="bi bi-person-standing"></i></div>
+                }@else {
+                <div class="icon-box"><i class="bi bi-person-standing-dress"></i></div>
+                }
                 <div class="info-text">
-                  <span class="label">Rol</span>
-                  <span class="value">{{ usuario.rol?.Rol }}</span>
+                  <span class="label">Sexo</span>
+                  <span class="value">{{ usuario.sexo }}</span>
                 </div>
               </div>
             </div>

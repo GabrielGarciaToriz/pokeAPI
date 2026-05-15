@@ -19,6 +19,7 @@ export class GetByIdPokemon implements OnInit {
     private pokemonStateService: PokemonStateService,
     private pokemonService: PokemonService,
     private route: ActivatedRoute,
+    
   ) { }
 
   public pokemon: PokemonModel | undefined;
