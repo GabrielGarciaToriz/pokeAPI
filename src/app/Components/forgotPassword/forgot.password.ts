@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PasswordResetService } from '../../Service/password/password.reset.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule],
   templateUrl: './forgot.password.html',
   styleUrl: './forgot.password.css',
 })
