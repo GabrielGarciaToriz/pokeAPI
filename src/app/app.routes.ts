@@ -14,7 +14,7 @@ export const routes: Routes = [
         { path: "usuarios", component: UsuariosPokemones },
         { path: "formulario", component: UsuarioForm },
         { path: "", component: Login },
-        {path: "usuario/:idUsuario", component:UsuarioDetails},
+        { path: "usuario/:idUsuario", component: UsuarioDetails },
         { path: 'forgot-password', component: ForgotPassword },
         { path: 'reset-password', component: ResetPassword },
 

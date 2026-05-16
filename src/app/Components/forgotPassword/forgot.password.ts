@@ -3,6 +3,8 @@ import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PasswordResetService } from '../../Service/password/password.reset.service';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
+import { ResultModel } from '../../Interfaces/result.model';
 
 @Component({
   selector: 'app-forgot-password',
@@ -18,30 +20,41 @@ export class ForgotPassword {
 
   public enviado = false;
   public cargando = false;
+  public mensajeError: string | null = null;
 
   public formulario = this.fb.group({
     correo: ['', [Validators.required, Validators.email]]
   });
 
+  ngOnInit(): void { }
+
+  constructor() {
+    console.log('ForgotPassword instanciado'); 
+  }
+
   enviarSolicitud(): void {
-    if (this.formulario.invalid) {
+    if (this.formulario.invalid || this.cargando) {
       this.formulario.markAllAsTouched();
       return;
     }
 
-    this.cargando = true;
     const correo = this.formulario.value.correo!;
+    this.cargando = true;
+    this.mensajeError = null;
 
-    this.passwordResetService.solicitarRecuperacion(correo).subscribe({
-      next: () => {
-        this.enviado = true;
-        this.cargando = false;
-      },
-      error: () => {
-        // Igual: mensaje genérico para no exponer información
-        this.enviado = true;
-        this.cargando = false;
-      }
-    });
+    this.passwordResetService.solicitarRecuperacion(correo)
+      .pipe(finalize(() => this.cargando = false))
+      .subscribe({
+        next: (result: ResultModel<void>) => {
+          if (result.correct) {
+            this.enviado = true;
+          } else {
+            this.mensajeError = result.errorMessage ?? 'Ocurrió un error al enviar la solicitud.';
+          }
+        },
+        error: () => {
+          this.mensajeError = 'Ocurrió un error al enviar la solicitud. Por favor, intenta nuevamente.';
+        }
+      });
   }
 }

@@ -1,22 +1,30 @@
+<<<<<<< HEAD
 const IP = "localhost";
+=======
+const IP = "192.167.0.94";
+const PORT = "8080";
+
+const BASE_URL = `http://${IP}:${PORT}/api`;
+
+>>>>>>> origin/develop
 export const API_ROUTES = {
   AUTH: {
-    LOGIN: 'http://' + IP + ':8080/api/auth/login',
+    LOGIN: `${BASE_URL}/auth/login`,
   },
   POKEMON: {
-    BASE: 'http://' + IP + ':8080/api/pokemon',
-    FAVORITO: 'http://' + IP + ':8080/api/favorito',
-    TODOS: 'http://' + IP + ':8080/api/pokemon/todos',
-    DESCRIPCION: 'https://pokeapi.co/api/v2/pokemon-species',
+    BASE: `${BASE_URL}/pokemon`,
+    FAVORITO: `${BASE_URL}/favorito`,
+    TODOS: `${BASE_URL}/pokemon/todos`,
+    DESCRIPCION: 'https://pokeapi.co/api/v2/pokemon-species', // Se queda igual al ser externa
   },
   USUARIO: {
-    BASE: 'http://' + IP + ':8080/api/usuario',
+    BASE: `${BASE_URL}/usuario`,
   },
   CATALOGO: {
-    ROL: 'http://' + IP + ':8080/api/catalogo/rol',
-    TIPOS: 'http://' + IP + ':8080/api/catalogo/tipos',
+    ROL: `${BASE_URL}/catalogo/rol`,
+    TIPOS: `${BASE_URL}/catalogo/tipos`,
   },
   PASSWORD: {
-    BASE: 'http://' + IP + ':8080/api/auth/password',
+    BASE: `${BASE_URL}/auth/password`,
   }
 };

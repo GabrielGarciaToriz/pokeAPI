@@ -39,7 +39,7 @@ export class UsuarioForm implements OnInit {
   public usuario: UsuarioModel | undefined;
   public roles: RolModel[] = [];
   public hidePassword = true;
-
+  
   constructor(
     private router: Router,
     private usuarioService: UsuarioService,
