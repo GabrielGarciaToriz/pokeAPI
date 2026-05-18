@@ -11,7 +11,7 @@ export const API_ROUTES = {
     BASE: `${BASE_URL}/pokemon`,
     FAVORITO: `${BASE_URL}/favorito`,
     TODOS: `${BASE_URL}/pokemon/todos`,
-    DESCRIPCION: 'https://pokeapi.co/api/v2/pokemon-species', // Se queda igual al ser externa
+    DESCRIPCION: 'https://pokeapi.co/api/v2/pokemon-species', 
   },
   USUARIO: {
     BASE: `${BASE_URL}/usuario`,
