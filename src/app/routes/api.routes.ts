@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 const IP = "localhost";
-=======
-const IP = "192.167.0.94";
 const PORT = "8080";
 
 const BASE_URL = `http://${IP}:${PORT}/api`;
 
->>>>>>> origin/develop
 export const API_ROUTES = {
   AUTH: {
     LOGIN: `${BASE_URL}/auth/login`,
