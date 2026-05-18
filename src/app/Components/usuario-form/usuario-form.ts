@@ -7,8 +7,8 @@ import { CatalogoService } from '../../Service/catalogo/catalogo.service';
 import { UsuarioService } from '../../Service/user/usuario.service';
 import { Location } from '@angular/common';
 import Swal from 'sweetalert2';
+import { v4 as uuidv4 } from 'uuid';
 
-// Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,7 +22,6 @@ import { MatRadioModule } from '@angular/material/radio';
   selector: 'app-usuario-form',
   imports: [
     ReactiveFormsModule,
-    // Angular Material
     MatToolbarModule,
     MatCardModule,
     MatFormFieldModule,
@@ -39,12 +38,14 @@ export class UsuarioForm implements OnInit {
   public usuario: UsuarioModel | undefined;
   public roles: RolModel[] = [];
   public hidePassword = true;
-  
+
   constructor(
     private router: Router,
     private usuarioService: UsuarioService,
     private location: Location
   ) { }
+
+
 
   private formularioReactiv = inject(FormBuilder);
 
@@ -68,14 +69,14 @@ export class UsuarioForm implements OnInit {
 
     this.usuario = {
       ...formValue,
-      rol: { idRol: Number(formValue.idRol) },
+      rol: { idRol: Number(1) },
     } as UsuarioModel;
 
     this.usuarioService.addUsuario(this.usuario).subscribe({
       next: (res) => {
         if (res.correct) {
           Swal.fire({ title: 'El usuario se ha creado con éxito', icon: 'success', draggable: true });
-          this.router.navigate(['/pokemones']);
+          this.router.navigate(['/']);
         } else {
           Swal.fire({ title: 'Error al crear usuario', text: res.errorMessage, icon: 'error' });
         }
