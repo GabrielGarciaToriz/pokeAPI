@@ -6,6 +6,7 @@ export interface PokemonModel {
   weight: number,
   height: number,
   types: string[],
+  base_experience: String,
   sprites: {
     back_default: string,
     back_shiny: string,

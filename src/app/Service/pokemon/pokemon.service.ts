@@ -8,7 +8,11 @@ import { PokemonModel } from '../../Interfaces/pokemon.model';
 @Injectable({ providedIn: 'root' })
 export class PokemonService {
 
-  constructor(private http: HttpClient) {}
+  private readonly URL = API_ROUTES.POKEMON.BASE;
+  private readonly FAV_URL = API_ROUTES.POKEMON.FAVORITO;
+
+
+  constructor(private http: HttpClient) { }
 
   getTodos(): Observable<ResultModel<PokemonModel>> {
     return this.http.get<ResultModel<PokemonModel>>(API_ROUTES.POKEMON.TODOS);
@@ -20,9 +24,9 @@ export class PokemonService {
 
   buscarPokemon(id?: number, nombre?: string, tipo?: string): Observable<ResultModel<PokemonModel>> {
     let params = new HttpParams();
-    if (id     !== undefined) params = params.set('id',     id);
+    if (id !== undefined) params = params.set('id', id);
     if (nombre !== undefined) params = params.set('nombre', nombre);
-    if (tipo   !== undefined) params = params.set('tipo',   tipo);
+    if (tipo !== undefined) params = params.set('tipo', tipo);
     return this.http.get<ResultModel<PokemonModel>>(
       `${API_ROUTES.POKEMON.BASE}/buscar`, { params }
     );
@@ -34,13 +38,30 @@ export class PokemonService {
     );
   }
 
-    getDatosAdicionales(idPokemon: number): Observable<ResultModel<PokemonModel>>{
+  getDatosAdicionales(idPokemon: number): Observable<ResultModel<PokemonModel>> {
     return this.http.get<ResultModel<PokemonModel>>(API_ROUTES.POKEMON.DESCRIPCION + "/" + idPokemon);
   }
 
-    getPokemonDescription(nombre: number): Observable<any> {
+  getPokemonDescription(nombre: number): Observable<any> {
     return this.http.get(
       `https://pokeapi.co/api/v2/pokemon-species/${nombre}`
     );
   }
+
+  getFavoritos(idUsuario: number): Observable<ResultModel<any>> {
+    return this.http.get<ResultModel<any>>(`${this.FAV_URL}/${idUsuario}`);
+  }
+
+  isFav(idUsuario: number, idPokemon: number): Observable<ResultModel<boolean>> {
+    return this.http.get<ResultModel<boolean>>(
+      `${this.FAV_URL}/${idUsuario}/existe/${idPokemon}`
+    );
+  }
+
+  eliminarFavorito(idUsuario: number, idPokemon: number): Observable<ResultModel<any>> {
+    return this.http.delete<ResultModel<any>>(
+      `${this.FAV_URL}/${idUsuario}/eliminar/${idPokemon}`
+    );
+  }
+
 }

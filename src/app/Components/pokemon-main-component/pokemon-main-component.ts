@@ -7,7 +7,9 @@ import Swal from 'sweetalert2';
 import { PokemonService } from '../../Service/pokemon/pokemon.service';
 import { PokemonStateService } from '../../Service/pokemon/pokemon.state.service';
 import { CatalogoService } from '../../Service/catalogo/catalogo.service';
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../Service/auth/auth.service';
+// FIX: PokemonDTO eliminado — el backend arma el pokemon desde caché, solo necesita idUsuario + idPokemon
 
 @Component({
   standalone: true,
@@ -33,11 +35,52 @@ export class PokemonMainComponent implements OnInit {
   public buscando = false;
   public yaBusco = false;
 
+  persistiendo: Record<number, boolean> = {};
+  yaGuardado: Record<number, boolean> = {};
+
   constructor(
     private pokemonService: PokemonService,
     private pokemonStateService: PokemonStateService,
     private catalogoService: CatalogoService,
-  ) { }
+    private authService: AuthService
+  ) {}
+
+  persistirPokemon(pokemon: PokemonModel): void {
+    const id = pokemon.idPokemon;
+
+    if (this.persistiendo[id] || this.yaGuardado[id]) return;
+
+    const idUsuario = this.authService.getUsuarioId();
+    if (!idUsuario) {
+      Swal.fire({
+        title: 'Sesión expirada',
+        text: 'Por favor vuelve a iniciar sesión',
+        icon: 'warning'
+      });
+      return;
+    }
+
+    this.persistiendo[id] = true;
+
+    this.pokemonService.addFavorito(idUsuario, id).subscribe({
+      next: () => {
+        this.yaGuardado[id] = true;
+        this.persistiendo[id] = false;
+        Swal.fire({
+          title: '¡Guardado!',
+          text: `${pokemon.name.toUpperCase()} añadido a favoritos`,
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
+      },
+      error: (err) => {
+        this.persistiendo[id] = false;
+        const mensaje = err?.error?.message ?? 'Error al guardar el favorito';
+        Swal.fire({ title: 'Error', text: mensaje, icon: 'error' });
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.pokemonStateService.obtenerTodos().subscribe({
@@ -69,7 +112,6 @@ export class PokemonMainComponent implements OnInit {
   get hayFiltros(): boolean {
     const idVal = this.searchId != null ? String(this.searchId).trim() : '';
     const nombreVal = this.searchNombre != null ? this.searchNombre.trim() : '';
-
     return idVal !== '' || nombreVal !== '' || this.searchTipo1 !== '';
   }
 
