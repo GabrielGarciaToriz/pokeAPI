@@ -4,15 +4,19 @@
   <header class="top-bar">
     <div class="logo-area">
       <h1>POKEAPI</h1>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" class="logo-sprite" />
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu"
+        class="logo-sprite" />
     </div>
     <a class="btn-usuarios-tech" [routerLink]="['/usuarios']">
       <i class="bi bi-people-fill"></i> USUARIOS
     </a>
+    <a class="btn-usuarios-tech" [routerLink]="['/favoritos']">
+  <i class="bi bi-heart-fill"></i> MIS FAVORITOS
+</a>
   </header>
 
   <div class="main-content">
-    
+
     <div class="control-panel">
       <div class="screw top-left"></div>
       <div class="screw top-right"></div>
@@ -22,7 +26,8 @@
       <div class="search-fields-tech">
         <div class="tech-input-group">
           <label>NÚMERO / ID</label>
-          <input [(ngModel)]="searchId" type="number" min="1" class="tech-input" placeholder="Ej: 25" (keyup.enter)="buscar()">
+          <input [(ngModel)]="searchId" type="number" min="1" class="tech-input" placeholder="Ej: 25"
+            (keyup.enter)="buscar()">
         </div>
 
         <div class="tech-dial-container">
@@ -33,7 +38,8 @@
 
         <div class="tech-input-group name-group">
           <label>NOMBRE</label>
-          <input [(ngModel)]="searchNombre" type="text" class="tech-input" placeholder="Ej: pikachu" (keyup.enter)="buscar()">
+          <input [(ngModel)]="searchNombre" type="text" class="tech-input" placeholder="Ej: pikachu"
+            (keyup.enter)="buscar()">
         </div>
 
         <div class="tech-input-group">
@@ -41,7 +47,7 @@
           <select [(ngModel)]="searchTipo1" (ngModelChange)="onTipo1Change()" class="tech-input tech-select">
             <option value="">— Cualquiera —</option>
             @for (tipo of tipos; track tipo.idTipoPokemon) {
-              <option [value]="tipo.nombre">{{ tipo.nombre | uppercase }}</option>
+            <option [value]="tipo.nombre">{{ tipo.nombre | uppercase }}</option>
             }
           </select>
         </div>
@@ -51,7 +57,7 @@
           <select [(ngModel)]="searchTipo2" class="tech-input tech-select" [disabled]="searchTipo1 === ''">
             <option value="">— Ninguno —</option>
             @for (tipo of tiposParaTipo2; track tipo.idTipoPokemon) {
-              <option [value]="tipo.nombre">{{ tipo.nombre | uppercase }}</option>
+            <option [value]="tipo.nombre">{{ tipo.nombre | uppercase }}</option>
             }
           </select>
         </div>
@@ -59,14 +65,14 @@
 
       <div class="search-actions-tech">
         <button class="btn-tech-search" (click)="buscar()" [disabled]="!hayFiltros || buscando">
-          <i class="bi bi-search"></i> 
+          <i class="bi bi-search"></i>
           {{ buscando ? 'BUSCANDO...' : 'BUSCAR' }}
         </button>
 
         @if (yaBusco) {
-          <button class="btn-tech-clear" (click)="limpiarBusqueda()">
-            <i class="bi bi-x-circle"></i> LIMPIAR
-          </button>
+        <button class="btn-tech-clear" (click)="limpiarBusqueda()">
+          <i class="bi bi-x-circle"></i> LIMPIAR
+        </button>
         }
       </div>
     </div>
@@ -75,9 +81,9 @@
       <div class="grid-icon"><i class="bi bi-grid-3x3"></i> TODOS LOS POKÉMON</div>
       <h2 class="section-title-tech">
         @if (yaBusco) {
-          RESULTADOS ({{ pokemonsFiltrados.length }})
+        RESULTADOS ({{ pokemonsFiltrados.length }})
         } @else {
-          TODOS LOS POKÉMON
+        TODOS LOS POKÉMON
         }
       </h2>
       <div class="right-decals">
@@ -88,51 +94,64 @@
 
     <div class="pokemon-grid-tech">
       @for (pokemon of (yaBusco ? pokemonsFiltrados : pokemonesPaginados); track pokemon.idPokemon) {
-        <div class="pokemon-card-tech zoom">
-          
-          <div class="card-inner-frame">
-            <a [routerLink]="['/pokemon/' + pokemon.idPokemon]" class="tech-info-btn">i</a>
-            
-            <div class="holo-screen">
-              <div class="scanlines"></div>
-              <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="hologram-sprite" />
-            </div>
+      <div class="pokemon-card-tech zoom">
+        <button class="btn-persist-tech" (click)="persistirPokemon(pokemon)"
+          [disabled]="persistiendo[pokemon.idPokemon] || yaGuardado[pokemon.idPokemon]"
+          [title]="yaGuardado[pokemon.idPokemon] ? 'Ya guardado en BD' : 'Guardar en base de datos'">
 
-            <div class="tech-data-panel">
-              <span class="tech-id">Nº {{ pokemon.idPokemon }}</span>
-              <h3 class="tech-name">{{ pokemon.name | uppercase }}</h3>
-              <div class="tech-types">
-                @for (tipo of pokemon.types; track tipo) {
-                  <span class="type-pill type-{{tipo.toLowerCase()}}">
-                    <i class="bi bi-record-circle-fill"></i> {{ tipo | uppercase }}
-                  </span>
-                }
-              </div>
+          @if (persistiendo[pokemon.idPokemon]) {
+          <i class="bi bi-hourglass-split spin"></i> GUARDANDO...
+          } @else if (yaGuardado[pokemon.idPokemon]) {
+          <i class="bi bi-database-check"></i> GUARDADO
+          } @else {
+          <i class="bi bi-balloon-heart-fill"></i>
+          }
+        </button>
+
+        <div class="card-inner-frame">
+          <a [routerLink]="['/pokemon/' + pokemon.idPokemon]" class="tech-info-btn">i</a>
+
+          <div class="holo-screen">
+            <div class="scanlines"></div>
+            <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="hologram-sprite" />
+          </div>
+
+          <div class="tech-data-panel">
+            <span class="tech-id">Nº {{ pokemon.idPokemon }}</span>
+            <h3 class="tech-name">{{ pokemon.name | uppercase }}</h3>
+            <div class="tech-types">
+              @for (tipo of pokemon.types; track tipo) {
+              <span class="type-pill type-{{tipo.toLowerCase()}}">
+                <i class="bi bi-record-circle-fill"></i> {{ tipo | uppercase }}
+              </span>
+              }
             </div>
           </div>
-          <div class="card-screw cs-bl"></div>
-          <div class="card-screw cs-br"></div>
         </div>
+
+        <div class="card-screw cs-bl"></div>
+        <div class="card-screw cs-br"></div>
+      </div>
       }
     </div>
 
     @if (yaBusco && pokemonsFiltrados.length === 0) {
-      <div class="no-results-tech">
-        <i class="bi bi-exclamation-triangle"></i>
-        <p>NO SE ENCONTRARON RESULTADOS</p>
-      </div>
+    <div class="no-results-tech">
+      <i class="bi bi-exclamation-triangle"></i>
+      <p>NO SE ENCONTRARON RESULTADOS</p>
+    </div>
     }
 
     @if (!yaBusco) {
-      <div class="pagination-tech">
-        <button (click)="cambiarPagina(page - 20)" class="btn-tech-page" [disabled]="page <= 0">
-          <i class="bi bi-caret-left-fill"></i>
-        </button>
-        <div class="page-display">PÁGINA {{ page / 20 + 1 }}</div>
-        <button (click)="cambiarPagina(page + 20)" class="btn-tech-page" [disabled]="page + 20 >= pokemones.length">
-          <i class="bi bi-caret-right-fill"></i>
-        </button>
-      </div>
+    <div class="pagination-tech">
+      <button (click)="cambiarPagina(page - 20)" class="btn-tech-page" [disabled]="page <= 0">
+        <i class="bi bi-caret-left-fill"></i>
+      </button>
+      <div class="page-display">PÁGINA {{ page / 20 + 1 }}</div>
+      <button (click)="cambiarPagina(page + 20)" class="btn-tech-page" [disabled]="page + 20 >= pokemones.length">
+        <i class="bi bi-caret-right-fill"></i>
+      </button>
+    </div>
     }
 
   </div>
@@ -142,7 +161,8 @@
 <div class="loading-screen-tech">
   <div class="loading-text">
     INICIALIZANDO SISTEMA...
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif" alt="Cargando" class="loading-sprite" />
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
+      alt="Cargando" class="loading-sprite" />
   </div>
 </div>
 }

@@ -7,4 +7,5 @@ export interface PokemonDTO {
     tipoDos?: string;
     spriteFrontal: string;
     isDefault: boolean;
+    experienciaBase?: string;
 }

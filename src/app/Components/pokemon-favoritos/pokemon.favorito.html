@@ -1,0 +1,93 @@
+@if (cargando) {
+  <div class="loading-screen-tech">
+    <div class="loading-text">
+      CARGANDO FAVORITOS...
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
+        alt="Cargando" class="loading-sprite" />
+    </div>
+  </div>
+} @else {
+
+<div class="app-container">
+  <header class="top-bar">
+    <div class="logo-area">
+      <h1>MIS FAVORITOS</h1>
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+        alt="Pikachu" class="logo-sprite" />
+    </div>
+    <a class="btn-usuarios-tech" [routerLink]="['/pokemones']">
+      <i class="bi bi-arrow-left"></i> VOLVER
+    </a>
+  </header>
+
+  <div class="main-content">
+
+    <div class="section-divider">
+      <div class="grid-icon"><i class="bi bi-heart-fill"></i> FAVORITOS</div>
+      <h2 class="section-title-tech">MIS POKÉMON ({{ favoritos.length }})</h2>
+      <div class="right-decals">
+        <div class="decal-circle"></div>
+        <div class="decal-circle"></div>
+      </div>
+    </div>
+
+    @if (favoritos.length === 0) {
+      <div class="no-results-tech">
+        <i class="bi bi-heart"></i>
+        <p>AÚN NO TIENES POKÉMON FAVORITOS</p>
+        <a [routerLink]="['/pokemones']" class="btn-tech-search" style="text-decoration:none; margin-top: 12px;">
+          <i class="bi bi-search"></i> EXPLORAR POKÉMON
+        </a>
+      </div>
+    } @else {
+      <div class="pokemon-grid-tech">
+        @for (fav of favoritos; track fav.pokemon.idPokemon) {
+          <div class="pokemon-card-tech zoom">
+
+            <!-- Botón eliminar -->
+            <button class="btn-remove-tech"
+              (click)="eliminar(fav.pokemon.idPokemon, fav.pokemon.name)"
+              [disabled]="eliminando[fav.pokemon.idPokemon]"
+              title="Quitar de favoritos">
+              @if (eliminando[fav.pokemon.idPokemon]) {
+                <i class="bi bi-hourglass-split spin"></i>
+              } @else {
+                <i class="bi bi-heart-fill"></i>
+              }
+            </button>
+
+            <div class="card-inner-frame">
+              <a [routerLink]="['/pokemon/' + fav.pokemon.idPokemon]" class="tech-info-btn">i</a>
+
+              <div class="holo-screen">
+                <div class="scanlines"></div>
+                <img [src]="fav.pokemon.spriteFront" [alt]="fav.pokemon.name" class="hologram-sprite" />
+              </div>
+
+              <div class="tech-data-panel">
+                <span class="tech-id">Nº {{ fav.pokemon.idPokemon }}</span>
+                <h3 class="tech-name">{{ fav.pokemon.name | uppercase }}</h3>
+                <div class="tech-types">
+                  <span class="type-pill type-{{ fav.pokemon.tipoUno?.toLowerCase() }}">
+                    <i class="bi bi-record-circle-fill"></i> {{ fav.pokemon.tipoUno | uppercase }}
+                  </span>
+                  @if (fav.pokemon.tipoDos) {
+                    <span class="type-pill type-{{ fav.pokemon.tipoDos?.toLowerCase() }}">
+                      <i class="bi bi-record-circle-fill"></i> {{ fav.pokemon.tipoDos | uppercase }}
+                    </span>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="card-screw cs-bl"></div>
+            <div class="card-screw cs-br"></div>
+          </div>
+        }
+      </div>
+    }
+
+  </div>
+</div>
+
+}
